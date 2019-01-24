@@ -1,6 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Slider from "react-slick";
+import {default as Carousel} from "react-slick";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import PlayerCard from "./PlayerCard";
 
 class RootApp extends React.Component {
     render() {
@@ -14,28 +17,13 @@ class RootApp extends React.Component {
         return (
             <div className="row">
             <div className="col-md-2"></div>
-            <div className="col-md-8 my-4">
-            <Slider {...settings}>
+            <div className="col-md-8 root-container px-4">
+            <Slider className="slider-root mx-auto" min={0} max={150} marks={{0: '0', 150: '150'}}/>
+            <Carousel {...settings}>
                 {
-                    this.props.players.map((player) => {
-                        return (
-                            <div>
-                            <div key={player.full_name} className="card mx-4">
-                                <img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap"/>
-                                <div className="card-header">
-                                    {player.full_name}
-                                </div>
-                                <ul className="list-group list-group-flush">
-                                    <li className="list-group-item">Form: <span className="grey-text">{player.form}</span></li>
-                                    <li className="list-group-item">Cost: <span className="grey-text">{player.cost}</span></li>
-                                    <li className="list-group-item">Playing Chance: <span className="grey-text">{player.playing_chance}</span></li>
-                                </ul>
-                            </div>
-                            </div>
-                        )
-                    })
+                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name}/>)
                 }
-            </Slider>
+            </Carousel>
             </div>
             <div className="col-md-2"></div>
             </div>

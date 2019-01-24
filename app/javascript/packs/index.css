@@ -2,6 +2,10 @@
   color: gray;
 }
 
+.root-container {
+  padding: 200px 0;
+}
+
 .player-card__img {
   /*background-color: #FFFF30;*/
   width: 110px;
@@ -10,4 +14,9 @@
 
 .slick-prev:before, .slick-next:before {
   color:red !important;
+}
+
+.slider-root {
+  width: 60% !important;
+  margin-bottom: 50px;
 }

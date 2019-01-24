@@ -6,6 +6,7 @@
     "@rails/webpacker": "https://github.com/rails/webpacker",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.23",
     "prop-types": "^15.6.2",
+    "rc-slider": "^8.6.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-slick": "^0.23.2",
