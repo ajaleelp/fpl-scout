@@ -67,3 +67,6 @@ gem 'rest-client'
 
 gem 'webpacker'
 gem 'react-rails'
+
+gem 'bootstrap', '~> 4.2.1'
+gem 'jquery-rails'

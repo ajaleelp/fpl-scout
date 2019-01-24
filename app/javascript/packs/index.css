@@ -1,1 +1,13 @@
-@import 'react-table/react-table.css';
+.grey-text {
+  color: gray;
+}
+
+.player-card__img {
+  /*background-color: #FFFF30;*/
+  width: 110px;
+  height: 140px;
+}
+
+.slick-prev:before, .slick-next:before {
+  color:red !important;
+}

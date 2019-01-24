@@ -6,7 +6,8 @@ class HomeController < ApplicationController
           full_name: "#{player['first_name']} #{player['second_name']}",
           form: player['form'],
           cost: player['now_cost'],
-          playing_chance: player['chance_of_playing_next_round']
+          playing_chance: player['chance_of_playing_next_round'],
+          code: player['code']
       }
     end.sort_by { |p| p[:form].to_f }.reverse
   end
