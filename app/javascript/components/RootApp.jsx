@@ -14,10 +14,16 @@ export default class RootApp extends React.Component {
         };
 
         this.filteredPlayers = this.filteredPlayers.bind(this);
+        this.changeMaxCost = this.changeMaxCost.bind(this);
     }
 
     filteredPlayers() {
         return this.state.players.filter((player) => {return parseInt(player.cost) < this.state.maxCost;});
+    }
+
+    changeMaxCost(newMaxCost) {
+        console.log(newMaxCost);
+        this.setState({maxCost: newMaxCost});
     }
 
     render() {
@@ -25,7 +31,7 @@ export default class RootApp extends React.Component {
             <div className="row">
                 <div className="col-md-2"></div>
                 <div className="col-md-8 root-container px-4">
-                    <Slider className="slider-root mx-auto" min={0} max={150} marks={{0: '0', 150: '150'}}/>
+                    <Slider className="slider-root mx-auto" min={0} max={150} marks={{0: '0', 150: '150'}} onAfterChange={this.changeMaxCost}/>
                     <PlayerCarousel players={this.filteredPlayers()}/>
                 </div>
                 <div className="col-md-2"></div>
