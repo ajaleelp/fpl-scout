@@ -12,10 +12,11 @@ export default class PlayerCarousel extends React.Component {
     render() {
         var settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            lazyLoad: 'ondemand'
         };
         return (
             <Carousel {...settings}>
