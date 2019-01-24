@@ -28,5 +28,5 @@ export default class PlayerCard extends React.Component {
 }
 
 PlayerCard.propTypes = {
-    player: PropTypes.object
+    player: PropTypes.object.isRequired
 };
