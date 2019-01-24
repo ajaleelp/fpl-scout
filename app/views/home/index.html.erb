@@ -1,1 +1,16 @@
-<h1>content here</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Form</th>
+    <th>Cost</th>
+    <th>Playing Chance</th>
+  </tr>
+  <% @players.each do |player| %>
+    <tr>
+      <th><%= player[:full_name] %></th>
+      <th><%= player[:form] %></th>
+      <th><%= player[:cost] %></th>
+      <th><%= player[:playing_chance] %></th>
+    </tr>
+  <% end %>
+</table>
