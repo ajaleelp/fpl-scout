@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import Slider from 'rc-slider';
 const Range = Slider.Range;
-import 'rc-slider/assets/index.css';
 import PlayerCarousel from "./PlayerCarousel";
 
 export default class RootApp extends React.Component {
