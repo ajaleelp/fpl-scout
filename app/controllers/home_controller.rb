@@ -7,7 +7,8 @@ class HomeController < ApplicationController
           form: player['form'],
           cost: player['now_cost'],
           playing_chance: player['chance_of_playing_next_round'],
-          code: player['code']
+          code: player['code'],
+          position: player['element_type']
       }
     end.sort_by { |p| p[:form].to_f }.reverse
   end

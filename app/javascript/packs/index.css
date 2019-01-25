@@ -10,8 +10,23 @@
   padding: 200px 0;
 }
 
+.root__player-carousel--forwards {
+  border: 2px solid #00ff85;
+}
+
+.root__player-carousel--mid-fielders {
+  border: 2px solid #38003c;
+}
+
+.root__player-carousel--defenders {
+  border: 2px solid #e90052;
+}
+
+.root__player-carousel--goal-keepers {
+  border: 2px solid #04f5ff;
+}
+
 .player-card__img {
-  /*background-color: #FFFF30;*/
   width: 110px;
   height: 140px;
 }

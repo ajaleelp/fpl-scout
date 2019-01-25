@@ -32,6 +32,10 @@ export default class RootApp extends React.Component {
         });
     }
 
+    filterForPosition(players, position) {
+        return players.filter((player) => player.position == position);
+    }
+
     changeRange([newMinCost, newMaxCost]) {
         this.setState({minCost: newMinCost, maxCost: newMaxCost});
     }
@@ -40,6 +44,11 @@ export default class RootApp extends React.Component {
         let sliderMarks = {};
         sliderMarks[this.globalMinCost()] = this.globalMinCost().toString();
         sliderMarks[this.globalMaxCost()] = this.globalMaxCost().toString();
+        let filteredPlayers = this.filteredPlayers();
+        let forwards = this.filterForPosition(filteredPlayers, 4);
+        let midFielders = this.filterForPosition(filteredPlayers, 3);
+        let defenders = this.filterForPosition(filteredPlayers, 2);
+        let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
             <div className="row">
                 <div className="col-md-2"></div>
@@ -52,7 +61,30 @@ export default class RootApp extends React.Component {
                             value={[this.state.minCost, this.state.maxCost]}
                             allowCross={false}
                     />
-                    <PlayerCarousel players={this.filteredPlayers()}/>
+                    <ul className="list-group mb-4 root__player-carousel--forwards">
+                        <li className="list-group-item">Forwards</li>
+                        <li className="list-group-item">
+                            <PlayerCarousel players={forwards}/>
+                        </li>
+                    </ul>
+                    <ul className="list-group mb-4 root__player-carousel--mid-fielders">
+                        <li className="list-group-item">Mid-Fielders</li>
+                        <li className="list-group-item">
+                            <PlayerCarousel players={midFielders}/>
+                        </li>
+                    </ul>
+                    <ul className="list-group mb-4 root__player-carousel--defenders">
+                        <li className="list-group-item">Defenders</li>
+                        <li className="list-group-item">
+                            <PlayerCarousel players={defenders}/>
+                        </li>
+                    </ul>
+                    <ul className="list-group mb-4 root__player-carousel--goal-keepers">
+                        <li className="list-group-item">Goal-Keepers</li>
+                        <li className="list-group-item">
+                            <PlayerCarousel players={goalKeepers}/>
+                        </li>
+                    </ul>
                 </div>
                 <div className="col-md-2"></div>
             </div>
