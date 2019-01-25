@@ -8,6 +8,16 @@ export default class PlayerCarousel extends React.Component {
         super(props);
     }
 
+    nextMatches(player) {
+        return this.props.upComingMatches.filter((match) => {
+            return (match.team_a === player.team) || (match.team_h === player.team);
+        });
+    }
+
+    next5Matches(player) {
+        return this.nextMatches(player).sort((match) => {return Date.parse(match.kickoff_time);}).slice(0,5)
+    }
+
 
     render() {
         var settings = {
@@ -21,7 +31,7 @@ export default class PlayerCarousel extends React.Component {
         return (
             <Carousel {...settings} className="m-4">
                 {
-                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name}/>)
+                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams}/>)
                 }
             </Carousel>
         );
@@ -29,5 +39,7 @@ export default class PlayerCarousel extends React.Component {
 }
 
 PlayerCarousel.propTypes = {
-    players: PropTypes.array.isRequired
+    players: PropTypes.array.isRequired,
+    teams: PropTypes.array.isRequired,
+    upComingMatches: PropTypes.array.isRequired
 };

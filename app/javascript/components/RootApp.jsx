@@ -11,11 +11,8 @@ export default class RootApp extends React.Component {
 
         this.state = {
             maxCost: this.globalMaxCost(),
-            minCost: this.globalMinCost(),
-            players: this.props.players
+            minCost: this.globalMinCost()
         };
-
-        this.filteredPlayers = this.filteredPlayers.bind(this);
         this.changeRange = this.changeRange.bind(this);
     }
 
@@ -28,13 +25,17 @@ export default class RootApp extends React.Component {
     }
 
     filteredPlayers() {
-        return this.state.players.filter((player) => {
+        return this.props.players.filter((player) => {
             return ((player.cost <= this.state.maxCost) && (player.cost >= this.state.minCost));
         });
     }
 
     filterForPosition(players, position) {
         return players.filter((player) => player.position == position);
+    }
+
+    upComingMatches() {
+        return this.props.fixtures.filter((match) => Date.parse(match.kickoff_time) > new Date());
     }
 
     changeRange([newMinCost, newMaxCost]) {
@@ -71,25 +72,25 @@ export default class RootApp extends React.Component {
                     <ul className="list-group mb-4 root__player-carousel--forwards">
                         <li className="list-group-item">Forwards</li>
                         <li className="list-group-item">
-                            <PlayerCarousel players={forwards}/>
+                            <PlayerCarousel players={forwards} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
                         </li>
                     </ul>
                     <ul className="list-group mb-4 root__player-carousel--mid-fielders">
                         <li className="list-group-item">Mid-Fielders</li>
                         <li className="list-group-item">
-                            <PlayerCarousel players={midFielders}/>
+                            <PlayerCarousel players={midFielders} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
                         </li>
                     </ul>
                     <ul className="list-group mb-4 root__player-carousel--defenders">
                         <li className="list-group-item">Defenders</li>
                         <li className="list-group-item">
-                            <PlayerCarousel players={defenders}/>
+                            <PlayerCarousel players={defenders} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
                         </li>
                     </ul>
                     <ul className="list-group mb-4 root__player-carousel--goal-keepers">
                         <li className="list-group-item">Goal-Keepers</li>
                         <li className="list-group-item">
-                            <PlayerCarousel players={goalKeepers}/>
+                            <PlayerCarousel players={goalKeepers} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
                         </li>
                     </ul>
                 </div>
@@ -100,5 +101,7 @@ export default class RootApp extends React.Component {
 }
 
 RootApp.propTypes = {
-    players: PropTypes.array.isRequired
+    players: PropTypes.array.isRequired,
+    teams: PropTypes.array.isRequired,
+    fixtures: PropTypes.array.isRequired
 };

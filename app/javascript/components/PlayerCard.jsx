@@ -10,6 +10,19 @@ export default class PlayerCard extends React.Component {
         super(props);
     }
 
+    next5Teams() {
+        let opponentIds = this.props.next5Matches.map((match) => {
+            return (match.team_a === this.props.player.team ? match.team_h : match.team_a)
+        });
+        let opponentTeamNames = opponentIds.map((opponentId) => {
+            return this.props.teams.find((t) => {return (t.id == opponentId);}).short_name;
+        });
+        return opponentTeamNames;
+    }
+
+    componentDidMount() {
+        console.log(this.next5Teams());
+    }
 
     render() {
         let player = this.props.player;
@@ -43,5 +56,7 @@ export default class PlayerCard extends React.Component {
 }
 
 PlayerCard.propTypes = {
-    player: PropTypes.object.isRequired
+    player: PropTypes.object.isRequired,
+    next5Matches: PropTypes.array.isRequired,
+    teams: PropTypes.array.isRequired
 };
