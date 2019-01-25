@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Slider from 'rc-slider';
-const Range = Slider.Range;
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const Range = createSliderWithTooltip(Slider.Range);
 import PlayerCarousel from "./PlayerCarousel";
 
 export default class RootApp extends React.Component {
@@ -53,14 +54,20 @@ export default class RootApp extends React.Component {
             <div className="row">
                 <div className="col-md-2"></div>
                 <div className="col-md-8 root-container px-4">
-                    <Range className="slider-root mx-auto"
-                            min={this.globalMinCost()}
-                            max={this.globalMaxCost()}
-                            marks={sliderMarks}
-                            onChange={this.changeRange}
-                            value={[this.state.minCost, this.state.maxCost]}
-                            allowCross={false}
-                    />
+                    <div className="d-flex flex-column align-items-center">
+                        <div className="my-2">
+                            Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
+                        </div>
+                        <Range className="slider-root mx-auto"
+                                min={this.globalMinCost()}
+                                max={this.globalMaxCost()}
+                                marks={sliderMarks}
+                                onChange={this.changeRange}
+                                value={[this.state.minCost, this.state.maxCost]}
+                                allowCross={false}
+                                tipFormatter={value => `${value}`}
+                        />
+                    </div>
                     <ul className="list-group mb-4 root__player-carousel--forwards">
                         <li className="list-group-item">Forwards</li>
                         <li className="list-group-item">
