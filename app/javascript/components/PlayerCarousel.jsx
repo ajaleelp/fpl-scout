@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PlayerCard from "./PlayerCard";
-import {default as Carousel} from "react-slick/lib";
+import { default as Carousel } from "react-slick/lib";
 
 export default class PlayerCarousel extends React.Component {
     constructor(props) {
@@ -15,7 +15,7 @@ export default class PlayerCarousel extends React.Component {
     }
 
     next5Matches(player) {
-        return this.nextMatches(player).sort((match) => {return Date.parse(match.kickoff_time);}).slice(0,5)
+        return this.nextMatches(player).sort((match) => { return Date.parse(match.kickoff_time); }).slice(0, 5)
     }
 
 
@@ -24,14 +24,14 @@ export default class PlayerCarousel extends React.Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             lazyLoad: 'ondemand'
         };
         return (
             <Carousel {...settings} className="m-4">
                 {
-                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams}/>)
+                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams} />)
                 }
             </Carousel>
         );
