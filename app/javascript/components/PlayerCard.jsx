@@ -10,18 +10,22 @@ export default class PlayerCard extends React.Component {
         super(props);
     }
 
-    next5Teams() {
-        let opponentIds = this.props.next5Matches.map((match) => {
-            return (match.team_a === this.props.player.team ? match.team_h : match.team_a)
-        });
-        let opponentTeamNames = opponentIds.map((opponentId) => {
-            return this.props.teams.find((t) => { return (t.id == opponentId); }).short_name;
-        });
-        return opponentTeamNames;
-    }
+    next5MatchDetails() {
+        return this.props.next5Matches.map((match) => {
+            let isHome = (match.team_a === this.props.player.team ? false : true);
+            let opponentId = (isHome ? match.team_a : match.team_h);
 
-    componentDidMount() {
-        console.log(this.next5Teams());
+            let opponentName = this.props.teams.find((t) => { return (t.id == opponentId); }).short_name;
+
+            let fixture = this.props.fixtures.find((match) => {
+                let awayTeamId = (isHome ? opponentId : this.props.player.team);
+                let homeTeamId = (isHome ? this.props.player.team : opponentId);
+                return (match.team_a == awayTeamId && match.team_h == homeTeamId);
+            });
+
+            let difficulty = (isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty)
+            return { opponentName: opponentName, isHome: isHome, difficulty: difficulty };
+        });
     }
 
     render() {
@@ -37,8 +41,13 @@ export default class PlayerCard extends React.Component {
                         <div className="col-6">
                             <ul className="list-group">
                                 {
-                                    this.next5Teams().map(team => {
-                                        return (<li className="list-group-item"><font size="1">{team}</font></li>);
+                                    this.next5MatchDetails().map(team => {
+                                        return (
+                                            <li className="list-group-item">
+                                                <font size="1">{
+                                                    team.opponentName} {team.isHome} {team.difficulty}
+                                                </font>
+                                            </li>);
                                     })
                                 }
                             </ul>
@@ -72,5 +81,6 @@ export default class PlayerCard extends React.Component {
 PlayerCard.propTypes = {
     player: PropTypes.object.isRequired,
     next5Matches: PropTypes.array.isRequired,
-    teams: PropTypes.array.isRequired
+    teams: PropTypes.array.isRequired,
+    fixtures: PropTypes.array.isRequired
 };

@@ -31,7 +31,7 @@ export default class PlayerCarousel extends React.Component {
         return (
             <Carousel {...settings} className="m-4">
                 {
-                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams} />)
+                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams} fixtures={this.props.fixtures} />)
                 }
             </Carousel>
         );
@@ -41,5 +41,6 @@ export default class PlayerCarousel extends React.Component {
 PlayerCarousel.propTypes = {
     players: PropTypes.array.isRequired,
     teams: PropTypes.array.isRequired,
-    upComingMatches: PropTypes.array.isRequired
+    upComingMatches: PropTypes.array.isRequired,
+    fixtures: PropTypes.array.isRequired
 };
