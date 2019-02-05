@@ -4,6 +4,8 @@ import Slider from 'rc-slider';
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 import PlayerCarousel from "./PlayerCarousel";
+import Picky from 'react-picky';
+import 'react-picky/dist/picky.css';
 
 export default class RootApp extends React.Component {
     constructor(props) {
@@ -13,10 +15,12 @@ export default class RootApp extends React.Component {
             maxCost: this.globalMaxCost(),
             minCost: this.globalMinCost(),
             maxForm: this.globalMaxForm(),
-            minForm: this.globalMinForm()
+            minForm: this.globalMinForm(),
+            selectedTeams: []
         };
         this.changeCostRange = this.changeCostRange.bind(this);
         this.changeFormRange = this.changeFormRange.bind(this);
+        this.updateSelectedTeams = this.updateSelectedTeams.bind(this);
     }
 
     globalMaxCost() {
@@ -36,7 +40,12 @@ export default class RootApp extends React.Component {
     }
 
     filteredPlayers() {
-        return this.props.players.filter((player) => {
+        let teamFilteredPlayers = (this.state.selectedTeams.length ===0) ?
+            this.props.players
+        : (this.props.players.filter((player) => {
+                return this.state.selectedTeams.map((t) => {return t.id;}).includes(player.team)
+            }))
+        return teamFilteredPlayers.filter((player) => {
             return ((player.cost <= this.state.maxCost) && (player.cost >= this.state.minCost) && (player.form <= this.state.maxForm) && (player.form >= this.state.minForm));
         });
     }
@@ -55,6 +64,10 @@ export default class RootApp extends React.Component {
 
     changeFormRange([newMinForm, newMaxForm]) {
         this.setState({ maxForm: newMaxForm, minForm: newMinForm });
+    }
+        
+    updateSelectedTeams(teams) {
+        this.setState({selectedTeams: teams});
     }
 
     render() {
@@ -194,8 +207,18 @@ export default class RootApp extends React.Component {
                             tipFormatter={value => `${value}`}
                         />
                     </div>
+                    <Picky
+                        options={this.props.teams}
+                        value={this.state.selectedTeams}
+                        valueKey="id"
+                        labelKey="name"
+                        multiple={true}
+                        includeSelectAll={true}
+                        includeFilter={true}
+                        onChange={this.updateSelectedTeams}
+                        dropdownHeight={600}
+                    />
                 </div>
-
             </div>
         );
     }
