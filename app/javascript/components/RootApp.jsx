@@ -52,24 +52,8 @@ export default class RootApp extends React.Component {
         let defenders = this.filterForPosition(filteredPlayers, 2);
         let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
-            <div className="row">
-                <div className="col-md-2"></div>
-                <div className="col-md-8 root-container px-4">
-                    <div className="d-flex flex-column align-items-center">
-                        <div className="my-2">
-                            Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
-                        </div>
-                        <Range className="slider-root mx-auto"
-                            min={this.globalMinCost()}
-                            max={this.globalMaxCost()}
-                            marks={sliderMarks}
-                            onChange={this.changeRange}
-                            value={[this.state.minCost, this.state.maxCost]}
-                            allowCross={false}
-                            tipFormatter={value => `${value}`}
-                        />
-                    </div>
-                    <div className="accordion" id="accordionExample">
+            <div className="row root-container">
+                    <div className="accordion col-md-8 p-3" id="accordionExample">
                         <div className="card">
                             <div className="card-header" id="headingOne">
                                 <h5 className="mb-0">
@@ -163,9 +147,21 @@ export default class RootApp extends React.Component {
                             </div>
                         </div>
                     </div>
+                <div className="col-md-4 py-3 px-1 d-flex flex-column align-items-center">
+                    <div className="my-2">
+                        Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
+                    </div>
+                    <Range className="slider-root mx-auto"
+                           min={this.globalMinCost()}
+                           max={this.globalMaxCost()}
+                           marks={sliderMarks}
+                           onChange={this.changeRange}
+                           value={[this.state.minCost, this.state.maxCost]}
+                           allowCross={false}
+                           tipFormatter={value => `${value}`}
+                    />
                 </div>
-                <div className="col-md-2"></div>
-            </div>
+                </div>
         );
     }
 }
