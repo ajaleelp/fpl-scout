@@ -28,7 +28,8 @@ class HomeController < ApplicationController
           team_h: match['team_h'],
           team_a_difficulty: match['team_a_difficulty'],
           team_h_difficulty: match['team_h_difficulty'],
-          kickoff_time: match['kickoff_time']
+          kickoff_time: match['kickoff_time'],
+          game_week: match['event']
       }
     end
   end

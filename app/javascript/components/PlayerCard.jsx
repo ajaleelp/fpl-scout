@@ -24,7 +24,7 @@ export default class PlayerCard extends React.Component {
             });
 
             let difficulty = (isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty)
-            return { opponentName: opponentName, isHome: isHome, difficulty: difficulty };
+            return { opponentName: opponentName, isHome: isHome, difficulty: difficulty, gameWeek: fixture.game_week };
         });
     }
 
@@ -43,7 +43,8 @@ export default class PlayerCard extends React.Component {
                                 {
                                     this.next5MatchDetails().map(team => {
                                         return (
-                                            <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-between">
+                                            <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around">
+                                                <div className="p-2">{team.gameWeek}</div>
                                                 <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
                                                 <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
                                             </li>);
