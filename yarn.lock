@@ -5897,6 +5897,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-picky@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/react-picky/-/react-picky-4.1.2.tgz#0c46b0fb0c971bdaf39af8deb4b742ba0f265020"
+  integrity sha512-DVMDE2Ovq+CAkOlVCsUKg1+YrZohoIXS8gNe3o/SLm53IwFynh3cnX6beXMHJRVg8aqjZ+//UMf35T8GhsZf1g==
+
 react-slick@^0.23.2:
   version "0.23.2"
   resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.23.2.tgz#8d8bdbc77a6678e8ad36f50c32578c7c0f1c54f6"

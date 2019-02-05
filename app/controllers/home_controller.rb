@@ -17,7 +17,8 @@ class HomeController < ApplicationController
     @teams = teams_json.map do |team|
       {
           id: team['id'],
-          short_name: team['short_name']
+          short_name: team['short_name'],
+          name: team['name']
       }
     end
 

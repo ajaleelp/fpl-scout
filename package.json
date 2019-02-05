@@ -12,6 +12,7 @@
     "rc-slider": "^8.6.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-picky": "^4.1.2",
     "react-slick": "^0.23.2",
     "react-table": "^6.8.6",
     "react_ujs": "^2.4.4",

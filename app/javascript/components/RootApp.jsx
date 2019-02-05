@@ -4,6 +4,8 @@ import Slider from 'rc-slider';
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 import PlayerCarousel from "./PlayerCarousel";
+import Picky from 'react-picky';
+import 'react-picky/dist/picky.css';
 
 export default class RootApp extends React.Component {
     constructor(props) {
@@ -11,9 +13,11 @@ export default class RootApp extends React.Component {
 
         this.state = {
             maxCost: this.globalMaxCost(),
-            minCost: this.globalMinCost()
+            minCost: this.globalMinCost(),
+            selectedTeams: []
         };
         this.changeRange = this.changeRange.bind(this);
+        this.updateSelectedTeams = this.updateSelectedTeams.bind(this);
     }
 
     globalMaxCost() {
@@ -25,7 +29,12 @@ export default class RootApp extends React.Component {
     }
 
     filteredPlayers() {
-        return this.props.players.filter((player) => {
+        let teamFilteredPlayers = (this.state.selectedTeams.length ===0) ?
+            this.props.players
+        : (this.props.players.filter((player) => {
+                return this.state.selectedTeams.map((t) => {return t.id;}).includes(player.team)
+            }))
+        return teamFilteredPlayers.filter((player) => {
             return ((player.cost <= this.state.maxCost) && (player.cost >= this.state.minCost));
         });
     }
@@ -40,6 +49,10 @@ export default class RootApp extends React.Component {
 
     changeRange([newMinCost, newMaxCost]) {
         this.setState({ minCost: newMinCost, maxCost: newMaxCost });
+    }
+
+    updateSelectedTeams(teams) {
+        this.setState({selectedTeams: teams});
     }
 
     render() {
@@ -159,6 +172,17 @@ export default class RootApp extends React.Component {
                            value={[this.state.minCost, this.state.maxCost]}
                            allowCross={false}
                            tipFormatter={value => `${value}`}
+                    />
+                    <Picky
+                        options={this.props.teams}
+                        value={this.state.selectedTeams}
+                        valueKey="id"
+                        labelKey="name"
+                        multiple={true}
+                        includeSelectAll={true}
+                        includeFilter={true}
+                        onChange={this.updateSelectedTeams}
+                        dropdownHeight={600}
                     />
                 </div>
                 </div>
