@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       {
           full_name: "#{player['first_name']} #{player['second_name']}",
           form: player['form'],
-          cost: player['now_cost'],
+          cost: player['now_cost'].to_f / 10,
           playing_chance: player['chance_of_playing_next_round'],
           code: player['code'],
           position: player['element_type'],

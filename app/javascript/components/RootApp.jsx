@@ -69,30 +69,81 @@ export default class RootApp extends React.Component {
                                 tipFormatter={value => `${value}`}
                         />
                     </div>
-                    <ul className="list-group mb-4 root__player-carousel--forwards">
-                        <li className="list-group-item">Forwards</li>
-                        <li className="list-group-item">
-                            <PlayerCarousel players={forwards} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
-                        </li>
-                    </ul>
-                    <ul className="list-group mb-4 root__player-carousel--mid-fielders">
-                        <li className="list-group-item">Mid-Fielders</li>
-                        <li className="list-group-item">
-                            <PlayerCarousel players={midFielders} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
-                        </li>
-                    </ul>
-                    <ul className="list-group mb-4 root__player-carousel--defenders">
-                        <li className="list-group-item">Defenders</li>
-                        <li className="list-group-item">
-                            <PlayerCarousel players={defenders} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
-                        </li>
-                    </ul>
-                    <ul className="list-group mb-4 root__player-carousel--goal-keepers">
-                        <li className="list-group-item">Goal-Keepers</li>
-                        <li className="list-group-item">
-                            <PlayerCarousel players={goalKeepers} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
-                        </li>
-                    </ul>
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Forwards
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <ul className="list-group mb-4 root__player-carousel--forwards">
+                                        <li className="list-group-item">
+                                            <PlayerCarousel players={forwards} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Midfielders
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <ul className="list-group mb-4 root__player-carousel--mid-fielders">
+                                        <li className="list-group-item">
+                                            <PlayerCarousel players={midFielders} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Defenders
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <ul className="list-group mb-4 root__player-carousel--defenders">
+                                        <li className="list-group-item">
+                                            <PlayerCarousel players={defenders} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Goalkeepers
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <ul className="list-group mb-4 root__player-carousel--goal-keepers">
+                                        <li className="list-group-item">
+                                            <PlayerCarousel players={goalKeepers} upComingMatches={this.upComingMatches()} teams={this.props.teams}/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-md-2"></div>
             </div>

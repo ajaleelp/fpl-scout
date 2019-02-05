@@ -31,14 +31,15 @@ export default class PlayerCard extends React.Component {
                 <div key={player.full_name} className="card mx-4">
                     <div className="row">
                         <div className="col-6">
-                            <img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap"/>
-                            <FontAwesomeIcon icon={faPoundSign} />
-                            <h2 className="text-center">{player.cost/10}</h2>
+                            <img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap" />
+                            <h2 className="text-center"><FontAwesomeIcon icon={faPoundSign} />{player.cost}</h2>
                         </div>
                         <div className="col-6">
                             <ul className="list-group">
                                 {
-                                    this.next5Teams().map(team => { return (<li className="list-group-item">{team}</li>); })
+                                    this.next5Teams().map(team => {
+                                        return (<li className="list-group-item"><font size="1">{team}</font></li>);
+                                    })
                                 }
                             </ul>
                         </div>
