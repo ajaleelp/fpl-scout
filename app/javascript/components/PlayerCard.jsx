@@ -38,15 +38,14 @@ export default class PlayerCard extends React.Component {
                             <img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap" />
                             <h2 className="text-center"><FontAwesomeIcon icon={faPoundSign} />{player.cost}</h2>
                         </div>
-                        <div className="col-6">
-                            <ul className="list-group">
+                        <div className="col-6 d-flex flex-column justify-content-center">
+                            <ul className="list-group p-1">
                                 {
                                     this.next5MatchDetails().map(team => {
                                         return (
-                                            <li className="list-group-item">
-                                                <font size="1">{
-                                                    team.opponentName} {team.isHome} {team.difficulty}
-                                                </font>
+                                            <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-between">
+                                                <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
+                                                <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
                                             </li>);
                                     })
                                 }
