@@ -1,3 +1,4 @@
+# Returns a player's 'Unbottler' predicted scores
 class PointsPredictorService
   def initialize(player_id)
     @player_id = player_id
@@ -10,18 +11,15 @@ class PointsPredictorService
     }
   end
 
-  # private
+  private
 
   def points(fdr, home)
-    0.5 * (form + last_5_similar_points_avg(fdr, home))
-  end
-
-  def similar_match_points(fdr, home)
-    home ? fdr * 2 : fdr
+    points_from_history = last_5_similar_points_avg(fdr, home)
+    points_from_history ? (0.5 * (form + points_from_history)).round(1) : 'n/a'
   end
 
   def form
-    player_element['form']
+    player_element['form'].to_i
   end
 
   def team_id
@@ -30,6 +28,8 @@ class PointsPredictorService
 
   def last_5_similar_points_avg(fdr, home)
     match_ids = last_5_similar_matches_played(fdr, home).map { |m| m['id'] }
+    return nil if match_ids.blank?
+
     points = element_summary_response['history'].filter { |match| match_ids.include? match['fixture'] }
       .map { |match| match['total_points'] }
 
@@ -37,10 +37,11 @@ class PointsPredictorService
   end
 
   def last_5_similar_matches_played(fdr, home)
-    completed_matches_by_team
+    matches = completed_matches_by_team
       .filter { |match| (home ? (team_id == match['team_h']) : (team_id == match['team_a'])) }
       .filter { |match| (home ? (fdr == match['team_h_difficulty']) : (fdr == match['team_a_difficulty'])) }
-      .filter { |match| matches_played.include? match['id'] }[-5..-1]
+      .filter { |match| matches_played.include? match['id'] }
+    matches.length < 5 ? matches : matches[-5..-1]
   end
 
   def matches_played
