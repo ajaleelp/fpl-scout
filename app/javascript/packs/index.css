@@ -64,6 +64,14 @@
 }
 
 .slider-root {
-  width: 60% !important;
+  width: 100% !important;
   margin-bottom: 50px;
+}
+
+.root__picky {
+  background-color: #ffffff;
+  .picky__dropdown,
+  .option {
+    font-size: 2em;
+  }
 }

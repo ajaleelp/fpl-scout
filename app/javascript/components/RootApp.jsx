@@ -40,10 +40,10 @@ export default class RootApp extends React.Component {
     }
 
     filteredPlayers() {
-        let teamFilteredPlayers = (this.state.selectedTeams.length ===0) ?
+        let teamFilteredPlayers = (this.state.selectedTeams.length === 0) ?
             this.props.players
-        : (this.props.players.filter((player) => {
-                return this.state.selectedTeams.map((t) => {return t.id;}).includes(player.team)
+            : (this.props.players.filter((player) => {
+                return this.state.selectedTeams.map((t) => { return t.id; }).includes(player.team)
             }))
         return teamFilteredPlayers.filter((player) => {
             return ((player.cost <= this.state.maxCost) && (player.cost >= this.state.minCost) && (player.form <= this.state.maxForm) && (player.form >= this.state.minForm));
@@ -65,9 +65,9 @@ export default class RootApp extends React.Component {
     changeFormRange([newMinForm, newMaxForm]) {
         this.setState({ maxForm: newMaxForm, minForm: newMinForm });
     }
-        
+
     updateSelectedTeams(teams) {
-        this.setState({selectedTeams: teams});
+        this.setState({ selectedTeams: teams });
     }
 
     render() {
@@ -88,7 +88,7 @@ export default class RootApp extends React.Component {
                     <div className="card">
                         <div className="card-header" id="headingOne">
                             <h5 className="mb-0">
-                                <button className="btn btn-outline-success btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button className="btn btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Forwards
                                     </button>
                             </h5>
@@ -96,7 +96,7 @@ export default class RootApp extends React.Component {
 
                         <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div className="card-body">
-                                <ul className="list-group mb-4 root__player-carousel--forwards">
+                                <ul className="list-group mb-4">
                                     <li className="list-group-item">
                                         <PlayerCarousel
                                             players={forwards}
@@ -119,7 +119,7 @@ export default class RootApp extends React.Component {
                         </div>
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div className="card-body">
-                                <ul className="list-group mb-4 root__player-carousel--mid-fielders">
+                                <ul className="list-group mb-4">
                                     <li className="list-group-item">
                                         <PlayerCarousel
                                             players={midFielders}
@@ -142,7 +142,7 @@ export default class RootApp extends React.Component {
                         </div>
                         <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div className="card-body">
-                                <ul className="list-group mb-4 root__player-carousel--defenders">
+                                <ul className="list-group mb-4">
                                     <li className="list-group-item">
                                         <PlayerCarousel
                                             players={defenders}
@@ -165,7 +165,7 @@ export default class RootApp extends React.Component {
                         </div>
                         <div id="collapseFour" className="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                             <div className="card-body">
-                                <ul className="list-group mb-4 root__player-carousel--goal-keepers">
+                                <ul className="list-group mb-4">
                                     <li className="list-group-item">
                                         <PlayerCarousel players={goalKeepers}
                                             upComingMatches={this.upComingMatches()}
@@ -178,12 +178,12 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4 py-3 px-1 d-flex flex-column align-items-center">
-                    <div>
-                        <div className="my-2">
+                <div className="col-md-4 py-3 px-1">
+                    <div className="d-flex flex-column">
+                        <div className="my-2 align-self-center">
                             Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
                         </div>
-                        <Range className="slider-root mx-auto"
+                        <Range className="slider-root"
                             min={this.globalMinCost()}
                             max={this.globalMaxCost()}
                             marks={costSliderMarks}
@@ -193,8 +193,8 @@ export default class RootApp extends React.Component {
                             tipFormatter={value => `${value}`}
                         />
                     </div>
-                    <div>
-                        <div className="my-2">
+                    <div className="d-flex flex-column">
+                        <div className="my-2 ">
                             Form: &#xa3;{this.state.minForm} - &#xa3;{this.state.maxForm}
                         </div>
                         <Range className="slider-root mx-auto"
@@ -207,7 +207,7 @@ export default class RootApp extends React.Component {
                             tipFormatter={value => `${value}`}
                         />
                     </div>
-                    <Picky
+                    <Picky className="root__picky"
                         options={this.props.teams}
                         value={this.state.selectedTeams}
                         valueKey="id"

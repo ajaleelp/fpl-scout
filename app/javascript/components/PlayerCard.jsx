@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoundSign } from '@fortawesome/free-solid-svg-icons';
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { faPercent } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 export default class PlayerCard extends React.Component {
@@ -66,9 +66,9 @@ export default class PlayerCard extends React.Component {
                                 <FontAwesomeIcon icon={faChartLine} className="green-text mr-1" />
                                 <span className="grey-text">{player.form}</span>
                             </div>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Playing Chance">
-                                <FontAwesomeIcon icon={faPercent} className="green-text mr-1" />
-                                <span className="grey-text">{player.playing_chance}</span>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Total points">
+                                <FontAwesomeIcon icon={faStar} className="green-text mr-1" />
+                                <span className="grey-text">{player.total_points}</span>
                             </div>
                         </li>
                     </ul>
