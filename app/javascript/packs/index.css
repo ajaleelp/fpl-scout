@@ -29,6 +29,7 @@
 .player-card__container {
   border: 1px solid lightgray !important;
   border-radius: 5px !important;
+  min-height: 300px;
 }
 
 .player-card__img {
@@ -66,6 +67,15 @@
 
 .player-card__flip-btn {
   color: lightgrey;
+}
+
+.player-card__back-body {
+  min-height: 200px;
+  color: lightgrey;
+}
+
+.player-card__prediction-li {
+  color: black;
 }
 
 .slick-prev:before, .slick-next:before {

@@ -10,7 +10,8 @@ class HomeController < ApplicationController
           playing_chance: player['chance_of_playing_next_round'],
           code: player['code'],
           position: player['element_type'],
-          team: player['team']
+          team: player['team'],
+          id: player['id']
       }
     end.sort_by { |p| p[:form].to_f }.reverse
 
@@ -34,5 +35,9 @@ class HomeController < ApplicationController
           game_week: match['event']
       }
     end
+  end
+
+  def player_details
+    render json: PointsPredictorService.new(params[:id].to_i).predicted_points
   end
 end
