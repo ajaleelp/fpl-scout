@@ -180,12 +180,12 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4 py-3 px-1">
+                <div className="col-md-4 py-3 px-4">
                     <div className="d-flex flex-column">
                         <div className="my-2 align-self-center">
                             Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
                         </div>
-                        <Range className="slider-root"
+                        <Range className="slider-root align-self-center"
                             min={this.globalMinCost()}
                             max={this.globalMaxCost()}
                             marks={costSliderMarks}
@@ -193,23 +193,11 @@ export default class RootApp extends React.Component {
                             value={[this.state.minCost, this.state.maxCost]}
                             allowCross={false}
                             tipFormatter={value => `${value}`}
+                            step={0.1}
                         />
                     </div>
-                    <Picky className="root__picky"
-                        options={this.props.teams}
-                        value={this.state.selectedTeams}
-                        valueKey="id"
-                        labelKey="name"
-                        multiple={true}
-                        includeSelectAll={true}
-                        includeFilter={true}
-                        onChange={this.updateSelectedTeams}
-                        dropdownHeight={600}
-                    />
                     <div className="container">
-
                         <form>
-
                             <div className="form-check">
                                 <label>
                                     <input
@@ -221,7 +209,7 @@ export default class RootApp extends React.Component {
                                         className="form-check-input"
                                     />
                                     Form
-                                 </label>
+                                </label>
                             </div>
 
                             <div className="form-check">
@@ -254,6 +242,18 @@ export default class RootApp extends React.Component {
                         </form>
 
                     </div>
+                    <Picky className="root__picky"
+                        options={this.props.teams}
+                        value={this.state.selectedTeams}
+                        valueKey="id"
+                        labelKey="name"
+                        multiple={true}
+                        includeSelectAll={true}
+                        includeFilter={true}
+                        onChange={this.updateSelectedTeams}
+                        dropdownHeight={600}
+                    />
+
 
                 </div>
             </div>
