@@ -14,12 +14,11 @@ export default class RootApp extends React.Component {
         this.state = {
             maxCost: this.globalMaxCost(),
             minCost: this.globalMinCost(),
-            maxForm: this.globalMaxForm(),
-            minForm: this.globalMinForm(),
-            selectedTeams: []
+            selectedTeams: [],
+            selectedOption: "form",
+            players: []
         };
         this.changeCostRange = this.changeCostRange.bind(this);
-        this.changeFormRange = this.changeFormRange.bind(this);
         this.updateSelectedTeams = this.updateSelectedTeams.bind(this);
     }
 
@@ -31,22 +30,21 @@ export default class RootApp extends React.Component {
         return Math.min(...this.props.players.map((player) => { return player.cost }));
     }
 
-    globalMaxForm() {
-        return Math.max(...this.props.players.map((player) => { return player.form }));
-    }
-
-    globalMinForm() {
-        return Math.min(...this.props.players.map((player) => { return player.form }));
-    }
-
     filteredPlayers() {
         let teamFilteredPlayers = (this.state.selectedTeams.length === 0) ?
             this.props.players
             : (this.props.players.filter((player) => {
                 return this.state.selectedTeams.map((t) => { return t.id; }).includes(player.team)
             }))
-        return teamFilteredPlayers.filter((player) => {
-            return ((player.cost <= this.state.maxCost) && (player.cost >= this.state.minCost) && (player.form <= this.state.maxForm) && (player.form >= this.state.minForm));
+        let filteredPlayers = teamFilteredPlayers;
+        if (this.state.selectedOption == "cost") {
+            filteredPlayers.sort((a, b) => b.cost - a.cost);
+        }
+        else if (this.state.selectedOption == "totalPoints") {
+            filteredPlayers.sort((a, b) => b.total_points - a.total_points);
+        }
+        return filteredPlayers.filter((player) => {
+            return ((player.cost <= this.state.maxCost) && (player.cost >= this.state.minCost));
         });
     }
 
@@ -62,21 +60,22 @@ export default class RootApp extends React.Component {
         this.setState({ minCost: newMinCost, maxCost: newMaxCost });
     }
 
-    changeFormRange([newMinForm, newMaxForm]) {
-        this.setState({ maxForm: newMaxForm, minForm: newMinForm });
-    }
-
     updateSelectedTeams(teams) {
         this.setState({ selectedTeams: teams });
     }
 
+    changeSortCriterion = changeEvent => {
+        this.setState({
+            selectedOption: changeEvent.target.value
+        });
+    }
+
+
     render() {
+        console.log(this.state.selectedOption);
         let costSliderMarks = {};
-        let formSliderMarks = {};
         costSliderMarks[this.globalMinCost()] = this.globalMinCost().toString();
         costSliderMarks[this.globalMaxCost()] = this.globalMaxCost().toString();
-        formSliderMarks[this.globalMinForm()] = this.globalMinForm().toString();
-        formSliderMarks[this.globalMaxForm()] = this.globalMaxForm().toString();
         let filteredPlayers = this.filteredPlayers();
         let forwards = this.filterForPosition(filteredPlayers, 4);
         let midFielders = this.filterForPosition(filteredPlayers, 3);
@@ -193,20 +192,6 @@ export default class RootApp extends React.Component {
                             tipFormatter={value => `${value}`}
                         />
                     </div>
-                    <div className="d-flex flex-column">
-                        <div className="my-2 ">
-                            Form: &#xa3;{this.state.minForm} - &#xa3;{this.state.maxForm}
-                        </div>
-                        <Range className="slider-root mx-auto"
-                            min={this.globalMinForm()}
-                            max={this.globalMaxForm()}
-                            marks={formSliderMarks}
-                            onChange={this.changeFormRange}
-                            value={[this.state.minForm, this.state.maxForm]}
-                            allowCross={false}
-                            tipFormatter={value => `${value}`}
-                        />
-                    </div>
                     <Picky className="root__picky"
                         options={this.props.teams}
                         value={this.state.selectedTeams}
@@ -218,6 +203,55 @@ export default class RootApp extends React.Component {
                         onChange={this.updateSelectedTeams}
                         dropdownHeight={600}
                     />
+                    <div className="container">
+
+                        <form>
+
+                            <div className="form-check">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="react-tips"
+                                        value="form"
+                                        checked={this.state.selectedOption === "form"}
+                                        onChange={this.changeSortCriterion}
+                                        className="form-check-input"
+                                    />
+                                    Form
+                                 </label>
+                            </div>
+
+                            <div className="form-check">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="react-tips"
+                                        value="cost"
+                                        checked={this.state.selectedOption === "cost"}
+                                        onChange={this.changeSortCriterion}
+                                        className="form-check-input"
+                                    />
+                                    Cost
+                                </label>
+                            </div>
+
+                            <div className="form-check">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="react-tips"
+                                        value="totalPoints"
+                                        checked={this.state.selectedOption === "totalPoints"}
+                                        onChange={this.changeSortCriterion}
+                                        className="form-check-input"
+                                    />
+                                    Total Points
+                                </label>
+                            </div>
+                        </form>
+
+                    </div>
+
                 </div>
             </div>
         );
