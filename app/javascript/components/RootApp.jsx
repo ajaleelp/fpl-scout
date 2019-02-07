@@ -37,6 +37,9 @@ export default class RootApp extends React.Component {
                 return this.state.selectedTeams.map((t) => { return t.id; }).includes(player.team)
             }))
         let filteredPlayers = teamFilteredPlayers;
+        if (this.state.selectedOption == "form") {
+            filteredPlayers.sort((a, b) => b.form - a.form);
+        }
         if (this.state.selectedOption == "cost") {
             filteredPlayers.sort((a, b) => b.cost - a.cost);
         }
