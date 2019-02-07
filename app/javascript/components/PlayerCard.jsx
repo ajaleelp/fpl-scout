@@ -3,11 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoundSign } from '@fortawesome/free-solid-svg-icons';
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleRight} from "@fortawesome/free-solid-svg-icons";
+import {faChevronCircleLeft} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import ReactCardFlip from 'react-card-flip';
 
 export default class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {isFlipped: false};
+        this.flip = this.flip.bind(this);
     }
 
     next5MatchDetails() {
@@ -28,11 +33,16 @@ export default class PlayerCard extends React.Component {
         });
     }
 
+    flip() {
+        this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    }
+
+
     render() {
         let player = this.props.player;
         return (
-            <div>
-                <div key={player.full_name} className="card mx-4">
+            <ReactCardFlip isFlipped={this.state.isFlipped}>
+                <div key={player.full_name} className="card mx-4 player-card__container" key="front">
                     <div className="row">
                         <div className="col-6">
                             <img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap" />
@@ -72,8 +82,28 @@ export default class PlayerCard extends React.Component {
                             </div>
                         </li>
                     </ul>
+                    <div className="p-2 d-flex player-card__flip-btn">
+                        <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip}/>
+                    </div>
                 </div>
-            </div >
+                <div key={player.full_name} className="card mx-4 player-card__container" key="back">
+                    <ul className="list-group p-1">
+                        {
+                            this.next5MatchDetails().map(team => {
+                                return (
+                                    <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around">
+                                        <div className="p-2">{team.gameWeek}</div>
+                                        <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
+                                        <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
+                                    </li>);
+                            })
+                        }
+                    </ul>
+                    <div className="p-2 d-flex player-card__flip-btn">
+                        <FontAwesomeIcon icon={faChevronCircleLeft} className="mr-auto" onClick={this.flip}/>
+                    </div>
+                </div>
+            </ReactCardFlip>
         );
     }
 }
