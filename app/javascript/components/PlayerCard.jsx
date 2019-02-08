@@ -5,6 +5,7 @@ import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faRocket } from "@fortawesome/free-solid-svg-icons";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
 
@@ -13,6 +14,8 @@ export default class PlayerCard extends React.Component {
         super(props);
         this.state = { isFlipped: false };
         this.flip = this.flip.bind(this);
+        this.next5MatchDetails = this.next5MatchDetails.bind(this);
+        this.state = { isFlipped: false, backBody: <FontAwesomeIcon icon={faSpinner} className="fa-spin m-auto fa-6x" /> };
     }
 
     next5MatchDetails() {
@@ -35,6 +38,25 @@ export default class PlayerCard extends React.Component {
 
     flip() {
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+        let that = this;
+        fetch('/player_details/' + this.props.player.id)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (scores) {
+                console.log(JSON.stringify(scores));
+                let scoreList = that.next5MatchDetails().map(team => {
+                    let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
+                    return (
+                        <li className="list-group-item player-card__prediction-li p-0 d-flex justify-content-between" key={team.opponentName}>
+                            <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
+                            <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
+                            <div className="border-left p-2">{score}</div>
+                        </li>)
+                });
+                let backBody = <ul className="list-group p-1 d-flex flex-column align-items-stretch">{scoreList}</ul>
+                that.setState({ backBody: backBody });
+            });
     }
 
 
@@ -53,7 +75,7 @@ export default class PlayerCard extends React.Component {
                                 {
                                     this.next5MatchDetails().map(team => {
                                         return (
-                                            <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around">
+                                            <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around" key={team.opponentName}>
                                                 <div className="p-2">{team.gameWeek}</div>
                                                 <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
                                                 <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
@@ -86,21 +108,12 @@ export default class PlayerCard extends React.Component {
                         <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />
                     </div>
                 </div>
-                <div key={player.full_name} className="card mx-4 player-card__container" key="back">
-                    <ul className="list-group p-1">
-                        {
-                            this.next5MatchDetails().map(team => {
-                                return (
-                                    <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around">
-                                        <div className="p-2">{team.gameWeek}</div>
-                                        <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
-                                        <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
-                                    </li>);
-                            })
-                        }
-                    </ul>
+                <div key={player.full_name} className="card mx-4 player-card__container justify-content-between" key="back">
+                    <div className="player-card__back-body d-flex">
+                        {this.state.backBody}
+                    </div>
                     <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleLeft} className="mr-auto" onClick={this.flip} />
+                        <FontAwesomeIcon icon={faChevronCircleLeft} className="ml-auto" onClick={this.flip} />
                     </div>
                 </div>
             </ReactCardFlip>
