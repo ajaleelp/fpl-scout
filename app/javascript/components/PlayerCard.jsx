@@ -2,19 +2,20 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoundSign } from '@fortawesome/free-solid-svg-icons';
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faChevronCircleRight} from "@fortawesome/free-solid-svg-icons";
-import {faChevronCircleLeft} from "@fortawesome/free-solid-svg-icons";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import { faRocket } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
 
 export default class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { isFlipped: false };
         this.flip = this.flip.bind(this);
         this.next5MatchDetails = this.next5MatchDetails.bind(this);
-        this.state = {isFlipped: false, backBody: <FontAwesomeIcon icon={faSpinner} className="fa-spin m-auto fa-6x"/>};
+        this.state = { isFlipped: false, backBody: <FontAwesomeIcon icon={faSpinner} className="fa-spin m-auto fa-6x" /> };
     }
 
     next5MatchDetails() {
@@ -39,10 +40,10 @@ export default class PlayerCard extends React.Component {
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
         let that = this;
         fetch('/player_details/' + this.props.player.id)
-            .then(function(response) {
+            .then(function (response) {
                 return response.json();
             })
-            .then(function(scores) {
+            .then(function (scores) {
                 console.log(JSON.stringify(scores));
                 let scoreList = that.next5MatchDetails().map(team => {
                     let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
@@ -51,10 +52,11 @@ export default class PlayerCard extends React.Component {
                             <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
                             <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
                             <div className="border-left p-2">{score}</div>
-                        </li>)});
-                let backBody = <ul className="list-group p-1 d-flex flex-column align-items-stretch">{scoreList}</ul>
-                that.setState({backBody: backBody});
+                        </li>)
                 });
+                let backBody = <ul className="list-group p-1 d-flex flex-column align-items-stretch">{scoreList}</ul>
+                that.setState({ backBody: backBody });
+            });
     }
 
 
@@ -97,13 +99,13 @@ export default class PlayerCard extends React.Component {
                                 <span className="grey-text">{player.form}</span>
                             </div>
                             <div data-toggle="tooltip" data-placement="bottom" title="Total points">
-                                <FontAwesomeIcon icon={faStar} className="green-text mr-1" />
+                                <FontAwesomeIcon icon={faRocket} className="green-text mr-1" />
                                 <span className="grey-text">{player.total_points}</span>
                             </div>
                         </li>
                     </ul>
                     <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip}/>
+                        <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />
                     </div>
                 </div>
                 <div key={player.full_name} className="card mx-4 player-card__container justify-content-between" key="back">
@@ -111,7 +113,7 @@ export default class PlayerCard extends React.Component {
                         {this.state.backBody}
                     </div>
                     <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleLeft} className="ml-auto" onClick={this.flip}/>
+                        <FontAwesomeIcon icon={faChevronCircleLeft} className="ml-auto" onClick={this.flip} />
                     </div>
                 </div>
             </ReactCardFlip>

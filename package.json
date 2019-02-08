@@ -16,6 +16,7 @@
     "react-picky": "^4.1.2",
     "react-slick": "^0.23.2",
     "react-table": "^6.8.6",
+    "react-twitter-embed": "^2.0.4",
     "react_ujs": "^2.4.4",
     "slick-carousel": "^1.8.1"
   },

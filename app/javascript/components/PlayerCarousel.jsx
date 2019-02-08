@@ -24,7 +24,7 @@ export default class PlayerCarousel extends React.Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
             lazyLoad: 'ondemand'
         };
