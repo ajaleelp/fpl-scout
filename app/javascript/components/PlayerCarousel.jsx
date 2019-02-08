@@ -29,7 +29,7 @@ export default class PlayerCarousel extends React.Component {
             lazyLoad: 'ondemand'
         };
         return (
-            <Carousel {...settings} className="m-4">
+            <Carousel ref={slider => this.slider = slider} {...settings} className="m-4">
                 {
                     this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams} fixtures={this.props.fixtures} />)
                 }

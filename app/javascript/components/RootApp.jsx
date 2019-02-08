@@ -20,6 +20,7 @@ export default class RootApp extends React.Component {
         };
         this.changeCostRange = this.changeCostRange.bind(this);
         this.updateSelectedTeams = this.updateSelectedTeams.bind(this);
+        this.goToCarouselStart = this.goToCarouselStart.bind(this);
     }
 
     globalMaxCost() {
@@ -59,20 +60,29 @@ export default class RootApp extends React.Component {
         return this.props.fixtures.filter((match) => Date.parse(match.kickoff_time) > new Date());
     }
 
+    goToCarouselStart() {
+        this.forwardsCarousel.slider.slickGoTo(0);
+        this.midFieldersCarousel.slider.slickGoTo(0);
+        this.defendersCarousel.slider.slickGoTo(0);
+        this.goalKeepersCarousel.slider.slickGoTo(0);
+    }
+
     changeCostRange([newMinCost, newMaxCost]) {
         this.setState({ minCost: newMinCost, maxCost: newMaxCost });
+        this.goToCarouselStart();
     }
 
     updateSelectedTeams(teams) {
         this.setState({ selectedTeams: teams });
+        this.goToCarouselStart();
     }
 
     changeSortCriterion = changeEvent => {
         this.setState({
             selectedOption: changeEvent.target.value
         });
+        this.goToCarouselStart();
     }
-
 
     render() {
         console.log(this.state.selectedOption);
@@ -105,6 +115,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            ref={carousel => (this.forwardsCarousel = carousel)}
                                         />
                                     </li>
                                 </ul>
@@ -128,6 +139,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            ref={carousel => (this.midFieldersCarousel = carousel)}
                                         />
                                     </li>
                                 </ul>
@@ -151,6 +163,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            ref={carousel => (this.defendersCarousel = carousel)}
                                         />
                                     </li>
                                 </ul>
@@ -173,6 +186,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            ref={carousel => (this.goalKeepersCarousel = carousel)}
                                         />
                                     </li>
                                 </ul>
