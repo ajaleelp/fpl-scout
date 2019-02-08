@@ -2,16 +2,16 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoundSign } from '@fortawesome/free-solid-svg-icons';
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faChevronCircleRight} from "@fortawesome/free-solid-svg-icons";
-import {faChevronCircleLeft} from "@fortawesome/free-solid-svg-icons";
+import { faRocket } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
 
 export default class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isFlipped: false};
+        this.state = { isFlipped: false };
         this.flip = this.flip.bind(this);
     }
 
@@ -77,13 +77,13 @@ export default class PlayerCard extends React.Component {
                                 <span className="grey-text">{player.form}</span>
                             </div>
                             <div data-toggle="tooltip" data-placement="bottom" title="Total points">
-                                <FontAwesomeIcon icon={faStar} className="green-text mr-1" />
+                                <FontAwesomeIcon icon={faRocket} className="green-text mr-1" />
                                 <span className="grey-text">{player.total_points}</span>
                             </div>
                         </li>
                     </ul>
                     <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip}/>
+                        <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />
                     </div>
                 </div>
                 <div key={player.full_name} className="card mx-4 player-card__container" key="back">
@@ -100,7 +100,7 @@ export default class PlayerCard extends React.Component {
                         }
                     </ul>
                     <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleLeft} className="mr-auto" onClick={this.flip}/>
+                        <FontAwesomeIcon icon={faChevronCircleLeft} className="mr-auto" onClick={this.flip} />
                     </div>
                 </div>
             </ReactCardFlip>

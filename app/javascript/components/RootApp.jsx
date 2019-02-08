@@ -6,6 +6,8 @@ const Range = createSliderWithTooltip(Slider.Range);
 import PlayerCarousel from "./PlayerCarousel";
 import Picky from 'react-picky';
 import 'react-picky/dist/picky.css';
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
 
 export default class RootApp extends React.Component {
     constructor(props) {
@@ -253,7 +255,16 @@ export default class RootApp extends React.Component {
                         onChange={this.updateSelectedTeams}
                         dropdownHeight={600}
                     />
-
+                    <div className="centerContent">
+                        <div className="selfCenter standardWidth">
+                            <TwitterTimelineEmbed
+                                sourceType="list"
+                                ownerScreenName="unbottler"
+                                slug="fantasy-premier-league"
+                                options={{ height: 400 }}
+                            />
+                        </div>
+                    </div>
 
                 </div>
             </div>
