@@ -10,6 +10,10 @@
   padding: 50px;
 }
 
+.root-textalign {
+  text-align: center;
+}
+
 .root__player-carousel--forwards {
   border: 2px solid #00ff85;
 }

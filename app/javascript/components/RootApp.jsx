@@ -6,7 +6,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 import PlayerCarousel from "./PlayerCarousel";
 import Picky from 'react-picky';
 import 'react-picky/dist/picky.css';
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 
 export default class RootApp extends React.Component {
@@ -97,8 +97,80 @@ export default class RootApp extends React.Component {
         let defenders = this.filterForPosition(filteredPlayers, 2);
         let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
-            <div className="row root-container">
-                <div className="accordion col-md-8 p-3" id="accordionExample">
+            <div className="row root-container d-flex flex-row-reverse">
+                <div className="col-sm-12 justify-content-center">
+                    <div className="my-2 root-textalign justify-content-center">
+                        COST
+                    </div>
+                    <Range className="slider-root"
+                        min={this.globalMinCost()}
+                        max={this.globalMaxCost()}
+                        marks={costSliderMarks}
+                        onChange={this.changeCostRange}
+                        value={[this.state.minCost, this.state.maxCost]}
+                        allowCross={false}
+                        tipFormatter={value => `${value}`}
+                        step={0.1}
+                    />
+                </div>
+                <div className="container col-sm-12">
+                    Sort by
+                </div>
+                <div className="container col-sm-12">
+
+                    <form className="d-flex flex-row justify-content-between">
+                        <div className="form-check">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="form"
+                                    checked={this.state.selectedOption === "form"}
+                                    onChange={this.changeSortCriterion}
+                                    className="form-check-input"
+                                />
+                                Form
+                                </label>
+                        </div>
+
+                        <div className="form-check">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="cost"
+                                    checked={this.state.selectedOption === "cost"}
+                                    onChange={this.changeSortCriterion}
+                                    className="form-check-input"
+                                />
+                                Cost
+                                </label>
+                        </div>
+
+                        <div className="form-check">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="totalPoints"
+                                    checked={this.state.selectedOption === "totalPoints"}
+                                    onChange={this.changeSortCriterion}
+                                    className="form-check-input"
+                                />
+                                Total Points
+                                </label>
+                        </div>
+                    </form>
+                </div>
+                <Picky className="root__picky col-sm-12"
+                    options={this.props.teams}
+                    value={this.state.selectedTeams}
+                    valueKey="id"
+                    labelKey="name"
+                    multiple={true}
+                    includeSelectAll={true}
+                    includeFilter={true}
+                    onChange={this.updateSelectedTeams}
+                    dropdownHeight={600}
+                />
+                <div className="accordion col-sm-12 p-3" id="accordionExample">
                     <div className="card">
                         <div className="card-header" id="headingOne">
                             <h5 className="mb-0">
@@ -196,79 +268,7 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4 py-3 px-4">
-                    <div className="d-flex flex-column">
-                        <div className="my-2 align-self-center">
-                            Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
-                        </div>
-                        <Range className="slider-root align-self-center"
-                            min={this.globalMinCost()}
-                            max={this.globalMaxCost()}
-                            marks={costSliderMarks}
-                            onChange={this.changeCostRange}
-                            value={[this.state.minCost, this.state.maxCost]}
-                            allowCross={false}
-                            tipFormatter={value => `${value}`}
-                            step={0.1}
-                        />
-                    </div>
-                    <div className="container">
-                        <form>
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="react-tips"
-                                        value="form"
-                                        checked={this.state.selectedOption === "form"}
-                                        onChange={this.changeSortCriterion}
-                                        className="form-check-input"
-                                    />
-                                    Form
-                                </label>
-                            </div>
-
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="react-tips"
-                                        value="cost"
-                                        checked={this.state.selectedOption === "cost"}
-                                        onChange={this.changeSortCriterion}
-                                        className="form-check-input"
-                                    />
-                                    Cost
-                                </label>
-                            </div>
-
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="react-tips"
-                                        value="totalPoints"
-                                        checked={this.state.selectedOption === "totalPoints"}
-                                        onChange={this.changeSortCriterion}
-                                        className="form-check-input"
-                                    />
-                                    Total Points
-                                </label>
-                            </div>
-                        </form>
-
-                    </div>
-                    <Picky className="root__picky"
-                        options={this.props.teams}
-                        value={this.state.selectedTeams}
-                        valueKey="id"
-                        labelKey="name"
-                        multiple={true}
-                        includeSelectAll={true}
-                        includeFilter={true}
-                        onChange={this.updateSelectedTeams}
-                        dropdownHeight={600}
-                    />
+                <div className="col-sm-12 py-3 px-4">
                     <div className="centerContent">
                         <div className="selfCenter standardWidth">
                             <TwitterTimelineEmbed
@@ -281,7 +281,7 @@ export default class RootApp extends React.Component {
                     </div>
 
                 </div>
-            </div>
+            </div >
         );
     }
 }
