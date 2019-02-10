@@ -1,13 +1,15 @@
+@media only screen and (min-width: 768px) {
+  .root-container {
+    padding: 50px;
+  }
+}
+
 .grey-text {
   color: gray;
 }
 
 .green-text {
   color: green;
-}
-
-.root-container {
-  padding: 50px;
 }
 
 .root-textalign {
