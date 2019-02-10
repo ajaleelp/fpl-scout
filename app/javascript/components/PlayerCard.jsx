@@ -37,26 +37,28 @@ export default class PlayerCard extends React.Component {
     }
 
     flip() {
-        this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
         let that = this;
-        fetch('/player_details/' + this.props.player.id)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (scores) {
-                console.log(JSON.stringify(scores));
-                let scoreList = that.next5MatchDetails().map(team => {
-                    let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
-                    return (
-                        <li className="list-group-item player-card__prediction-li p-0 d-flex justify-content-between" key={team.opponentName}>
-                            <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
-                            <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
-                            <div className="border-left p-2">{score}</div>
-                        </li>)
+        if (!this.state.isFlipped) {
+            fetch('/player_details/' + this.props.player.id)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (scores) {
+                    console.log(JSON.stringify(scores));
+                    let scoreList = that.next5MatchDetails().map(team => {
+                        let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
+                        return (
+                            <li className="list-group-item player-card__prediction-li p-0 d-flex justify-content-between" key={team.opponentName}>
+                                <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
+                                <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
+                                <div className="border-left p-2">{score}</div>
+                            </li>)
+                    });
+                    let backBody = <ul className="list-group p-1 d-flex flex-column align-items-stretch">{scoreList}</ul>
+                    that.setState({ backBody: backBody });
                 });
-                let backBody = <ul className="list-group p-1 d-flex flex-column align-items-stretch">{scoreList}</ul>
-                that.setState({ backBody: backBody });
-            });
+        }
+        this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
     }
 
 
