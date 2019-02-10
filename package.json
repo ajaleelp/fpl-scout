@@ -13,6 +13,7 @@
     "react": "^16.7.0",
     "react-card-flip": "^0.4.0",
     "react-dom": "^16.7.0",
+    "react-onclickoutside": "^6.7.1",
     "react-picky": "^4.1.2",
     "react-slick": "^0.23.2",
     "react-table": "^6.8.6",

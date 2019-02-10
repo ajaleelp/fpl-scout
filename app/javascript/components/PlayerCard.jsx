@@ -8,8 +8,9 @@ import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
+import onClickOutside from "react-onclickoutside";
 
-export default class PlayerCard extends React.Component {
+class PlayerCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isFlipped: false };
@@ -59,6 +60,10 @@ export default class PlayerCard extends React.Component {
                 });
         }
         this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    }
+
+    handleClickOutside() {
+        this.setState({isFlipped: false});
     }
 
 
@@ -129,3 +134,5 @@ PlayerCard.propTypes = {
     teams: PropTypes.array.isRequired,
     fixtures: PropTypes.array.isRequired
 };
+
+export default onClickOutside(PlayerCard);
