@@ -100,3 +100,41 @@
     font-size: 2em;
   }
 }
+
+.sidepanel-card {
+    border: 0;
+}
+
+.filer-controls-card {
+    border: 1px solid blueviolet;
+}
+
+.filer-controls-card__header {
+    margin: -0.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    background-color: blueviolet;
+}
+
+.sort-by-picker__radio-btns {
+    width: 100%;
+    padding-left: 1.25rem;
+}
+
+.team-filter__picky:focus {
+    outline: none;
+}
+
+.team-filter__picky > .picky__input {
+    background-color: transparent;
+    border: 1px solid grey;
+    color: grey
+}
+
+.team-filter__picky > .picky__dropdown {
+    padding-left: 1rem;
+}
+
+.team-filter__dropdown-item--selected{
+    color: blueviolet;
+}

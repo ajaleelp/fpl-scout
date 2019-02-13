@@ -24,9 +24,19 @@ export default class PlayerCarousel extends React.Component {
             dots: false,
             infinite: false,
             speed: 500,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            lazyLoad: 'ondemand'
+            lazyLoad: 'ondemand',
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            initialSlide: 0,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         };
         return (
             <Carousel ref={slider => this.slider = slider} {...settings} className="m-4">

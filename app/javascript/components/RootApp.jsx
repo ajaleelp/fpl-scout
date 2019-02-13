@@ -7,6 +7,9 @@ import PlayerCarousel from "./PlayerCarousel";
 import Picky from 'react-picky';
 import 'react-picky/dist/picky.css';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
+import {faChevronCircleRight} from "@fortawesome/free-solid-svg-icons";
 
 
 export default class RootApp extends React.Component {
@@ -98,91 +101,103 @@ export default class RootApp extends React.Component {
         let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
             <div className="row root-container flex-row-reverse">
-                <div className="filter-controls col-md-4">
-                    <div className="justify-content-center">
-                        <div className="my-2 root-textalign justify-content-center">
-                            COST
-                        </div>
-                        <Range className="slider-root"
-                            min={this.globalMinCost()}
-                            max={this.globalMaxCost()}
-                            marks={costSliderMarks}
-                            onChange={this.changeCostRange}
-                            value={[this.state.minCost, this.state.maxCost]}
-                            allowCross={false}
-                            tipFormatter={value => `${value}`}
-                            step={0.1}
-                        />
-                    </div>
-                    <div className="container">
-                        Sort by
-                    </div>
-                    <div className="container">
-
-                        <form className="d-flex flex-row justify-content-between">
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="form"
-                                        checked={this.state.selectedOption === "form"}
-                                        onChange={this.changeSortCriterion}
-                                        className="form-check-input"
-                                    />
-                                    Form
-                                    </label>
+                <div className="card sidepanel-card col-lg-4 b-0">
+                    <div className="card-body">
+                        <div className="card filer-controls-card p-2">
+                            <div className="card-header filer-controls-card__header">
+                                <FontAwesomeIcon icon={faSlidersH} className="mr-1"/>
+                                Settings
                             </div>
-
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="cost"
-                                        checked={this.state.selectedOption === "cost"}
-                                        onChange={this.changeSortCriterion}
-                                        className="form-check-input"
-                                    />
+                            <div className="filter-controls-card__cost-slider px-3 d-flex flex-column align-items-center mb-4">
+                                <div className="cost-slider__title">
                                     Cost
-                                    </label>
+                                </div>
+                                <Range className="mx-3"
+                                       min={this.globalMinCost()}
+                                       max={this.globalMaxCost()}
+                                       marks={costSliderMarks}
+                                       onChange={this.changeCostRange}
+                                       value={[this.state.minCost, this.state.maxCost]}
+                                       allowCross={false}
+                                       tipFormatter={value => `${value}`}
+                                       step={0.1}
+                                       trackStyle={[{ backgroundColor: 'blueviolet' }]}
+                                />
                             </div>
-
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="totalPoints"
-                                        checked={this.state.selectedOption === "totalPoints"}
-                                        onChange={this.changeSortCriterion}
-                                        className="form-check-input"
-                                    />
-                                    Total Points
+                            <div className="filter-controls-card__sort-by-picker px-2 d-flex flex-column align-items-center mb-2">
+                                <div className="sort-by-picker__title">
+                                    Sort by
+                                </div>
+                                <div className="sort-by-picker__radio-btns d-flex flex-row justify-content-between">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="form"
+                                            checked={this.state.selectedOption === "form"}
+                                            onChange={this.changeSortCriterion}
+                                            className="form-check-input"
+                                        />
+                                        Form
                                     </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="cost"
+                                            checked={this.state.selectedOption === "cost"}
+                                            onChange={this.changeSortCriterion}
+                                            className="form-check-input"
+                                        />
+                                        Cost
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="totalPoints"
+                                            checked={this.state.selectedOption === "totalPoints"}
+                                            onChange={this.changeSortCriterion}
+                                            className="form-check-input"
+                                        />
+                                        Total Points
+                                    </label>
+                                </div>
                             </div>
-                        </form>
-                    </div>
-                    <Picky className="root__picky"
-                        options={this.props.teams}
-                        value={this.state.selectedTeams}
-                        valueKey="id"
-                        labelKey="name"
-                        multiple={true}
-                        includeSelectAll={true}
-                        includeFilter={true}
-                        onChange={this.updateSelectedTeams}
-                        dropdownHeight={600}
-                    />
-                    <div className="centerContent d-none d-md-block">
-                        <div className="selfCenter standardWidth">
-                            <TwitterTimelineEmbed
-                                sourceType="list"
-                                ownerScreenName="unbottler"
-                                slug="fantasy-premier-league"
-                                options={{ height: 400 }}
-                            />
+                            <div className="filter-control-card__team-filter px-2 d-flex flex-column align-items-center">
+                                <div>
+                                    Teams
+                                </div>
+                                <Picky className='w-100 d-flex flex-column align-items-centre team-filter__picky'
+                                   options={this.props.teams}
+                                   value={this.state.selectedTeams}
+                                   valueKey="id"
+                                   labelKey="name"
+                                   multiple={true}
+                                   includeSelectAll={true}
+                                   includeFilter={true}
+                                   onChange={this.updateSelectedTeams}
+                                   dropdownHeight={600}
+                                   renderList={({ items, selected, multiple, selectValue, getIsSelected }) =>
+                                       items.map(item => (
+                                           <div key={item.id} onClick={() => selectValue(item)} className="team-filter__dropdown-item">
+                                               {getIsSelected(item) ? <span className="team-filter__dropdown-item--selected">{item.name}</span> : item.name}
+                                           </div>
+                                       ))
+                                   }
+                                />
+                            </div>
+                        </div>
+                        <div className="centerContent d-none d-md-block">
+                            <div className="selfCenter standardWidth">
+                                <TwitterTimelineEmbed
+                                    sourceType="list"
+                                    ownerScreenName="unbottler"
+                                    slug="fantasy-premier-league"
+                                    options={{ height: 400 }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="accordion p-3 col-md-8" id="accordionExample">
+                <div className="accordion p-3 col-lg-8" id="accordionExample">
                     <div className="card">
                         <div className="card-header" id="headingOne">
                             <h5 className="mb-0">
