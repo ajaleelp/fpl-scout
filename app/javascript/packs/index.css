@@ -103,10 +103,11 @@
 
 .sidepanel-card {
     border: 0;
+    background-color: transparent;
 }
 
 .filer-controls-card {
-    border: 1px solid blueviolet;
+    border: 1px solid #38003c;
     border-radius: 0;
 }
 
@@ -114,7 +115,7 @@
     margin: -0.5rem;
     margin-bottom: 0.5rem;
     color: white;
-    background-color: blueviolet;
+    background-color: #38003c;
 }
 
 .sort-by-picker__radio-btns {
@@ -137,41 +138,68 @@
 }
 
 .team-filter__dropdown-item--selected{
-    color: blueviolet;
+    color: #38003c;
 }
 
 .twitter-feed-card {
-    border: 1px solid blueviolet;
+    border: 1px solid 	#04f5ff;
     border-radius: 0;
 }
 
 .player-carousel-card {
     border: 0;
     padding-bottom: 1.25rem;
+    background-color: transparent;
 }
 
-.player-carousel-card__body {
-    border: 1px solid blueviolet;
-    margin-top: 1.25rem;
+.player-carousel-card__body-content {
+    border: 1px solid #38003c;
+    background-color: white;
 }
 
-.player-carousel-card__body > .nav-tabs {
+.player-carousel-card__body-content > .nav-tabs {
     border: 0;
 }
 
-.player-carousel-card__body > .nav-tabs > .nav-item > .nav-link {
-    color: blueviolet;
+.player-carousel-card__body-content > .nav-tabs > .nav-item > .nav-link {
+    color: #38003c;
     border: 0;
     border-bottom: 2px solid white;
 }
 
-.player-carousel-card__body > .nav-tabs > .nav-item > .nav-link.active {
-    color: white;
-    background-color: blueviolet;
+.player-carousel-card__body-content > .nav-tabs > .nav-item > .nav-link.active {
+    color: #38003c;
+    background-color: #00ff85;
     border: 0;
     border-radius: 0;
 }
 
-.player-carousel-card__body > .nav-tabs > .nav-item > .nav-link:hover {
-    border-bottom: 2px solid blueviolet;
+.player-carousel-card__body-content > .nav-tabs > .nav-item > .nav-link:hover {
+    border-bottom: 2px solid #38003c;
+}
+
+.twitter-feed-card-2 {
+    border: 0;
+    background-color: transparent;
+}
+
+.twitter-feed-card-2__body-content {
+    border: 1px solid 	#04f5ff;
+}
+
+.page-header {
+    border-bottom: 1px solid blueviolet;
+    color: blueviolet;
+}
+
+.page-header > .row {
+    min-height: 50px;
+}
+
+.logo-image {
+    max-height: 30px;
+}
+
+.root-container {
+    background-image: linear-gradient(to right, #77007B, #A200A6);
 }
