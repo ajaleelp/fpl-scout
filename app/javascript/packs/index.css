@@ -144,3 +144,34 @@
     border: 1px solid blueviolet;
     border-radius: 0;
 }
+
+.player-carousel-card {
+    border: 0;
+    padding-bottom: 1.25rem;
+}
+
+.player-carousel-card__body {
+    border: 1px solid blueviolet;
+    margin-top: 1.25rem;
+}
+
+.player-carousel-card__body > .nav-tabs {
+    border: 0;
+}
+
+.player-carousel-card__body > .nav-tabs > .nav-item > .nav-link {
+    color: blueviolet;
+    border: 0;
+    border-bottom: 2px solid white;
+}
+
+.player-carousel-card__body > .nav-tabs > .nav-item > .nav-link.active {
+    color: white;
+    background-color: blueviolet;
+    border: 0;
+    border-radius: 0;
+}
+
+.player-carousel-card__body > .nav-tabs > .nav-item > .nav-link:hover {
+    border-bottom: 2px solid blueviolet;
+}

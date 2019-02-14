@@ -101,7 +101,7 @@ export default class RootApp extends React.Component {
         let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
             <div className="row root-container flex-row-reverse">
-                <div className="card sidepanel-card col-lg-4 b-0">
+                <div className="card sidepanel-card col-lg-4">
                     <div className="card-body">
                         <div className="card filer-controls-card shadow p-2">
                             <div className="card-header filer-controls-card__header">
@@ -197,100 +197,70 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="accordion p-3 col-lg-8" id="accordionExample">
-                    <div className="card">
-                        <div className="card-header" id="headingOne">
-                            <h5 className="mb-0">
-                                <button className="btn btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Forwards
-                                    </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div className="card-body">
-                                <ul className="list-group mb-4">
-                                    <li className="list-group-item">
-                                        <PlayerCarousel
-                                            players={forwards}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            ref={carousel => (this.forwardsCarousel = carousel)}
-                                        />
-                                    </li>
-                                </ul>
+                <div className="card player-carousel-card col-lg-8">
+                    <div className="card-body player-carousel-card__body shadow p-0 w-100 d-flex flex-column justify-content-start">
+                        <ul className="nav nav-tabs" id="playerCarouselTab" role="tablist">
+                            <li className="nav-item">
+                                <a className="nav-link active" id="forwards-tab" data-toggle="tab" href="#forwards" role="tab">
+                                    <span className="d-none d-lg-block">Forwards</span>
+                                    <span className="d-block d-lg-none">FWD</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="mid-fielders-tab" data-toggle="tab" href="#mid-fielders" role="tab">
+                                    <span className="d-none d-lg-block">Mid-Fielders</span>
+                                    <span className="d-block d-lg-none">MDF</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="defenders-tab" data-toggle="tab" href="#defenders" role="tab">
+                                    <span className="d-none d-lg-block">Defenders</span>
+                                    <span className="d-block d-lg-none">DFD</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="goal-keepers-tab" data-toggle="tab" href="#goal-keepers" role="tab">
+                                    <span className="d-none d-lg-block">Goal-Keepers</span>
+                                    <span className="d-block d-lg-none">GKP</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div className="tab-content" id="playerCarouselTabContent">
+                            <div className="tab-pane fade show active" id="forwards" role="tabpanel">
+                                <PlayerCarousel
+                                    players={forwards}
+                                    upComingMatches={this.upComingMatches()}
+                                    teams={this.props.teams}
+                                    fixtures={this.props.fixtures}
+                                    ref={carousel => (this.forwardsCarousel = carousel)}
+                                />
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-header" id="headingTwo">
-                            <h5 className="mb-0">
-                                <button className="btn btn-outline-secondary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Midfielders
-                                    </button>
-                            </h5>
-                        </div>
-                        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div className="card-body">
-                                <ul className="list-group mb-4">
-                                    <li className="list-group-item">
-                                        <PlayerCarousel
-                                            players={midFielders}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            ref={carousel => (this.midFieldersCarousel = carousel)}
-                                        />
-                                    </li>
-                                </ul>
+                            <div className="tab-pane fade" id="mid-fielders" role="tabpanel">
+                                <PlayerCarousel
+                                    players={midFielders}
+                                    upComingMatches={this.upComingMatches()}
+                                    teams={this.props.teams}
+                                    fixtures={this.props.fixtures}
+                                    ref={carousel => (this.midFieldersCarousel = carousel)}
+                                />
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-header" id="headingThree">
-                            <h5 className="mb-0">
-                                <button className="btn btn-outline-danger btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Defenders
-                                    </button>
-                            </h5>
-                        </div>
-                        <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div className="card-body">
-                                <ul className="list-group mb-4">
-                                    <li className="list-group-item">
-                                        <PlayerCarousel
-                                            players={defenders}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            ref={carousel => (this.defendersCarousel = carousel)}
-                                        />
-                                    </li>
-                                </ul>
+                            <div className="tab-pane fade" id="defenders" role="tabpanel">
+                                <PlayerCarousel
+                                    players={defenders}
+                                    upComingMatches={this.upComingMatches()}
+                                    teams={this.props.teams}
+                                    fixtures={this.props.fixtures}
+                                    ref={carousel => (this.defendersCarousel = carousel)}
+                                />
                             </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-header" id="headingFour">
-                            <h5 className="mb-0">
-                                <button className="btn btn-outline-info btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    Goalkeepers
-                                    </button>
-                            </h5>
-                        </div>
-                        <div id="collapseFour" className="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div className="card-body">
-                                <ul className="list-group mb-4">
-                                    <li className="list-group-item">
-                                        <PlayerCarousel players={goalKeepers}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            ref={carousel => (this.goalKeepersCarousel = carousel)}
-                                        />
-                                    </li>
-                                </ul>
+                            <div className="tab-pane fade" id="goal-keepers" role="tabpanel">
+                                <PlayerCarousel
+                                    players={goalKeepers}
+                                    upComingMatches={this.upComingMatches()}
+                                    teams={this.props.teams}
+                                    fixtures={this.props.fixtures}
+                                    ref={carousel => (this.goalKeepersCarousel = carousel)}
+                                />
                             </div>
                         </div>
                     </div>
