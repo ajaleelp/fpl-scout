@@ -107,6 +107,7 @@
 
 .filer-controls-card {
     border: 1px solid blueviolet;
+    border-radius: 0;
 }
 
 .filer-controls-card__header {
@@ -137,4 +138,9 @@
 
 .team-filter__dropdown-item--selected{
     color: blueviolet;
+}
+
+.twitter-feed-card {
+    border: 1px solid blueviolet;
+    border-radius: 0;
 }

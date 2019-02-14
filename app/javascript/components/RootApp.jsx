@@ -103,7 +103,7 @@ export default class RootApp extends React.Component {
             <div className="row root-container flex-row-reverse">
                 <div className="card sidepanel-card col-lg-4 b-0">
                     <div className="card-body">
-                        <div className="card filer-controls-card p-2">
+                        <div className="card filer-controls-card shadow p-2">
                             <div className="card-header filer-controls-card__header">
                                 <FontAwesomeIcon icon={faSlidersH} className="mr-1"/>
                                 Settings
@@ -185,7 +185,7 @@ export default class RootApp extends React.Component {
                                 />
                             </div>
                         </div>
-                        <div className="centerContent d-none d-md-block">
+                        <div className="card twitter-feed-card shadow d-none d-lg-block mt-lg-3">
                             <div className="selfCenter standardWidth">
                                 <TwitterTimelineEmbed
                                     sourceType="list"
