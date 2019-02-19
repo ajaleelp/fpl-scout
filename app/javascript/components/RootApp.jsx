@@ -89,6 +89,14 @@ export default class RootApp extends React.Component {
         });
     }
 
+    costIncreasedPlayers() {
+        return this.props.players.filter((player) => Number(player.cost_change_event) > 0)
+    }
+
+    costDecreasedPlayers() {
+        return this.props.players.filter((player) => Number(player.cost_change_event) < 0)
+    }
+
     render() {
         console.log(this.state.selectedOption);
         let costSliderMarks = {};
@@ -193,16 +201,6 @@ export default class RootApp extends React.Component {
                                     />
                                 </div>
                             </div>
-                            <div className="card twitter-feed-card shadow d-none d-lg-block mt-lg-3">
-                                <div>
-                                    <TwitterTimelineEmbed
-                                        sourceType="list"
-                                        ownerScreenName="unbottler"
-                                        slug="fantasy-premier-league"
-                                        options={{ height: 400 }}
-                                    />
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div className="card player-carousel-card col-lg-8">
@@ -275,7 +273,7 @@ export default class RootApp extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="card  twitter-feed-card-2 col d-lg-none mt-lg-3">
+                    <div className="card  twitter-feed-card-2 col-lg-4">
                         <div className="card-body">
                             <div className="twitter-feed-card-2__body-content">
                                 <TwitterTimelineEmbed
@@ -284,6 +282,49 @@ export default class RootApp extends React.Component {
                                     slug="fantasy-premier-league"
                                     options={{ height: 400 }}
                                 />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card price-change-card col-lg-8">
+                        <div className="card-body">
+                            <div className="card">
+                                <div className="card-header">Price Changes - GW 26</div>
+                                <div className="card-body d-flex flex-column flex-lg-row">
+                                    <div className="col-lg-6">
+                                        <ul className="list-group list-group">
+                                            {
+                                                this.costIncreasedPlayers().map((player) => {
+                                                    return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                        <div>{player.full_name}</div>
+                                                        <div className="d-flex col-1 justify-content-between">
+                                                            <span className="green-text">
+                                                            +{player.cost_change_event}
+                                                            </span>
+                                                            <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                        </div>
+                                                    </li>);
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div className="col-lg-6 mt-3 mt-lg-0">
+                                        <ul className="list-group list-group">
+                                            {
+                                                this.costDecreasedPlayers().map((player) => {
+                                                    return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                        <div>{player.full_name}</div>
+                                                        <div className="d-flex col-1 justify-content-between">
+                                                            <span className="red-text">
+                                                            {player.cost_change_event}
+                                                            </span>
+                                                            <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                        </div>
+                                                    </li>);
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

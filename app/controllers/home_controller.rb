@@ -11,7 +11,9 @@ class HomeController < ApplicationController
           code: player['code'],
           position: player['element_type'],
           team: player['team'],
-          id: player['id']
+          id: player['id'],
+          cost_change_event: player['cost_change_event'],
+          cost_change_start: player['cost_change_start']
       }
     end.sort_by { |p| p[:form].to_f }.reverse
 
