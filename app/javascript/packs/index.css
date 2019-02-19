@@ -148,7 +148,8 @@ html,body
 }
 
 .team-filter__dropdown-item--selected{
-    color: #38003c;
+    color: #38003c !important;
+    font-weight: bold;
 }
 
 .twitter-feed-card {
