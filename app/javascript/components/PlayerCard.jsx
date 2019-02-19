@@ -92,8 +92,9 @@ class PlayerCard extends React.Component {
                             </ul>
                         </div>
                     </div>
-                    <div className="card-header">
-                        {player.full_name}
+                    <div className="player-card__card-header card-header d-flex justify-content-between align-items-center pl-2">
+                        <div>{player.full_name}</div>
+                        <div className={"pr-2 player-card-header__availability " + "player-card-header__availability--" + player.playing_chance}>{player.playing_chance}</div>
                     </div>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item d-flex justify-content-between">

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
           form: player['form'],
           cost: player['now_cost'].to_f / 10,
           total_points: player['total_points'],
-          playing_chance: player['chance_of_playing_next_round'],
+          playing_chance: player['chance_of_playing_next_round'] || 100,
           code: player['code'],
           position: player['element_type'],
           team: player['team'],
