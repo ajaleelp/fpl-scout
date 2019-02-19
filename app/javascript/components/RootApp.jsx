@@ -108,7 +108,7 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="row root-container flex-row-reverse">
+                <div className="root-container flex-row-reverse">
                     <div className="card sidepanel-card col-lg-4">
                         <div className="card-body">
                             <div className="card filer-controls-card shadow p-2">
@@ -194,7 +194,7 @@ export default class RootApp extends React.Component {
                                 </div>
                             </div>
                             <div className="card twitter-feed-card shadow d-none d-lg-block mt-lg-3">
-                                <div className="selfCenter standardWidth">
+                                <div>
                                     <TwitterTimelineEmbed
                                         sourceType="list"
                                         ownerScreenName="unbottler"
@@ -277,7 +277,7 @@ export default class RootApp extends React.Component {
                     </div>
                     <div className="card  twitter-feed-card-2 col d-lg-none mt-lg-3">
                         <div className="card-body">
-                            <div className="twitter-feed-card-2__body-content shadow">
+                            <div className="twitter-feed-card-2__body-content">
                                 <TwitterTimelineEmbed
                                     sourceType="list"
                                     ownerScreenName="unbottler"
