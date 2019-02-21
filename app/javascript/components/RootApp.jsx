@@ -9,7 +9,7 @@ import 'react-picky/dist/picky.css';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
-import {faChevronCircleRight} from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 
 export default class RootApp extends React.Component {
@@ -112,7 +112,7 @@ export default class RootApp extends React.Component {
                 <div className="page-header shadow container-fluid">
                     <div className="row d-flex">
                         <div className="m-auto">
-                            <img className="logo-image" src={this.props.logoURL}/>
+                            <img className="logo-image" src={this.props.logoURL} />
                         </div>
                     </div>
                 </div>
@@ -121,23 +121,23 @@ export default class RootApp extends React.Component {
                         <div className="card-body">
                             <div className="card filer-controls-card shadow p-2">
                                 <div className="card-header filer-controls-card__header">
-                                    <FontAwesomeIcon icon={faSlidersH} className="mr-1"/>
+                                    <FontAwesomeIcon icon={faSlidersH} className="mr-1" />
                                     Settings
                                 </div>
                                 <div className="filter-controls-card__cost-slider px-3 d-flex flex-column align-items-center mb-4">
                                     <div className="cost-slider__title">
-                                        Cost
+                                        Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
                                     </div>
                                     <Range className="mx-3"
-                                           min={this.globalMinCost()}
-                                           max={this.globalMaxCost()}
-                                           marks={costSliderMarks}
-                                           onChange={this.changeCostRange}
-                                           value={[this.state.minCost, this.state.maxCost]}
-                                           allowCross={false}
-                                           tipFormatter={value => `${value}`}
-                                           step={0.1}
-                                           trackStyle={[{ backgroundColor: '#38003c' }]}
+                                        min={this.globalMinCost()}
+                                        max={this.globalMaxCost()}
+                                        marks={costSliderMarks}
+                                        onChange={this.changeCostRange}
+                                        value={[this.state.minCost, this.state.maxCost]}
+                                        allowCross={false}
+                                        tipFormatter={value => `${value}`}
+                                        step={0.1}
+                                        trackStyle={[{ backgroundColor: '#38003c' }]}
                                     />
                                 </div>
                                 <div className="filter-controls-card__sort-by-picker px-2 d-flex flex-column align-items-center mb-2">
@@ -182,22 +182,22 @@ export default class RootApp extends React.Component {
                                         Teams
                                     </div>
                                     <Picky className='w-100 d-flex flex-column align-items-centre team-filter__picky'
-                                       options={this.props.teams}
-                                       value={this.state.selectedTeams}
-                                       valueKey="id"
-                                       labelKey="name"
-                                       multiple={true}
-                                       includeSelectAll={true}
-                                       includeFilter={true}
-                                       onChange={this.updateSelectedTeams}
-                                       dropdownHeight={600}
-                                       renderList={({ items, selected, multiple, selectValue, getIsSelected }) =>
-                                           items.map(item => (
-                                               <div key={item.id} onClick={() => selectValue(item)} className="team-filter__dropdown-item">
-                                                   {getIsSelected(item) ? <span className="team-filter__dropdown-item--selected">{item.name}</span> : item.name}
-                                               </div>
-                                           ))
-                                       }
+                                        options={this.props.teams}
+                                        value={this.state.selectedTeams}
+                                        valueKey="id"
+                                        labelKey="name"
+                                        multiple={true}
+                                        includeSelectAll={true}
+                                        includeFilter={true}
+                                        onChange={this.updateSelectedTeams}
+                                        dropdownHeight={600}
+                                        renderList={({ items, selected, multiple, selectValue, getIsSelected }) =>
+                                            items.map(item => (
+                                                <div key={item.id} onClick={() => selectValue(item)} className="team-filter__dropdown-item">
+                                                    {getIsSelected(item) ? <span className="team-filter__dropdown-item--selected">{item.name}</span> : item.name}
+                                                </div>
+                                            ))
+                                        }
                                     />
                                 </div>
                             </div>
@@ -289,40 +289,56 @@ export default class RootApp extends React.Component {
                         <div className="card-body">
                             <div className="card">
                                 <div className="card-header">Price Changes - GW 26</div>
-                                <div className="card-body d-flex flex-column flex-lg-row">
-                                    <div className="col-lg-6">
-                                        <ul className="list-group list-group">
-                                            {
-                                                this.costIncreasedPlayers().map((player) => {
-                                                    return (<li className="list-group-item d-flex justify-content-between pr-5">
-                                                        <div>{player.full_name}</div>
-                                                        <div className="d-flex col-1 justify-content-between">
-                                                            <span className="green-text">
-                                                            +{player.cost_change_event}
-                                                            </span>
-                                                            <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
-                                                        </div>
-                                                    </li>);
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
-                                    <div className="col-lg-6 mt-3 mt-lg-0">
-                                        <ul className="list-group list-group">
-                                            {
-                                                this.costDecreasedPlayers().map((player) => {
-                                                    return (<li className="list-group-item d-flex justify-content-between pr-5">
-                                                        <div>{player.full_name}</div>
-                                                        <div className="d-flex col-1 justify-content-between">
-                                                            <span className="red-text">
-                                                            {player.cost_change_event}
-                                                            </span>
-                                                            <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
-                                                        </div>
-                                                    </li>);
-                                                })
-                                            }
-                                        </ul>
+                                <div className="card-body d-flex flex-column">
+                                    <ul className="nav nav-tabs" id="priceChangeTab" role="tablist">
+                                        <li className="nav-item">
+                                            <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
+                                                <span className="d-none d-lg-block">Rise</span>
+                                                <span className="d-block d-lg-none">Rise</span>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" id="price-fall-tab" data-toggle="tab" href="#pricefall" role="tab">
+                                                <span className="d-none d-lg-block">Fall</span>
+                                                <span className="d-block d-lg-none">Fall</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div className="tab-content px-2" id="priceChangeTabContent">
+                                        <div className="tab-pane fade show active" id="pricerise" role="tabpanel">
+                                            <ul className="list-group list-group">
+                                                {
+                                                    this.costIncreasedPlayers().map((player) => {
+                                                        return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                            <div>{player.full_name}</div>
+                                                            <div className="d-flex col-1 justify-content-between">
+                                                                <span className="green-text">
+                                                                    +{player.cost_change_event}
+                                                                </span>
+                                                                <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                            </div>
+                                                        </li>);
+                                                    })
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div className="tab-pane fade" id="pricefall" role="tabpanel">
+                                            <ul className="list-group list-group">
+                                                {
+                                                    this.costDecreasedPlayers().map((player) => {
+                                                        return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                            <div>{player.full_name}</div>
+                                                            <div className="d-flex col-1 justify-content-between">
+                                                                <span className="red-text">
+                                                                    {player.cost_change_event}
+                                                                </span>
+                                                                <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                            </div>
+                                                        </li>);
+                                                    })
+                                                }
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
