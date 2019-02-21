@@ -9,7 +9,9 @@ import 'react-picky/dist/picky.css';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
-import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons/";
+import { faCaretSquareUp } from "@fortawesome/free-solid-svg-icons";
+import { faCaretSquareDown } from "@fortawesome/free-solid-svg-icons";
 
 
 export default class RootApp extends React.Component {
@@ -288,19 +290,22 @@ export default class RootApp extends React.Component {
                     <div className="card bg-transparent border-0 col-lg-8">
                         <div className="card-body">
                             <div className="card price-change-card p-2">
-                                <div className="card-header filter-controls-card__header">Latest Price Changes</div>
+                                <div className="card-header filter-controls-card__header">
+                                    <FontAwesomeIcon icon={faSync} className="mr-1" />
+                                    Latest Price Changes
+                                </div>
                                 <div className="card-body d-flex flex-column">
                                     <div className="player-carousel-card__body-content border-0 shadow">
                                         <ul className="nav nav-tabs" id="priceChangeTab" role="tablist">
                                             <li className="nav-item">
                                                 <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
                                                     Rise
-                                            </a>
+                                                </a>
                                             </li>
                                             <li className="nav-item">
                                                 <a className="nav-link" id="price-fall-tab" data-toggle="tab" href="#pricefall" role="tab">
                                                     Fall
-                                            </a>
+                                                </a>
                                             </li>
                                         </ul>
                                         <div className="tab-content px-2" id="priceChangeTabContent">
