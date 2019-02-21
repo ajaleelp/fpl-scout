@@ -152,12 +152,12 @@ html,body
     background-color: transparent;
 }
 
-.filer-controls-card {
+.filter-controls-card {
     border: 1px solid #38003c;
     border-radius: 0;
 }
 
-.filer-controls-card__header {
+.filter-controls-card__header {
     margin: -0.5rem;
     margin-bottom: 0.5rem;
     color: white;
@@ -247,7 +247,7 @@ html,body
 }
 
 .price-change-card {
-    border: 0;
-    padding-bottom: 1.25rem;
-    background-color: transparent;
+    background-color: white;
+    border: 1px solid #38003c;
+    border-radius: 0;
 }

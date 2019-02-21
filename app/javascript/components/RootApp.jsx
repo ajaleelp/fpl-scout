@@ -119,8 +119,8 @@ export default class RootApp extends React.Component {
                 <div className="root-container flex-row-reverse">
                     <div className="card sidepanel-card col-lg-4">
                         <div className="card-body">
-                            <div className="card filer-controls-card shadow p-2">
-                                <div className="card-header filer-controls-card__header">
+                            <div className="card filter-controls-card shadow p-2">
+                                <div className="card-header filter-controls-card__header">
                                     <FontAwesomeIcon icon={faSlidersH} className="mr-1" />
                                     Settings
                                 </div>
@@ -273,7 +273,7 @@ export default class RootApp extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="card  twitter-feed-card-2 col-lg-4">
+                    <div className="card twitter-feed-card-2 col-lg-4">
                         <div className="card-body">
                             <div className="twitter-feed-card-2__body-content">
                                 <TwitterTimelineEmbed
@@ -285,59 +285,59 @@ export default class RootApp extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="card price-change-card col-lg-8">
+                    <div className="card bg-transparent border-0 col-lg-8">
                         <div className="card-body">
-                            <div className="card">
-                                <div className="card-header">Price Changes - GW 26</div>
+                            <div className="card price-change-card p-2">
+                                <div className="card-header filter-controls-card__header">Latest Price Changes</div>
                                 <div className="card-body d-flex flex-column">
-                                    <ul className="nav nav-tabs" id="priceChangeTab" role="tablist">
-                                        <li className="nav-item">
-                                            <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
-                                                <span className="d-none d-lg-block">Rise</span>
-                                                <span className="d-block d-lg-none">Rise</span>
+                                    <div className="player-carousel-card__body-content border-0 shadow">
+                                        <ul className="nav nav-tabs" id="priceChangeTab" role="tablist">
+                                            <li className="nav-item">
+                                                <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
+                                                    Rise
                                             </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" id="price-fall-tab" data-toggle="tab" href="#pricefall" role="tab">
-                                                <span className="d-none d-lg-block">Fall</span>
-                                                <span className="d-block d-lg-none">Fall</span>
+                                            </li>
+                                            <li className="nav-item">
+                                                <a className="nav-link" id="price-fall-tab" data-toggle="tab" href="#pricefall" role="tab">
+                                                    Fall
                                             </a>
-                                        </li>
-                                    </ul>
-                                    <div className="tab-content px-2" id="priceChangeTabContent">
-                                        <div className="tab-pane fade show active" id="pricerise" role="tabpanel">
-                                            <ul className="list-group list-group">
-                                                {
-                                                    this.costIncreasedPlayers().map((player) => {
-                                                        return (<li className="list-group-item d-flex justify-content-between pr-5">
-                                                            <div>{player.full_name}</div>
-                                                            <div className="d-flex col-1 justify-content-between">
-                                                                <span className="green-text">
-                                                                    +{player.cost_change_event}
-                                                                </span>
-                                                                <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
-                                                            </div>
-                                                        </li>);
-                                                    })
-                                                }
-                                            </ul>
-                                        </div>
-                                        <div className="tab-pane fade" id="pricefall" role="tabpanel">
-                                            <ul className="list-group list-group">
-                                                {
-                                                    this.costDecreasedPlayers().map((player) => {
-                                                        return (<li className="list-group-item d-flex justify-content-between pr-5">
-                                                            <div>{player.full_name}</div>
-                                                            <div className="d-flex col-1 justify-content-between">
-                                                                <span className="red-text">
-                                                                    {player.cost_change_event}
-                                                                </span>
-                                                                <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
-                                                            </div>
-                                                        </li>);
-                                                    })
-                                                }
-                                            </ul>
+                                            </li>
+                                        </ul>
+                                        <div className="tab-content px-2" id="priceChangeTabContent">
+                                            <div className="tab-pane fade show active" id="pricerise" role="tabpanel">
+                                                <ul className="list-group list-group-flush p-2">
+                                                    {
+                                                        this.costIncreasedPlayers().map((player) => {
+                                                            return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                                <div>{player.full_name}</div>
+                                                                <div className="d-flex col-1 justify-content-between">
+                                                                    <span className="green-text">
+                                                                        +{player.cost_change_event}
+                                                                    </span>
+                                                                    <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                                </div>
+                                                            </li>);
+                                                        })
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <div className="tab-pane fade" id="pricefall" role="tabpanel">
+                                                <ul className="list-group list-group-flush p-2">
+                                                    {
+                                                        this.costDecreasedPlayers().map((player) => {
+                                                            return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                                <div>{player.full_name}</div>
+                                                                <div className="d-flex col-1 justify-content-between">
+                                                                    <span className="red-text">
+                                                                        {player.cost_change_event}
+                                                                    </span>
+                                                                    <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                                </div>
+                                                            </li>);
+                                                        })
+                                                    }
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
