@@ -10,8 +10,6 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
 import { faSync } from "@fortawesome/free-solid-svg-icons/";
-import { faCaretSquareUp } from "@fortawesome/free-solid-svg-icons";
-import { faCaretSquareDown } from "@fortawesome/free-solid-svg-icons";
 
 
 export default class RootApp extends React.Component {
@@ -111,8 +109,8 @@ export default class RootApp extends React.Component {
         let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
             <div>
-                <div className="page-header shadow container-fluid">
-                    <div className="row d-flex">
+                <div className="page-header shadow">
+                    <div className="row d-flex shadow">
                         <div className="m-auto">
                             <img className="logo-image" src={this.props.logoURL} />
                         </div>
@@ -289,14 +287,14 @@ export default class RootApp extends React.Component {
                     </div>
                     <div className="card bg-transparent border-0 col-lg-8">
                         <div className="card-body">
-                            <div className="card price-change-card p-2">
+                            <div className="card price-change-card p-2 shadow">
                                 <div className="card-header filter-controls-card__header">
                                     <FontAwesomeIcon icon={faSync} className="mr-1" />
                                     Latest Price Changes
                                 </div>
                                 <div className="card-body d-flex flex-column">
-                                    <div className="player-carousel-card__body-content border-0 shadow">
-                                        <ul className="nav nav-tabs" id="priceChangeTab" role="tablist">
+                                    <div className="player-carousel-card__body-content border-0">
+                                        <ul className="nav nav-tabs ml-3" id="priceChangeTab" role="tablist">
                                             <li className="nav-item">
                                                 <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
                                                     Rise

@@ -153,7 +153,7 @@ html,body
 }
 
 .filter-controls-card {
-    border: 1px solid #38003c;
+    border: 1px solid #f0f0f0;
     border-radius: 0;
 }
 
@@ -196,7 +196,7 @@ html,body
 }
 
 .player-carousel-card__body-content {
-    border: 1px solid #38003c;
+    border: 1px solid #f0f0f0;
     background-color: white;
 }
 
@@ -227,8 +227,8 @@ html,body
 }
 
 .page-header {
-    border-bottom: 1px solid blueviolet;
-    color: blueviolet;
+    border-bottom: 1px solid #f0f0f0;
+    color: #f0f0f0;
 }
 
 .page-header > .row {
@@ -236,18 +236,18 @@ html,body
 }
 
 .logo-image {
-    max-height: 30px;
+    height: 80px;
 }
 
 .root-container {
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
-    background-color: #00A553;
+    background-color: rgb(247, 247, 247);
 }
 
 .price-change-card {
     background-color: white;
-    border: 1px solid #38003c;
+    border: 1px solid #f0f0f0;
     border-radius: 0;
 }
