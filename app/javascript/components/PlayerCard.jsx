@@ -63,7 +63,7 @@ class PlayerCard extends React.Component {
     }
 
     handleClickOutside() {
-        this.setState({isFlipped: false});
+        this.setState({ isFlipped: false });
     }
 
 

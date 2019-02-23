@@ -9,7 +9,7 @@ html,body
 
 @media only screen and (min-width: 768px) {
   .root-container {
-    padding: 50px;
+    padding: 20px;
   }
 }
 
@@ -131,7 +131,7 @@ html,body
 }
 
 .slick-prev:before, .slick-next:before {
-  color:red !important;
+  color: #38003c !important;
 }
 
 .slider-root {
@@ -162,7 +162,7 @@ html,body
     margin-bottom: 0.5rem;
     color: white;
     background-color: #38003c;
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 
 .sort-by-picker__radio-btns {
@@ -195,29 +195,29 @@ html,body
     background-color: transparent;
 }
 
-.player-carousel-card__body-content {
+.nav-tab__content {
     border: 1px solid #f0f0f0;
     background-color: white;
 }
 
-.player-carousel-card__body-content > .nav-tabs {
+.nav-tab__content > .nav-tabs {
     border: 0;
 }
 
-.player-carousel-card__body-content > .nav-tabs > .nav-item > .nav-link {
+.nav-tab__content > .nav-tabs > .nav-item > .nav-link {
     color: #38003c;
     border: 0;
     border-bottom: 2px solid white;
 }
 
-.player-carousel-card__body-content > .nav-tabs > .nav-item > .nav-link.active {
+.nav-tab__content > .nav-tabs > .nav-item > .nav-link.active {
     color: #38003c;
     background-color: #00ff85;
     border: 0;
     border-radius: 0;
 }
 
-.player-carousel-card__body-content > .nav-tabs > .nav-item > .nav-link:hover {
+.nav-tab__content > .nav-tabs > .nav-item > .nav-link:hover {
     border-bottom: 2px solid #38003c;
 }
 
@@ -232,18 +232,19 @@ html,body
 }
 
 .page-header > .row {
-    min-height: 50px;
+    min-height: 60px;
+    background-color: rgb(252, 252, 252);
 }
 
 .logo-image {
-    height: 80px;
+    height: 40px;
 }
 
 .root-container {
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(252, 252, 252);
 }
 
 .price-change-card {

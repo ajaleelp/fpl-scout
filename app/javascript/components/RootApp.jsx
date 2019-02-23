@@ -9,7 +9,7 @@ import 'react-picky/dist/picky.css';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
-import { faSync } from "@fortawesome/free-solid-svg-icons/";
+import { faList } from "@fortawesome/free-solid-svg-icons/";
 
 
 export default class RootApp extends React.Component {
@@ -109,8 +109,8 @@ export default class RootApp extends React.Component {
         let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
             <div>
-                <div className="page-header shadow">
-                    <div className="row d-flex shadow">
+                <div className="page-header">
+                    <div className="row d-flex">
                         <div className="m-auto">
                             <img className="logo-image" src={this.props.logoURL} />
                         </div>
@@ -118,11 +118,11 @@ export default class RootApp extends React.Component {
                 </div>
                 <div className="root-container flex-row-reverse">
                     <div className="card sidepanel-card col-lg-4">
-                        <div className="card-body">
-                            <div className="card filter-controls-card shadow p-2">
-                                <div className="card-header filter-controls-card__header">
+                        <div className="card-body d-flex flex-column">
+                            <div className="card filter-controls-card shadow-lg p-2 rounded align-items-stretch">
+                                <div className="card-header filter-controls-card__header rounded-top">
                                     <FontAwesomeIcon icon={faSlidersH} className="mr-1" />
-                                    Settings
+                                    Filters
                                 </div>
                                 <div className="filter-controls-card__cost-slider px-3 d-flex flex-column align-items-center mb-4">
                                     <div className="cost-slider__title">
@@ -205,7 +205,7 @@ export default class RootApp extends React.Component {
                     </div>
                     <div className="card player-carousel-card col-lg-8">
                         <div className="card-body w-100 d-flex flex-column justify-content-start">
-                            <div className="player-carousel-card__body-content shadow">
+                            <div className="nav-tab__content shadow-lg rounded">
                                 <ul className="nav nav-tabs" id="playerCarouselTab" role="tablist">
                                     <li className="nav-item">
                                         <a className="nav-link active" id="forwards-tab" data-toggle="tab" href="#forwards" role="tab">
@@ -275,7 +275,7 @@ export default class RootApp extends React.Component {
                     </div>
                     <div className="card twitter-feed-card-2 col-lg-4">
                         <div className="card-body">
-                            <div className="twitter-feed-card-2__body-content">
+                            <div className="twitter-feed-card-2__body-content shadow-lg">
                                 <TwitterTimelineEmbed
                                     sourceType="list"
                                     ownerScreenName="unbottler"
@@ -287,13 +287,13 @@ export default class RootApp extends React.Component {
                     </div>
                     <div className="card bg-transparent border-0 col-lg-8">
                         <div className="card-body">
-                            <div className="card price-change-card p-2 shadow">
+                            <div className="card price-change-card p-2 shadow-lg rounded">
                                 <div className="card-header filter-controls-card__header">
-                                    <FontAwesomeIcon icon={faSync} className="mr-1" />
+                                    <FontAwesomeIcon icon={faList} className="mr-1" />
                                     Latest Price Changes
                                 </div>
                                 <div className="card-body d-flex flex-column">
-                                    <div className="player-carousel-card__body-content border-0">
+                                    <div className="nav-tab__content border-0">
                                         <ul className="nav nav-tabs ml-3" id="priceChangeTab" role="tablist">
                                             <li className="nav-item">
                                                 <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
