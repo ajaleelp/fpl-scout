@@ -1,0 +1,48 @@
+The humans.txt file explains the team, technology,
+and graphic assets behind this site.
+
+_______________________________________________________________________________
+
+UNBOTTLER TEAM
+This website was hand-crafted by Unbottler.
+
+Jacob Rohan Joseph
+Product owner & web development
+twitter.com/jacobrohan
+
+Abdul Jaleel
+Full stack development
+twitter.com/ajaleelp
+
+_______________________________________________________________________________
+
+SPECIAL THANKS
+
+Ranjith Alingal
+Visual Design
+dribbble.com/ranjithalingal
+
+Naheel Abdul Latheef
+Visual Design
+fb.com/naheelp
+
+_______________________________________________________________________________
+
+TECHNOLOGY
+
+Ruby on rails
+rubyonrails.org
+
+ReactJS
+reactjs.org
+
+Bootstrap
+getbootstrap.com
+
+Github - Code collaboration
+github.com
+
+JS libraries include:
+slick-carousel
+
+_______________________________________________________________________________
