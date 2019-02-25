@@ -232,7 +232,7 @@ export default class RootApp extends React.Component {
                                         </a>
                                     </li>
                                 </ul>
-                                <div className="tab-content px-2" id="playerCarouselTabContent">
+                                <div className="tab-content py-2" id="playerCarouselTabContent">
                                     <div className="tab-pane fade show active" id="forwards" role="tabpanel">
                                         <PlayerCarousel
                                             players={forwards}

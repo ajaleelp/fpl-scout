@@ -45,12 +45,6 @@ html,body
   border: 2px solid #04f5ff;
 }
 
-.player-card__container {
-  border: 1px solid lightgray !important;
-  border-radius: 5px !important;
-  min-height: 300px;
-}
-
 .player-card__card-header {
     padding: 0;
     min-height: 35px;
@@ -102,15 +96,15 @@ html,body
 }
 
 .player-card__difficulty-cell--d4 {
-  background-color: red;
+  background-color: #aa4c50;
 }
 
 .player-card__difficulty-cell--d3 {
-  background-color: darkgrey;
+  background-color: grey;
 }
 
 .player-card__difficulty-cell--d2 {
-  background-color: lawngreen;
+  background-color: #85d600;
 }
 
 .player-card__difficulty-cell--d1 {
@@ -250,4 +244,50 @@ html,body
     background-color: white;
     border: 1px solid #f0f0f0;
     border-radius: 0;
+}
+
+/*New styles:*/
+
+.carousel-container {
+    background-color: #fbfbfb;
+}
+
+.player-card__container {
+    border: 0;
+    border-radius: 10px !important;
+    width: 287px;
+    height: 347px;
+}
+
+.player-card__front-body {
+    height: 347px;
+    background-image: linear-gradient(138deg, #03c1e4, #1e7ed8);
+    color: white;
+}
+
+.player-card__front-footer {
+    min-height:44px;
+    background-color: #f8f8f8;
+}
+
+.player-card-body__top {
+    height: 200px;
+    width: 100%;
+}
+
+.pc-body-top__jersey {
+    width: 60%;
+}
+
+.pc-body-top__matches {
+    width: 40%;
+    font-size: x-small;
+}
+
+.player-card-__player-name {
+    font-size: larger;
+}
+
+.player-card-__player-cost {
+    font-size: x-large;
 }

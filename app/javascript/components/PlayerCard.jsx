@@ -71,50 +71,92 @@ class PlayerCard extends React.Component {
         let player = this.props.player;
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped}>
-                <div key={player.full_name} className="card mx-4 player-card__container" key="front">
-                    <div className="row">
-                        <div className="col-6">
-                            <img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap" />
-                            <h2 className="text-center"><FontAwesomeIcon icon={faPoundSign} />{player.cost}</h2>
-                        </div>
-                        <div className="col-6 d-flex flex-column justify-content-center">
-                            <ul className="list-group p-1">
-                                {
+                <div key={player.full_name} className="card mx-1 player-card__container shadow my-4" key="front">
+                    <div className="d-flex flex-column">
+                        <div className="player-card__front-body p-3">
+                            <div className="player-card-body__top d-flex align-items-end">
+                                <div className="pc-body-top__jersey">
+                                    <img className="card-img-top player-card__img my-auto"
+                                         src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"}/>
+                                </div>
+                                <div className="pc-body-top__matches d-flex flex-column justify-content-end mb-2 ml-2">
+                                    {
                                     this.next5MatchDetails().map(team => {
-                                        return (
-                                            <li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around" key={team.opponentName}>
-                                                <div className="p-2">{team.gameWeek}</div>
-                                                <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
-                                                <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
-                                            </li>);
+                                    return (
+                                    <div key={team.opponentName} className="d-flex justify-content-between align-items-center my-1">
+                                        <div>{team.gameWeek}</div>
+                                        <div>{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
+                                        <div className={"player-card__difficulty-cell px-2 py-1 rounded player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
+                                    </div>);
                                     })
-                                }
-                            </ul>
+                                    }
+                                </div>
+                            </div>
+                            <div className="d-flex justify-content-between mt-2">
+                                <div className="player-card-__player-name">{player.full_name}</div>
+                                <div className="player-card-__player-cost">
+                                    &pound;&nbsp;{player.cost}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="player-card__card-header card-header d-flex justify-content-between align-items-center pl-2">
-                        <div>{player.full_name}</div>
-                        <div className={"pr-2 player-card-header__availability " + "player-card-header__availability--" + player.playing_chance}>{player.playing_chance}</div>
-                    </div>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item d-flex justify-content-between">
+                        <div className="player-card__front-footer d-flex justify-content-between align-items-center px-2">
                             <div data-toggle="tooltip" data-placement="bottom" title="Cost">
                                 <FontAwesomeIcon icon={faPoundSign} className="green-text mr-1" />
-                                <span className="grey-text">{player.cost}</span>
+                                <span>{player.cost}</span>
                             </div>
                             <div data-toggle="tooltip" data-placement="bottom" title="Form">
                                 <FontAwesomeIcon icon={faChartLine} className="green-text mr-1" />
-                                <span className="grey-text">{player.form}</span>
+                                <span>{player.form}</span>
                             </div>
                             <div data-toggle="tooltip" data-placement="bottom" title="Total points">
                                 <FontAwesomeIcon icon={faRocket} className="green-text mr-1" />
-                                <span className="grey-text">{player.total_points}</span>
+                                <span>{player.total_points}</span>
                             </div>
-                        </li>
-                    </ul>
-                    <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />
+                        </div>
                     </div>
+                    {/*<div className="row">*/}
+                        {/*<div className="col-6">*/}
+                            {/*<img className="card-img-top player-card__img my-auto" src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"} alt="Card image cap" />*/}
+                            {/*<h2 className="text-center"><FontAwesomeIcon icon={faPoundSign} />{player.cost}</h2>*/}
+                        {/*</div>*/}
+                        {/*<div className="col-6 d-flex flex-column justify-content-center">*/}
+                            {/*<ul className="list-group p-1">*/}
+                                {/*{*/}
+                                    {/*this.next5MatchDetails().map(team => {*/}
+                                        {/*return (*/}
+                                            {/*<li className="list-group-item player-card__fixture-cell d-flex p-0 justify-content-around" key={team.opponentName}>*/}
+                                                {/*<div className="p-2">{team.gameWeek}</div>*/}
+                                                {/*<div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>*/}
+                                                {/*<div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>*/}
+                                            {/*</li>);*/}
+                                    {/*})*/}
+                                {/*}*/}
+                            {/*</ul>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                    {/*<div className="player-card__card-header card-header d-flex justify-content-between align-items-center pl-2">*/}
+                        {/*<div>{player.full_name}</div>*/}
+                        {/*<div className={"pr-2 player-card-header__availability " + "player-card-header__availability--" + player.playing_chance}>{player.playing_chance}</div>*/}
+                    {/*</div>*/}
+                    {/*<ul className="list-group list-group-flush">*/}
+                        {/*<li className="list-group-item d-flex justify-content-between">*/}
+                            {/*<div data-toggle="tooltip" data-placement="bottom" title="Cost">*/}
+                                {/*<FontAwesomeIcon icon={faPoundSign} className="green-text mr-1" />*/}
+                                {/*<span className="grey-text">{player.cost}</span>*/}
+                            {/*</div>*/}
+                            {/*<div data-toggle="tooltip" data-placement="bottom" title="Form">*/}
+                                {/*<FontAwesomeIcon icon={faChartLine} className="green-text mr-1" />*/}
+                                {/*<span className="grey-text">{player.form}</span>*/}
+                            {/*</div>*/}
+                            {/*<div data-toggle="tooltip" data-placement="bottom" title="Total points">*/}
+                                {/*<FontAwesomeIcon icon={faRocket} className="green-text mr-1" />*/}
+                                {/*<span className="grey-text">{player.total_points}</span>*/}
+                            {/*</div>*/}
+                        {/*</li>*/}
+                    {/*</ul>*/}
+                    {/*<div className="p-2 d-flex player-card__flip-btn">*/}
+                        {/*<FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />*/}
+                    {/*</div>*/}
                 </div>
                 <div key={player.full_name} className="card mx-4 player-card__container justify-content-between" key="back">
                     <div className="player-card__back-body d-flex">
