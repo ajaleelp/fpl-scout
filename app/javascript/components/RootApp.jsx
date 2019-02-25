@@ -292,7 +292,7 @@ export default class RootApp extends React.Component {
                                     <FontAwesomeIcon icon={faList} className="mr-1" />
                                     Latest Price Changes
                                 </div>
-                                <div className="card-body d-flex flex-column">
+                                <div className="pt-3 d-flex flex-column">
                                     <div className="nav-tab__content border-0">
                                         <ul className="nav nav-tabs ml-3" id="priceChangeTab" role="tablist">
                                             <li className="nav-item">
