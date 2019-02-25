@@ -7,11 +7,11 @@ UNBOTTLER TEAM
 This website was hand-crafted by Unbottler.
 
 Jacob Rohan Joseph
-Product owner & web development
+Product Owner & Web Development
 twitter.com/jacobrohan
 
 Abdul Jaleel
-Full stack development
+Architect & Developer-in-Chief
 twitter.com/ajaleelp
 
 _______________________________________________________________________________
@@ -19,11 +19,11 @@ _______________________________________________________________________________
 SPECIAL THANKS
 
 Ranjith Alingal
-Visual Design
+UI Design
 dribbble.com/ranjithalingal
 
 Naheel Abdul Latheef
-Visual Design
+Illustrations
 fb.com/naheelp
 
 _______________________________________________________________________________
