@@ -110,7 +110,7 @@ export default class RootApp extends React.Component {
         return (
             <div>
                 <div className="page-header">
-                    <div className="row d-flex">
+                    <div className="row d-flex shadow-lg">
                         <div className="m-auto">
                             <img className="logo-image" src={this.props.logoURL} />
                         </div>
@@ -118,7 +118,7 @@ export default class RootApp extends React.Component {
                 </div>
                 <div className="root-container flex-row-reverse">
                     <div className="card sidepanel-card col-lg-4">
-                        <div className="card-body d-flex flex-column">
+                        <div className="card-body px-0 px-lg-2 d-flex flex-column">
                             <div className="card filter-controls-card shadow-lg p-2 rounded align-items-stretch">
                                 <div className="card-header filter-controls-card__header rounded-top">
                                     <FontAwesomeIcon icon={faSlidersH} className="mr-1" />
@@ -203,8 +203,8 @@ export default class RootApp extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="card player-carousel-card col-lg-8">
-                        <div className="card-body w-100 d-flex flex-column justify-content-start">
+                    <div className="card player-carousel-card pb-lg-3 col-lg-8">
+                        <div className="card-body px-0 px-lg-2 w-100 d-flex flex-column justify-content-start">
                             <div className="nav-tab__content shadow-lg rounded">
                                 <ul className="nav nav-tabs" id="playerCarouselTab" role="tablist">
                                     <li className="nav-item">
@@ -274,7 +274,7 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                     <div className="card twitter-feed-card-2 col-lg-4">
-                        <div className="card-body">
+                        <div className="card-body px-0 px-lg-2">
                             <div className="twitter-feed-card-2__body-content shadow-lg">
                                 <TwitterTimelineEmbed
                                     sourceType="list"
@@ -286,7 +286,7 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                     <div className="card bg-transparent border-0 col-lg-8">
-                        <div className="card-body">
+                        <div className="card-body px-0 px-lg-2">
                             <div className="card price-change-card p-2 shadow-lg rounded">
                                 <div className="card-header filter-controls-card__header">
                                     <FontAwesomeIcon icon={faList} className="mr-1" />

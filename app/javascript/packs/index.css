@@ -191,7 +191,6 @@ html,body
 
 .player-carousel-card {
     border: 0;
-    padding-bottom: 1.25rem;
     background-color: transparent;
 }
 
@@ -228,12 +227,12 @@ html,body
 
 .page-header {
     border-bottom: 1px solid #f0f0f0;
-    color: #f0f0f0;
+    color: #ffffff;
 }
 
 .page-header > .row {
     min-height: 60px;
-    background-color: rgb(252, 252, 252);
+    background-color: rgb(255, 255, 255);
 }
 
 .logo-image {
