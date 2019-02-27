@@ -6,6 +6,9 @@ import { faRocket } from "@fortawesome/free-solid-svg-icons";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
+import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
 import onClickOutside from "react-onclickoutside";
@@ -49,13 +52,28 @@ class PlayerCard extends React.Component {
                     let scoreList = that.next5MatchDetails().map(team => {
                         let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
                         return (
-                            <li className="list-group-item player-card__prediction-li p-0 d-flex justify-content-between" key={team.opponentName}>
-                                <div className="p-2">{team.opponentName} {team.isHome ? ' (H)' : ' (A)'}</div>
-                                <div className={"border-left p-2 player-card__difficulty-cell player-card__difficulty-cell--d" + team.difficulty}>{team.difficulty}</div>
-                                <div className="border-left p-2">{score}</div>
-                            </li>)
+                            <div className="prediction-bar border d-flex flex-column p-1 justify-content-between align-items-center" key={team.opponentName}>
+                                <div className="p-2 prediction-bar__opponent-name">{team.opponentName}</div>
+                                <div className={"w-100 text-center prediction-bar__prediction prediction-bar__prediction--d" + team.difficulty}>{score}</div>
+                            </div>)
                     });
-                    let backBody = <ul className="list-group p-1 d-flex flex-column align-items-stretch">{scoreList}</ul>
+                    let backBody = (<div className="d-flex flex-column">
+                        <div className="d-flex prediction-bar__title">
+                            <img className="prediction-bar__title-logo" src={that.props.logoURL} />
+                            <div className="align-self-center ml-1 prediction-bar__title-text">Score Predictions</div>
+                        </div>
+                        <div className="d-flex prediction-bar__predictions-conatiner">
+                            {scoreList}
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center mt-5">
+                            <div className="player-card__bookmark-container d-flex shadow">
+                                <FontAwesomeIcon icon={faHeart} className="red-text m-auto" />
+                            </div>
+                            <div className="player-card__flip-btn" onClick={that.flip}>
+                                <FontAwesomeIcon icon={faArrowAltCircleLeft}/>
+                            </div>
+                        </div>
+                    </div>)
                     that.setState({ backBody: backBody });
                 });
         }
@@ -93,9 +111,20 @@ class PlayerCard extends React.Component {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between mt-2">
-                                <div className="player-card-__player-name">{player.full_name}</div>
+                                <div className="d-flex flex-column">
+                                    <div className="player-card-__player-name">{player.full_name}</div>
+                                    <div className="player-card-__team-name">{this.props.teams.find((t) => {return t.id == player.team}).name}</div>
+                                </div>
                                 <div className="player-card-__player-cost">
-                                    &pound;&nbsp;{player.cost}
+                                    &pound;{player.cost}
+                                </div>
+                            </div>
+                            <div className="d-flex justify-content-between mt-2 align-items-center">
+                                <div className="player-card__bookmark-container d-flex shadow">
+                                    <FontAwesomeIcon icon={faHeart} className="red-text m-auto" />
+                                </div>
+                                <div className="player-card__flip-btn" onClick={this.flip}>
+                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
                                 </div>
                             </div>
                         </div>
@@ -158,12 +187,9 @@ class PlayerCard extends React.Component {
                         {/*<FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />*/}
                     {/*</div>*/}
                 </div>
-                <div key={player.full_name} className="card mx-4 player-card__container justify-content-between" key="back">
-                    <div className="player-card__back-body d-flex">
+                <div key={player.full_name} className="card mx-1 player-card__container shadow my-4" key="back">
+                    <div className="player-card__back-body p-3 d-flex flex-column align-items-center">
                         {this.state.backBody}
-                    </div>
-                    <div className="p-2 d-flex player-card__flip-btn">
-                        <FontAwesomeIcon icon={faChevronCircleLeft} className="ml-auto" onClick={this.flip} />
                     </div>
                 </div>
             </ReactCardFlip>
@@ -175,7 +201,8 @@ PlayerCard.propTypes = {
     player: PropTypes.object.isRequired,
     next5Matches: PropTypes.array.isRequired,
     teams: PropTypes.array.isRequired,
-    fixtures: PropTypes.array.isRequired
+    fixtures: PropTypes.array.isRequired,
+    logoURL: PropTypes.string.isRequired
 };
 
 export default onClickOutside(PlayerCard);

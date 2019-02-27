@@ -41,7 +41,13 @@ export default class PlayerCarousel extends React.Component {
         return (
             <Carousel ref={slider => this.slider = slider} {...settings} className="m-4 carousel-container">
                 {
-                    this.props.players.map((player) => <PlayerCard player={player} key={player.full_name} next5Matches={this.next5Matches(player)} teams={this.props.teams} fixtures={this.props.fixtures} />)
+                    this.props.players.map((player) => <PlayerCard player={player}
+                       key={player.full_name}
+                       next5Matches={this.next5Matches(player)}
+                       teams={this.props.teams}
+                       fixtures={this.props.fixtures}
+                       logoURL={this.props.logoURL}
+                    />)
                 }
             </Carousel>
         );
@@ -52,5 +58,6 @@ PlayerCarousel.propTypes = {
     players: PropTypes.array.isRequired,
     teams: PropTypes.array.isRequired,
     upComingMatches: PropTypes.array.isRequired,
-    fixtures: PropTypes.array.isRequired
+    fixtures: PropTypes.array.isRequired,
+    logoURL: PropTypes.string.isRequired
 };

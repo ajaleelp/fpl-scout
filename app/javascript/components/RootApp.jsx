@@ -239,6 +239,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            logoURL={this.props.logoURL}
                                             ref={carousel => (this.forwardsCarousel = carousel)}
                                         />
                                     </div>
@@ -248,6 +249,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            logoURL={this.props.logoURL}
                                             ref={carousel => (this.midFieldersCarousel = carousel)}
                                         />
                                     </div>
@@ -257,6 +259,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            logoURL={this.props.logoURL}
                                             ref={carousel => (this.defendersCarousel = carousel)}
                                         />
                                     </div>
@@ -266,6 +269,7 @@ export default class RootApp extends React.Component {
                                             upComingMatches={this.upComingMatches()}
                                             teams={this.props.teams}
                                             fixtures={this.props.fixtures}
+                                            logoURL={this.props.logoURL}
                                             ref={carousel => (this.goalKeepersCarousel = carousel)}
                                         />
                                     </div>

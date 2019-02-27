@@ -111,15 +111,6 @@ html,body
   background-color: lightgreen;
 }
 
-.player-card__flip-btn {
-  color: lightgrey;
-}
-
-.player-card__back-body {
-  min-height: 200px;
-  color: lightgrey;
-}
-
 .player-card__prediction-li {
   color: black;
 }
@@ -254,7 +245,7 @@ html,body
 
 .player-card__container {
     border: 0;
-    border-radius: 10px !important;
+    border-radius: 0 !important;
     width: 287px;
     height: 347px;
 }
@@ -271,7 +262,7 @@ html,body
 }
 
 .player-card-body__top {
-    height: 200px;
+    height: 180px;
     width: 100%;
 }
 
@@ -288,6 +279,73 @@ html,body
     font-size: larger;
 }
 
+.player-card-__team-name {
+    font-size: smaller;
+}
+
 .player-card-__player-cost {
     font-size: x-large;
+}
+
+.player-card__bookmark-container {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50% 50%;
+    font-size: small;
+    cursor:pointer;
+}
+
+.player-card__flip-btn {
+    font-size: large;
+    cursor: pointer;
+}
+
+.player-card__back-body {
+
+}
+
+.prediction-bar {
+    margin: 0.15rem;
+}
+
+.prediction-bar__predictions-conatiner {
+    margin-top: -15px;
+}
+
+.prediction-bar__opponent-name {
+    font-size: x-small;
+}
+
+.prediction-bar__prediction {
+    font-size: larger;
+}
+
+.prediction-bar__prediction--d1 {
+    border-bottom: 8px solid lightgreen;
+}
+
+.prediction-bar__prediction--d2 {
+    border-bottom: 8px solid #85d600;
+}
+
+.prediction-bar__prediction--d3 {
+    border-bottom: 8px solid grey;
+}
+
+.prediction-bar__prediction--d4 {
+    border-bottom: 8px solid #aa4c50;
+}
+
+.prediction-bar__prediction--d5 {
+    border-bottom: 8px solid darkred;
+}
+
+.prediction-bar__title-logo {
+    width: 75px;
+}
+
+.prediction-bar__title-text {
+    font-size: small;
+    margin-bottom: -11px;
 }
