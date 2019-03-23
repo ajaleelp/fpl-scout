@@ -7,6 +7,7 @@ import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import {faHandPointRight} from "@fortawesome/free-solid-svg-icons";
@@ -68,9 +69,6 @@ class PlayerCard extends React.Component {
                             {scoreList}
                         </div>
                         <div className="d-flex justify-content-between align-items-center mt-5 mx-3">
-                            <div className="player-card__bookmark-container d-flex shadow">
-                                <FontAwesomeIcon icon={faHeart} className="red-text m-auto" />
-                            </div>
                             <div className="player-card__flip-btn" onClick={that.flip}>
                                 <FontAwesomeIcon transform="grow-3" icon={faHandPointLeft}/>
                             </div>
@@ -122,8 +120,13 @@ class PlayerCard extends React.Component {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between mt-2 align-items-center">
-                                <div className="player-card__bookmark-container d-flex shadow">
-                                    <FontAwesomeIcon icon={faHeart} className="red-text m-auto" />
+                                <div className="player-card__bookmark-container d-flex shadow" onClick={_e => this.props.toggleBookmarkCB(player)}>
+                                    {
+                                        player.bookmarked ?
+                                            <FontAwesomeIcon icon={faHeartSolid} className="red-text m-auto"/>
+                                            :
+                                            <FontAwesomeIcon icon={faHeart} className="red-text m-auto"/>
+                                    }
                                 </div>
                                 <div className="player-card__flip-btn" onClick={this.flip}>
                                     <FontAwesomeIcon transform="grow-3" icon={faHandPointRight}/>
@@ -204,7 +207,8 @@ PlayerCard.propTypes = {
     next5Matches: PropTypes.array.isRequired,
     teams: PropTypes.array.isRequired,
     fixtures: PropTypes.array.isRequired,
-    logoURL: PropTypes.string.isRequired
+    logoURL: PropTypes.string.isRequired,
+    toggleBookmarkCB: PropTypes.func.isRequired
 };
 
 export default onClickOutside(PlayerCard);

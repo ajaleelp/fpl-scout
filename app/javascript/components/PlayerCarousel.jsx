@@ -47,6 +47,7 @@ export default class PlayerCarousel extends React.Component {
                        teams={this.props.teams}
                        fixtures={this.props.fixtures}
                        logoURL={this.props.logoURL}
+                       toggleBookmarkCB={this.props.toggleBookmarkCB}
                     />)
                 }
             </Carousel>
@@ -59,5 +60,6 @@ PlayerCarousel.propTypes = {
     teams: PropTypes.array.isRequired,
     upComingMatches: PropTypes.array.isRequired,
     fixtures: PropTypes.array.isRequired,
-    logoURL: PropTypes.string.isRequired
+    logoURL: PropTypes.string.isRequired,
+    toggleBookmarkCB: PropTypes.func.isRequired
 };

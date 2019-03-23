@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
 import { faList } from "@fortawesome/free-solid-svg-icons/";
 import { faHeart } from "@fortawesome/free-solid-svg-icons/";
+import {faHeart as faHeartSolid} from "@fortawesome/free-solid-svg-icons";
 
 
 export default class RootApp extends React.Component {
@@ -22,11 +23,12 @@ export default class RootApp extends React.Component {
             minCost: this.globalMinCost(),
             selectedTeams: [],
             selectedOption: "form",
-            players: []
+            players: props.players
         };
         this.changeCostRange = this.changeCostRange.bind(this);
         this.updateSelectedTeams = this.updateSelectedTeams.bind(this);
         this.goToCarouselStart = this.goToCarouselStart.bind(this);
+        this.toggleBookmark = this.toggleBookmark.bind(this);
     }
 
     globalMaxCost() {
@@ -39,8 +41,8 @@ export default class RootApp extends React.Component {
 
     filteredPlayers() {
         let teamFilteredPlayers = (this.state.selectedTeams.length === 0) ?
-            this.props.players
-            : (this.props.players.filter((player) => {
+            this.state.players
+            : (this.state.players.filter((player) => {
                 return this.state.selectedTeams.map((t) => { return t.id; }).includes(player.team)
             }))
         let filteredPlayers = teamFilteredPlayers;
@@ -60,6 +62,10 @@ export default class RootApp extends React.Component {
 
     filterForPosition(players, position) {
         return players.filter((player) => player.position == position);
+    }
+
+    bookmarkedPlayers() {
+        return this.state.players.filter((player) => player.bookmarked);
     }
 
     upComingMatches() {
@@ -91,15 +97,21 @@ export default class RootApp extends React.Component {
     }
 
     costIncreasedPlayers() {
-        return this.props.players.filter((player) => Number(player.cost_change_event) > 0)
+        return this.state.players.filter((player) => Number(player.cost_change_event) > 0)
     }
 
     costDecreasedPlayers() {
-        return this.props.players.filter((player) => Number(player.cost_change_event) < 0)
+        return this.state.players.filter((player) => Number(player.cost_change_event) < 0)
+    }
+
+    toggleBookmark(player) {
+        let players = this.state.players;
+        let playerIndex = players.findIndex(p => p.id == player.id);
+        players[playerIndex].bookmarked = !players[playerIndex].bookmarked;
+        this.setState({players: players});
     }
 
     render() {
-        console.log(this.state.selectedOption);
         let costSliderMarks = {};
         costSliderMarks[this.globalMinCost()] = this.globalMinCost().toString();
         costSliderMarks[this.globalMaxCost()] = this.globalMaxCost().toString();
@@ -233,6 +245,16 @@ export default class RootApp extends React.Component {
                                                 <span className="d-block d-lg-none">GKP</span>
                                             </a>
                                         </li>
+                                        {
+                                            this.bookmarkedPlayers().length > 0 &&
+                                            (
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="goal-keepers-tab" data-toggle="tab" href="#bookmarked" role="tab">
+                                                        Favs <FontAwesomeIcon transform="shrink-3" icon={faHeart} className="red-text m-auto"/>
+                                                    </a>
+                                                </li>
+                                            )
+                                        }
                                     </ul>
                                     <div className="tab-content py-2" id="playerCarouselTabContent">
                                         <div className="tab-pane fade show active" id="forwards" role="tabpanel">
@@ -242,6 +264,7 @@ export default class RootApp extends React.Component {
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
                                                 logoURL={this.props.logoURL}
+                                                toggleBookmarkCB={this.toggleBookmark}
                                                 ref={carousel => (this.forwardsCarousel = carousel)}
                                             />
                                         </div>
@@ -252,6 +275,7 @@ export default class RootApp extends React.Component {
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
                                                 logoURL={this.props.logoURL}
+                                                toggleBookmarkCB={this.toggleBookmark}
                                                 ref={carousel => (this.midFieldersCarousel = carousel)}
                                             />
                                         </div>
@@ -262,6 +286,7 @@ export default class RootApp extends React.Component {
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
                                                 logoURL={this.props.logoURL}
+                                                toggleBookmarkCB={this.toggleBookmark}
                                                 ref={carousel => (this.defendersCarousel = carousel)}
                                             />
                                         </div>
@@ -272,9 +297,26 @@ export default class RootApp extends React.Component {
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
                                                 logoURL={this.props.logoURL}
+                                                toggleBookmarkCB={this.toggleBookmark}
                                                 ref={carousel => (this.goalKeepersCarousel = carousel)}
                                             />
                                         </div>
+                                        {
+                                            this.bookmarkedPlayers().length > 0 &&
+                                            (
+                                                <div className="tab-pane fade" id="bookmarked" role="tabpanel">
+                                                    <PlayerCarousel
+                                                        players={this.bookmarkedPlayers()}
+                                                        upComingMatches={this.upComingMatches()}
+                                                        teams={this.props.teams}
+                                                        fixtures={this.props.fixtures}
+                                                        logoURL={this.props.logoURL}
+                                                        toggleBookmarkCB={this.toggleBookmark}
+                                                        ref={carousel => (this.goalKeepersCarousel = carousel)}
+                                                    />
+                                                </div>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +349,7 @@ export default class RootApp extends React.Component {
                                                     <ul className="list-group list-group-flush p-2">
                                                         {
                                                             this.costIncreasedPlayers().map((player) => {
-                                                                return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                                return (<li className="list-group-item d-flex justify-content-between pr-5" key={player.id}>
                                                                     <div>{player.full_name}</div>
                                                                     <div className="d-flex col-1 justify-content-between">
                                                                         <span className="green-text">
@@ -324,7 +366,7 @@ export default class RootApp extends React.Component {
                                                     <ul className="list-group list-group-flush p-2">
                                                         {
                                                             this.costDecreasedPlayers().map((player) => {
-                                                                return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                                return (<li className="list-group-item d-flex justify-content-between pr-5" key={player.id}>
                                                                     <div>{player.full_name}</div>
                                                                     <div className="d-flex col-1 justify-content-between">
                                                                         <span className="red-text">
