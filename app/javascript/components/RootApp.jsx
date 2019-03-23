@@ -10,6 +10,7 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
 import { faList } from "@fortawesome/free-solid-svg-icons/";
+import { faHeart } from "@fortawesome/free-solid-svg-icons/";
 
 
 export default class RootApp extends React.Component {
@@ -351,7 +352,19 @@ export default class RootApp extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div >
+                </div>
+                <div className="m-4">
+                    <div className="footer__text">
+                        with <FontAwesomeIcon icon={faHeart} className="red-text"/> from
+                        <a href="/humans.txt" target="_blank">&nbsp;team unbottler</a>
+                    </div>
+                    <div className="footer__subtext">
+                        do tweet to your suggestions/feedback to&nbsp;
+                        <a href="https://twitter.com/unbottler" target="_blank">
+                            @unbottler
+                        </a>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -349,3 +349,15 @@ html,body
     font-size: small;
     margin-bottom: -11px;
 }
+
+.footer__text {
+    color: grey;
+    font-size: small;
+    text-align: center;
+}
+
+.footer__subtext {
+    color: darkgray;
+    font-size: smaller;
+    text-align: center;
+}
