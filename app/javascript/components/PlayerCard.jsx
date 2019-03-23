@@ -9,6 +9,8 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
+import {faHandPointRight} from "@fortawesome/free-solid-svg-icons";
+import {faHandPointLeft} from "@fortawesome/free-regular-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
 import onClickOutside from "react-onclickoutside";
@@ -65,12 +67,12 @@ class PlayerCard extends React.Component {
                         <div className="d-flex prediction-bar__predictions-conatiner">
                             {scoreList}
                         </div>
-                        <div className="d-flex justify-content-between align-items-center mt-5">
+                        <div className="d-flex justify-content-between align-items-center mt-5 mx-3">
                             <div className="player-card__bookmark-container d-flex shadow">
                                 <FontAwesomeIcon icon={faHeart} className="red-text m-auto" />
                             </div>
                             <div className="player-card__flip-btn" onClick={that.flip}>
-                                <FontAwesomeIcon icon={faArrowAltCircleLeft}/>
+                                <FontAwesomeIcon transform="grow-3" icon={faHandPointLeft}/>
                             </div>
                         </div>
                     </div>)
@@ -89,7 +91,7 @@ class PlayerCard extends React.Component {
         let player = this.props.player;
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped}>
-                <div key={player.full_name} className="card mx-1 player-card__container shadow my-4" key="front">
+                <div key={player.full_name} className="card mx-1 player-card__container shadow mt-2 mb-4" key="front">
                     <div className="d-flex flex-column">
                         <div className="player-card__front-body p-3">
                             <div className="player-card-body__top d-flex align-items-end">
@@ -124,7 +126,7 @@ class PlayerCard extends React.Component {
                                     <FontAwesomeIcon icon={faHeart} className="red-text m-auto" />
                                 </div>
                                 <div className="player-card__flip-btn" onClick={this.flip}>
-                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                    <FontAwesomeIcon transform="grow-3" icon={faHandPointRight}/>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +189,7 @@ class PlayerCard extends React.Component {
                         {/*<FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />*/}
                     {/*</div>*/}
                 </div>
-                <div key={player.full_name} className="card mx-1 player-card__container shadow my-4" key="back">
+                <div key={player.full_name} className="card mx-1 player-card__container shadow mt-2 mb-4" key="back">
                     <div className="player-card__back-body p-3 d-flex flex-column align-items-center">
                         {this.state.backBody}
                     </div>
