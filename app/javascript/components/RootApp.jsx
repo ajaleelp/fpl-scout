@@ -355,8 +355,8 @@ export default class RootApp extends React.Component {
                 </div>
                 <div className="m-4">
                     <div className="footer__text">
-                        with <FontAwesomeIcon icon={faHeart} className="red-text"/> from
-                        <a href="/humans.txt" target="_blank">&nbsp;team unbottler</a>
+                        with <FontAwesomeIcon icon={faHeart} className="red-text"/> from&nbsp;
+                        <a href="/humans.txt" target="_blank">team unbottler</a>
                     </div>
                     <div className="footer__subtext">
                         do tweet to your suggestions/feedback to&nbsp;
