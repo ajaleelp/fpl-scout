@@ -117,237 +117,241 @@ export default class RootApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="root-container flex-row-reverse">
-                    <div className="card sidepanel-card col-lg-4">
-                        <div className="card-body px-0 px-lg-2 d-flex flex-column">
-                            <div className="card filter-controls-card shadow-lg p-2 rounded align-items-stretch">
-                                <div className="card-header filter-controls-card__header rounded-top">
-                                    <FontAwesomeIcon icon={faSlidersH} className="mr-1" />
-                                    Filters
+                <div className="root-container">
+                    <div className="d-flex flex-row-reverse flex-wrap">
+                        <div className="card sidepanel-card col-lg-4">
+                            <div className="card-body px-0 px-lg-2 d-flex flex-column">
+                                <div className="card filter-controls-card shadow-lg p-2 rounded align-items-stretch">
+                                    <div className="card-header filter-controls-card__header rounded-top">
+                                        <FontAwesomeIcon icon={faSlidersH} className="mr-1" />
+                                        Filters
+                                    </div>
+                                    <div className="filter-controls-card__cost-slider px-3 d-flex flex-column align-items-center mb-4">
+                                        <div className="cost-slider__title">
+                                            Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
+                                        </div>
+                                        <Range className="mx-3"
+                                            min={this.globalMinCost()}
+                                            max={this.globalMaxCost()}
+                                            marks={costSliderMarks}
+                                            onChange={this.changeCostRange}
+                                            value={[this.state.minCost, this.state.maxCost]}
+                                            allowCross={false}
+                                            tipFormatter={value => `${value}`}
+                                            step={0.1}
+                                            trackStyle={[{ backgroundColor: '#38003c' }]}
+                                        />
+                                    </div>
+                                    <div className="filter-controls-card__sort-by-picker px-2 d-flex flex-column align-items-center mb-2">
+                                        <div className="sort-by-picker__title">
+                                            Sort by
+                                        </div>
+                                        <div className="sort-by-picker__radio-btns d-flex flex-row justify-content-between">
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    value="form"
+                                                    checked={this.state.selectedOption === "form"}
+                                                    onChange={this.changeSortCriterion}
+                                                    className="form-check-input"
+                                                />
+                                                Form
+                                            </label>
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    value="cost"
+                                                    checked={this.state.selectedOption === "cost"}
+                                                    onChange={this.changeSortCriterion}
+                                                    className="form-check-input"
+                                                />
+                                                Cost
+                                            </label>
+                                            <label>
+                                                <input
+                                                    type="radio"
+                                                    value="totalPoints"
+                                                    checked={this.state.selectedOption === "totalPoints"}
+                                                    onChange={this.changeSortCriterion}
+                                                    className="form-check-input"
+                                                />
+                                                Total Points
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="filter-control-card__team-filter px-2 d-flex flex-column align-items-center">
+                                        <div>
+                                            Teams
+                                        </div>
+                                        <Picky className='w-100 d-flex flex-column align-items-centre team-filter__picky'
+                                            options={this.props.teams}
+                                            value={this.state.selectedTeams}
+                                            valueKey="id"
+                                            labelKey="name"
+                                            multiple={true}
+                                            includeSelectAll={true}
+                                            includeFilter={true}
+                                            onChange={this.updateSelectedTeams}
+                                            dropdownHeight={600}
+                                            renderList={({ items, selected, multiple, selectValue, getIsSelected }) =>
+                                                items.map(item => (
+                                                    <div key={item.id} onClick={() => selectValue(item)} className="team-filter__dropdown-item">
+                                                        {getIsSelected(item) ? <span className="team-filter__dropdown-item--selected">{item.name}</span> : item.name}
+                                                    </div>
+                                                ))
+                                            }
+                                        />
+                                    </div>
                                 </div>
-                                <div className="filter-controls-card__cost-slider px-3 d-flex flex-column align-items-center mb-4">
-                                    <div className="cost-slider__title">
-                                        Cost: &#xa3;{this.state.minCost} - &#xa3;{this.state.maxCost}
+                            </div>
+                        </div>
+                        <div className="card player-carousel-card pb-lg-3 col-lg-8">
+                            <div className="card-body px-0 px-lg-2 w-100 d-flex flex-column justify-content-start">
+                                <div className="nav-tab__content shadow-lg rounded">
+                                    <ul className="nav nav-tabs" id="playerCarouselTab" role="tablist">
+                                        <li className="nav-item">
+                                            <a className="nav-link active" id="forwards-tab" data-toggle="tab" href="#forwards" role="tab">
+                                                <span className="d-none d-lg-block">Forwards</span>
+                                                <span className="d-block d-lg-none">FWD</span>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" id="mid-fielders-tab" data-toggle="tab" href="#mid-fielders" role="tab">
+                                                <span className="d-none d-lg-block">Mid-Fielders</span>
+                                                <span className="d-block d-lg-none">MDF</span>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" id="defenders-tab" data-toggle="tab" href="#defenders" role="tab">
+                                                <span className="d-none d-lg-block">Defenders</span>
+                                                <span className="d-block d-lg-none">DFD</span>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" id="goal-keepers-tab" data-toggle="tab" href="#goal-keepers" role="tab">
+                                                <span className="d-none d-lg-block">Goal-Keepers</span>
+                                                <span className="d-block d-lg-none">GKP</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div className="tab-content py-2" id="playerCarouselTabContent">
+                                        <div className="tab-pane fade show active" id="forwards" role="tabpanel">
+                                            <PlayerCarousel
+                                                players={forwards}
+                                                upComingMatches={this.upComingMatches()}
+                                                teams={this.props.teams}
+                                                fixtures={this.props.fixtures}
+                                                logoURL={this.props.logoURL}
+                                                ref={carousel => (this.forwardsCarousel = carousel)}
+                                            />
+                                        </div>
+                                        <div className="tab-pane fade" id="mid-fielders" role="tabpanel">
+                                            <PlayerCarousel
+                                                players={midFielders}
+                                                upComingMatches={this.upComingMatches()}
+                                                teams={this.props.teams}
+                                                fixtures={this.props.fixtures}
+                                                logoURL={this.props.logoURL}
+                                                ref={carousel => (this.midFieldersCarousel = carousel)}
+                                            />
+                                        </div>
+                                        <div className="tab-pane fade" id="defenders" role="tabpanel">
+                                            <PlayerCarousel
+                                                players={defenders}
+                                                upComingMatches={this.upComingMatches()}
+                                                teams={this.props.teams}
+                                                fixtures={this.props.fixtures}
+                                                logoURL={this.props.logoURL}
+                                                ref={carousel => (this.defendersCarousel = carousel)}
+                                            />
+                                        </div>
+                                        <div className="tab-pane fade" id="goal-keepers" role="tabpanel">
+                                            <PlayerCarousel
+                                                players={goalKeepers}
+                                                upComingMatches={this.upComingMatches()}
+                                                teams={this.props.teams}
+                                                fixtures={this.props.fixtures}
+                                                logoURL={this.props.logoURL}
+                                                ref={carousel => (this.goalKeepersCarousel = carousel)}
+                                            />
+                                        </div>
                                     </div>
-                                    <Range className="mx-3"
-                                        min={this.globalMinCost()}
-                                        max={this.globalMaxCost()}
-                                        marks={costSliderMarks}
-                                        onChange={this.changeCostRange}
-                                        value={[this.state.minCost, this.state.maxCost]}
-                                        allowCross={false}
-                                        tipFormatter={value => `${value}`}
-                                        step={0.1}
-                                        trackStyle={[{ backgroundColor: '#38003c' }]}
-                                    />
                                 </div>
-                                <div className="filter-controls-card__sort-by-picker px-2 d-flex flex-column align-items-center mb-2">
-                                    <div className="sort-by-picker__title">
-                                        Sort by
+                            </div>
+                        </div>
+                    </div>
+                    <div className="d-flex flex-wrap">
+                        <div className="card bg-transparent border-0 col-lg-8">
+                            <div className="card-body px-0 px-lg-2">
+                                <div className="card price-change-card p-2 shadow-lg rounded">
+                                    <div className="card-header filter-controls-card__header">
+                                        <FontAwesomeIcon icon={faList} className="mr-1" />
+                                        Latest Price Changes
                                     </div>
-                                    <div className="sort-by-picker__radio-btns d-flex flex-row justify-content-between">
-                                        <label>
-                                            <input
-                                                type="radio"
-                                                value="form"
-                                                checked={this.state.selectedOption === "form"}
-                                                onChange={this.changeSortCriterion}
-                                                className="form-check-input"
-                                            />
-                                            Form
-                                        </label>
-                                        <label>
-                                            <input
-                                                type="radio"
-                                                value="cost"
-                                                checked={this.state.selectedOption === "cost"}
-                                                onChange={this.changeSortCriterion}
-                                                className="form-check-input"
-                                            />
-                                            Cost
-                                        </label>
-                                        <label>
-                                            <input
-                                                type="radio"
-                                                value="totalPoints"
-                                                checked={this.state.selectedOption === "totalPoints"}
-                                                onChange={this.changeSortCriterion}
-                                                className="form-check-input"
-                                            />
-                                            Total Points
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="filter-control-card__team-filter px-2 d-flex flex-column align-items-center">
-                                    <div>
-                                        Teams
-                                    </div>
-                                    <Picky className='w-100 d-flex flex-column align-items-centre team-filter__picky'
-                                        options={this.props.teams}
-                                        value={this.state.selectedTeams}
-                                        valueKey="id"
-                                        labelKey="name"
-                                        multiple={true}
-                                        includeSelectAll={true}
-                                        includeFilter={true}
-                                        onChange={this.updateSelectedTeams}
-                                        dropdownHeight={600}
-                                        renderList={({ items, selected, multiple, selectValue, getIsSelected }) =>
-                                            items.map(item => (
-                                                <div key={item.id} onClick={() => selectValue(item)} className="team-filter__dropdown-item">
-                                                    {getIsSelected(item) ? <span className="team-filter__dropdown-item--selected">{item.name}</span> : item.name}
+                                    <div className="pt-3 d-flex flex-column">
+                                        <div className="nav-tab__content border-0">
+                                            <ul className="nav nav-tabs ml-3" id="priceChangeTab" role="tablist">
+                                                <li className="nav-item">
+                                                    <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
+                                                        Rise
+                                                    </a>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="price-fall-tab" data-toggle="tab" href="#pricefall" role="tab">
+                                                        Fall
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div className="tab-content px-2" id="priceChangeTabContent">
+                                                <div className="tab-pane fade show active" id="pricerise" role="tabpanel">
+                                                    <ul className="list-group list-group-flush p-2">
+                                                        {
+                                                            this.costIncreasedPlayers().map((player) => {
+                                                                return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                                    <div>{player.full_name}</div>
+                                                                    <div className="d-flex col-1 justify-content-between">
+                                                                        <span className="green-text">
+                                                                            +{player.cost_change_event}
+                                                                        </span>
+                                                                        <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                                    </div>
+                                                                </li>);
+                                                            })
+                                                        }
+                                                    </ul>
                                                 </div>
-                                            ))
-                                        }
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card player-carousel-card pb-lg-3 col-lg-8">
-                        <div className="card-body px-0 px-lg-2 w-100 d-flex flex-column justify-content-start">
-                            <div className="nav-tab__content shadow-lg rounded">
-                                <ul className="nav nav-tabs" id="playerCarouselTab" role="tablist">
-                                    <li className="nav-item">
-                                        <a className="nav-link active" id="forwards-tab" data-toggle="tab" href="#forwards" role="tab">
-                                            <span className="d-none d-lg-block">Forwards</span>
-                                            <span className="d-block d-lg-none">FWD</span>
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" id="mid-fielders-tab" data-toggle="tab" href="#mid-fielders" role="tab">
-                                            <span className="d-none d-lg-block">Mid-Fielders</span>
-                                            <span className="d-block d-lg-none">MDF</span>
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" id="defenders-tab" data-toggle="tab" href="#defenders" role="tab">
-                                            <span className="d-none d-lg-block">Defenders</span>
-                                            <span className="d-block d-lg-none">DFD</span>
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" id="goal-keepers-tab" data-toggle="tab" href="#goal-keepers" role="tab">
-                                            <span className="d-none d-lg-block">Goal-Keepers</span>
-                                            <span className="d-block d-lg-none">GKP</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div className="tab-content py-2" id="playerCarouselTabContent">
-                                    <div className="tab-pane fade show active" id="forwards" role="tabpanel">
-                                        <PlayerCarousel
-                                            players={forwards}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            logoURL={this.props.logoURL}
-                                            ref={carousel => (this.forwardsCarousel = carousel)}
-                                        />
-                                    </div>
-                                    <div className="tab-pane fade" id="mid-fielders" role="tabpanel">
-                                        <PlayerCarousel
-                                            players={midFielders}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            logoURL={this.props.logoURL}
-                                            ref={carousel => (this.midFieldersCarousel = carousel)}
-                                        />
-                                    </div>
-                                    <div className="tab-pane fade" id="defenders" role="tabpanel">
-                                        <PlayerCarousel
-                                            players={defenders}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            logoURL={this.props.logoURL}
-                                            ref={carousel => (this.defendersCarousel = carousel)}
-                                        />
-                                    </div>
-                                    <div className="tab-pane fade" id="goal-keepers" role="tabpanel">
-                                        <PlayerCarousel
-                                            players={goalKeepers}
-                                            upComingMatches={this.upComingMatches()}
-                                            teams={this.props.teams}
-                                            fixtures={this.props.fixtures}
-                                            logoURL={this.props.logoURL}
-                                            ref={carousel => (this.goalKeepersCarousel = carousel)}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card twitter-feed-card-2 col-lg-4">
-                        <div className="card-body px-0 px-lg-2">
-                            <div className="twitter-feed-card-2__body-content shadow-lg">
-                                <TwitterTimelineEmbed
-                                    sourceType="list"
-                                    ownerScreenName="unbottler"
-                                    slug="fantasy-premier-league"
-                                    options={{ height: 400 }}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card bg-transparent border-0 col-lg-8">
-                        <div className="card-body px-0 px-lg-2">
-                            <div className="card price-change-card p-2 shadow-lg rounded">
-                                <div className="card-header filter-controls-card__header">
-                                    <FontAwesomeIcon icon={faList} className="mr-1" />
-                                    Latest Price Changes
-                                </div>
-                                <div className="pt-3 d-flex flex-column">
-                                    <div className="nav-tab__content border-0">
-                                        <ul className="nav nav-tabs ml-3" id="priceChangeTab" role="tablist">
-                                            <li className="nav-item">
-                                                <a className="nav-link active" id="price-rise-tab" data-toggle="tab" href="#pricerise" role="tab">
-                                                    Rise
-                                                </a>
-                                            </li>
-                                            <li className="nav-item">
-                                                <a className="nav-link" id="price-fall-tab" data-toggle="tab" href="#pricefall" role="tab">
-                                                    Fall
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div className="tab-content px-2" id="priceChangeTabContent">
-                                            <div className="tab-pane fade show active" id="pricerise" role="tabpanel">
-                                                <ul className="list-group list-group-flush p-2">
-                                                    {
-                                                        this.costIncreasedPlayers().map((player) => {
-                                                            return (<li className="list-group-item d-flex justify-content-between pr-5">
-                                                                <div>{player.full_name}</div>
-                                                                <div className="d-flex col-1 justify-content-between">
-                                                                    <span className="green-text">
-                                                                        +{player.cost_change_event}
-                                                                    </span>
-                                                                    <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
-                                                                </div>
-                                                            </li>);
-                                                        })
-                                                    }
-                                                </ul>
-                                            </div>
-                                            <div className="tab-pane fade" id="pricefall" role="tabpanel">
-                                                <ul className="list-group list-group-flush p-2">
-                                                    {
-                                                        this.costDecreasedPlayers().map((player) => {
-                                                            return (<li className="list-group-item d-flex justify-content-between pr-5">
-                                                                <div>{player.full_name}</div>
-                                                                <div className="d-flex col-1 justify-content-between">
-                                                                    <span className="red-text">
-                                                                        {player.cost_change_event}
-                                                                    </span>
-                                                                    <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
-                                                                </div>
-                                                            </li>);
-                                                        })
-                                                    }
-                                                </ul>
+                                                <div className="tab-pane fade" id="pricefall" role="tabpanel">
+                                                    <ul className="list-group list-group-flush p-2">
+                                                        {
+                                                            this.costDecreasedPlayers().map((player) => {
+                                                                return (<li className="list-group-item d-flex justify-content-between pr-5">
+                                                                    <div>{player.full_name}</div>
+                                                                    <div className="d-flex col-1 justify-content-between">
+                                                                        <span className="red-text">
+                                                                            {player.cost_change_event}
+                                                                        </span>
+                                                                        <span className="grey-text small">&nbsp;({player.cost_change_start})</span>
+                                                                    </div>
+                                                                </li>);
+                                                            })
+                                                        }
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card twitter-feed-card-2 col-lg-4">
+                            <div className="card-body px-0 px-lg-2">
+                                <div className="twitter-feed-card-2__body-content shadow-lg">
+                                    <TwitterTimelineEmbed
+                                        sourceType="list"
+                                        ownerScreenName="unbottler"
+                                        slug="fantasy-premier-league"
+                                        options={{ height: 400 }}
+                                    />
                                 </div>
                             </div>
                         </div>
