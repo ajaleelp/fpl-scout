@@ -359,7 +359,7 @@ export default class RootApp extends React.Component {
                         <a href="/humans.txt" target="_blank">team unbottler</a>
                     </div>
                     <div className="footer__subtext">
-                        do tweet to your suggestions/feedback to&nbsp;
+                        do tweet your suggestions/feedback to&nbsp;
                         <a href="https://twitter.com/unbottler" target="_blank">
                             @unbottler
                         </a>
