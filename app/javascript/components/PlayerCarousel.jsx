@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlayerCard from "./PlayerCard";
 import { default as Carousel } from "react-slick/lib";
+import { faMehBlank} from "@fortawesome/free-regular-svg-icons/faMehBlank";
+import {faRocket} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class PlayerCarousel extends React.Component {
     constructor(props) {
@@ -38,17 +41,23 @@ export default class PlayerCarousel extends React.Component {
                 }
             ]
         };
-        return (
+        return(
             <Carousel ref={slider => this.slider = slider} {...settings} className="mx-4 my-1 carousel-container">
                 {
-                    this.props.players.map((player) => <PlayerCard player={player}
-                       key={player.full_name}
-                       next5Matches={this.next5Matches(player)}
-                       teams={this.props.teams}
-                       fixtures={this.props.fixtures}
-                       logoURL={this.props.logoURL}
-                       toggleBookmarkCB={this.props.toggleBookmarkCB}
-                    />)
+                    (this.props.players.length > 0) ?
+                        this.props.players.map((player) => <PlayerCard player={player}
+                            key={player.full_name}
+                            next5Matches={this.next5Matches(player)}
+                            teams={this.props.teams}
+                            fixtures={this.props.fixtures}
+                            logoURL={this.props.logoURL}
+                            toggleBookmarkCB={this.props.toggleBookmarkCB}
+                        />)
+                    :
+                        <div className="empty-list-placeholder d-flex flex-column justify-content-center align-items-center">
+                            <div className="mb-5"><FontAwesomeIcon icon={faMehBlank} transform="grow-50"/></div>
+                            <div>Nothing to show here...</div>
+                        </div>
                 }
             </Carousel>
         );

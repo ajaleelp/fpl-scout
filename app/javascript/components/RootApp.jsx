@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons/faSlidersH";
 import { faList } from "@fortawesome/free-solid-svg-icons/";
 import { faHeart } from "@fortawesome/free-solid-svg-icons/";
-import {faHeart as faHeartSolid} from "@fortawesome/free-solid-svg-icons";
 
 
 export default class RootApp extends React.Component {
@@ -73,10 +72,10 @@ export default class RootApp extends React.Component {
     }
 
     goToCarouselStart() {
-        this.forwardsCarousel.slider.slickGoTo(0);
-        this.midFieldersCarousel.slider.slickGoTo(0);
-        this.defendersCarousel.slider.slickGoTo(0);
-        this.goalKeepersCarousel.slider.slickGoTo(0);
+        if (this.forwards().length > 0) this.forwardsCarousel.slider.slickGoTo(0);
+        if (this.midFielders().length > 0) this.midFieldersCarousel.slider.slickGoTo(0);
+        if (this.defenders().length > 0) this.defendersCarousel.slider.slickGoTo(0);
+        if (this.goalKeepers().length > 0) this.goalKeepersCarousel.slider.slickGoTo(0);
     }
 
     changeCostRange([newMinCost, newMaxCost]) {
@@ -111,15 +110,26 @@ export default class RootApp extends React.Component {
         this.setState({players: players});
     }
 
+    forwards() {
+        return this.filterForPosition(this.filteredPlayers(), 4);
+    }
+
+    midFielders() {
+        return this.filterForPosition(this.filteredPlayers(), 3);
+    }
+
+    defenders() {
+        return this.filterForPosition(this.filteredPlayers(), 2);
+    }
+
+    goalKeepers() {
+        return this.filterForPosition(this.filteredPlayers(), 1);
+    }
+
     render() {
         let costSliderMarks = {};
         costSliderMarks[this.globalMinCost()] = this.globalMinCost().toString();
         costSliderMarks[this.globalMaxCost()] = this.globalMaxCost().toString();
-        let filteredPlayers = this.filteredPlayers();
-        let forwards = this.filterForPosition(filteredPlayers, 4);
-        let midFielders = this.filterForPosition(filteredPlayers, 3);
-        let defenders = this.filterForPosition(filteredPlayers, 2);
-        let goalKeepers = this.filterForPosition(filteredPlayers, 1);
         return (
             <div>
                 <div className="page-header">
@@ -245,21 +255,16 @@ export default class RootApp extends React.Component {
                                                 <span className="d-block d-lg-none">GKP</span>
                                             </a>
                                         </li>
-                                        {
-                                            this.bookmarkedPlayers().length > 0 &&
-                                            (
-                                                <li className="nav-item">
-                                                    <a className="nav-link" id="goal-keepers-tab" data-toggle="tab" href="#bookmarked" role="tab">
-                                                        Favs <FontAwesomeIcon transform="shrink-3" icon={faHeart} className="red-text m-auto"/>
-                                                    </a>
-                                                </li>
-                                            )
-                                        }
+                                        <li className="nav-item">
+                                            <a className="nav-link" id="goal-keepers-tab" data-toggle="tab" href="#bookmarked" role="tab">
+                                                Favs <FontAwesomeIcon transform="shrink-3" icon={faHeart} className="red-text m-auto"/>
+                                            </a>
+                                        </li>
                                     </ul>
                                     <div className="tab-content py-2" id="playerCarouselTabContent">
                                         <div className="tab-pane fade show active" id="forwards" role="tabpanel">
                                             <PlayerCarousel
-                                                players={forwards}
+                                                players={this.forwards()}
                                                 upComingMatches={this.upComingMatches()}
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
@@ -270,7 +275,7 @@ export default class RootApp extends React.Component {
                                         </div>
                                         <div className="tab-pane fade" id="mid-fielders" role="tabpanel">
                                             <PlayerCarousel
-                                                players={midFielders}
+                                                players={this.midFielders()}
                                                 upComingMatches={this.upComingMatches()}
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
@@ -281,7 +286,7 @@ export default class RootApp extends React.Component {
                                         </div>
                                         <div className="tab-pane fade" id="defenders" role="tabpanel">
                                             <PlayerCarousel
-                                                players={defenders}
+                                                players={this.defenders()}
                                                 upComingMatches={this.upComingMatches()}
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
@@ -292,7 +297,7 @@ export default class RootApp extends React.Component {
                                         </div>
                                         <div className="tab-pane fade" id="goal-keepers" role="tabpanel">
                                             <PlayerCarousel
-                                                players={goalKeepers}
+                                                players={this.goalKeepers()}
                                                 upComingMatches={this.upComingMatches()}
                                                 teams={this.props.teams}
                                                 fixtures={this.props.fixtures}
@@ -301,22 +306,17 @@ export default class RootApp extends React.Component {
                                                 ref={carousel => (this.goalKeepersCarousel = carousel)}
                                             />
                                         </div>
-                                        {
-                                            this.bookmarkedPlayers().length > 0 &&
-                                            (
-                                                <div className="tab-pane fade" id="bookmarked" role="tabpanel">
-                                                    <PlayerCarousel
-                                                        players={this.bookmarkedPlayers()}
-                                                        upComingMatches={this.upComingMatches()}
-                                                        teams={this.props.teams}
-                                                        fixtures={this.props.fixtures}
-                                                        logoURL={this.props.logoURL}
-                                                        toggleBookmarkCB={this.toggleBookmark}
-                                                        ref={carousel => (this.goalKeepersCarousel = carousel)}
-                                                    />
-                                                </div>
-                                            )
-                                        }
+                                        <div className="tab-pane fade" id="bookmarked" role="tabpanel">
+                                            <PlayerCarousel
+                                                players={this.bookmarkedPlayers()}
+                                                upComingMatches={this.upComingMatches()}
+                                                teams={this.props.teams}
+                                                fixtures={this.props.fixtures}
+                                                logoURL={this.props.logoURL}
+                                                toggleBookmarkCB={this.toggleBookmark}
+                                                ref={carousel => (this.goalKeepersCarousel = carousel)}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
