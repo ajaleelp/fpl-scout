@@ -45,13 +45,14 @@ export default class PlayerCarousel extends React.Component {
             <Carousel ref={slider => this.slider = slider} {...settings} className="mx-4 my-1 carousel-container">
                 {
                     (this.props.players.length > 0) ?
-                        this.props.players.map((player) => <PlayerCard player={player}
+                        this.props.players.map((player, index) => <PlayerCard player={player}
                             key={player.full_name}
                             next5Matches={this.next5Matches(player)}
                             teams={this.props.teams}
                             fixtures={this.props.fixtures}
                             logoURL={this.props.logoURL}
                             toggleBookmarkCB={this.props.toggleBookmarkCB}
+                            rank={index + 1}
                         />)
                     :
                         <div className="empty-list-placeholder d-flex flex-column justify-content-center align-items-center">

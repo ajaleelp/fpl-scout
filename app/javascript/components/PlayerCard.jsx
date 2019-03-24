@@ -12,6 +12,7 @@ import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import {faHandPointRight} from "@fortawesome/free-solid-svg-icons";
 import {faHandPointLeft} from "@fortawesome/free-regular-svg-icons";
+import { faMedal } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from 'react-card-flip';
 import onClickOutside from "react-onclickoutside";
@@ -93,7 +94,8 @@ class PlayerCard extends React.Component {
                     <div className="d-flex flex-column">
                         <div className="player-card__front-body p-3">
                             <div className="player-card-body__top d-flex align-items-end">
-                                <div className="pc-body-top__jersey">
+                                <div className="pc-body-top__left-panel d-flex flex-column">
+                                    <div><FontAwesomeIcon icon={faMedal} transform="grow-3"/>&nbsp;{this.props.rank}</div>
                                     <img className="card-img-top player-card__img my-auto"
                                          src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"}/>
                                 </div>
@@ -209,7 +211,8 @@ PlayerCard.propTypes = {
     teams: PropTypes.array.isRequired,
     fixtures: PropTypes.array.isRequired,
     logoURL: PropTypes.string.isRequired,
-    toggleBookmarkCB: PropTypes.func.isRequired
+    toggleBookmarkCB: PropTypes.func.isRequired,
+    rank: PropTypes.number.isRequired
 };
 
 export default onClickOutside(PlayerCard);
