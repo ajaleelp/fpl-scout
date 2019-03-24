@@ -193,7 +193,7 @@ class PlayerCard extends React.Component {
                         {/*<FontAwesomeIcon icon={faChevronCircleRight} className="ml-auto" onClick={this.flip} />*/}
                     {/*</div>*/}
                 </div>
-                <div key={player.full_name} className="card mx-1 player-card__container shadow mt-2 mb-4" key="back">
+                <div key={player.full_name} className="card mx-auto player-card__container shadow mt-2 mb-4" key="back">
                     <div className="player-card__back-body p-3 d-flex flex-column align-items-center">
                         {this.state.backBody}
                     </div>
