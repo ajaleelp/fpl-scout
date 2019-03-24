@@ -55,7 +55,7 @@ class PlayerCard extends React.Component {
                     let scoreList = that.next5MatchDetails().map(team => {
                         let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
                         return (
-                            <div className="prediction-bar border d-flex flex-column p-1 justify-content-between align-items-center" key={team.opponentName}>
+                            <div className="prediction-bar border d-flex flex-column justify-content-between align-items-center" key={team.opponentName}>
                                 <div className="p-2 prediction-bar__opponent-name">{team.opponentName}</div>
                                 <div className={"w-100 text-center prediction-bar__prediction prediction-bar__prediction--d" + team.difficulty}>{score}</div>
                             </div>)
