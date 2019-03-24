@@ -92,8 +92,8 @@ class PlayerCard extends React.Component {
             <ReactCardFlip isFlipped={this.state.isFlipped}>
                 <div key={player.full_name} className="card mx-auto player-card__container shadow mt-2 mb-4" key="front">
                     <div className="d-flex flex-column">
-                        <div className="player-card__front-body p-3">
-                            <div className="player-card-body__top d-flex align-items-end">
+                        <div className="player-card__front-body px-3 py-2 d-flex flex-column justify-content-around">
+                            <div className="player-card-body__top d-flex">
                                 <div className="pc-body-top__left-panel d-flex flex-column">
                                     <div><FontAwesomeIcon icon={faMedal} transform="grow-3"/>&nbsp;{this.props.rank}</div>
                                     <img className="card-img-top player-card__img my-auto"
