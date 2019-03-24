@@ -79,8 +79,8 @@ html,body
 }
 
 .player-card__img {
-  width: 110px;
-  height: 140px;
+  width: 98px;
+  height: 125px;
 }
 
 .player-card__fixture-cell {
@@ -246,13 +246,13 @@ html,body
     border: 0;
     border-radius: 0 !important;
     /*width: 287px;*/
-    height: 370px;
-    width: 250px;
+    height: 350px;
+    width: 230px;
     /*height: 360px;*/
 }
 
 .player-card__front-body {
-    height: 327px;
+    height: 306px;
     background-image: linear-gradient(138deg, #03c1e4, #1e7ed8);
     color: white;
 }
@@ -263,16 +263,16 @@ html,body
 }
 
 .player-card-body__top {
-    height: 180px;
+    height: 170px;
     width: 100%;
 }
 
 .pc-body-top__jersey {
-    width: 60%;
+    width: 50%;
 }
 
 .pc-body-top__matches {
-    width: 40%;
+    width: 50%;
     font-size: x-small;
 }
 
@@ -312,7 +312,7 @@ html,body
 
 .prediction-bar {
     margin: 0.15rem;
-    padding: 0.05rem;
+    padding: 0.1rem;
 }
 
 .prediction-bar__predictions-conatiner {
@@ -324,7 +324,7 @@ html,body
 }
 
 .prediction-bar__prediction {
-    font-size: large;
+    /*font-size: no;*/
 }
 
 .prediction-bar__prediction--d1 {
@@ -369,7 +369,7 @@ html,body
 }
 
 .empty-list-placeholder {
-    height: 402px;
+    height: 382px;
     color: gray;
     width: 100%;
 }

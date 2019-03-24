@@ -56,7 +56,7 @@ class PlayerCard extends React.Component {
                         let score = team.isHome ? scores.h[team.difficulty - 1] : scores.a[team.difficulty - 1];
                         return (
                             <div className="prediction-bar border d-flex flex-column justify-content-between align-items-center" key={team.opponentName}>
-                                <div className="p-2 prediction-bar__opponent-name">{team.opponentName}</div>
+                                <div className="p-1 prediction-bar__opponent-name">{team.opponentName}</div>
                                 <div className={"w-100 text-center prediction-bar__prediction prediction-bar__prediction--d" + team.difficulty}>{score}</div>
                             </div>)
                     });
@@ -97,7 +97,7 @@ class PlayerCard extends React.Component {
                                     <img className="card-img-top player-card__img my-auto"
                                          src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"}/>
                                 </div>
-                                <div className="pc-body-top__matches d-flex flex-column justify-content-end mb-2 ml-2">
+                                <div className="pc-body-top__matches d-flex flex-column justify-content-end mb-1 ml-2">
                                     {
                                     this.next5MatchDetails().map(team => {
                                     return (
