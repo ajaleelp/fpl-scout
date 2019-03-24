@@ -89,7 +89,7 @@ class PlayerCard extends React.Component {
         let player = this.props.player;
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped}>
-                <div key={player.full_name} className="card mx-1 player-card__container shadow mt-2 mb-4" key="front">
+                <div key={player.full_name} className="card mx-auto player-card__container shadow mt-2 mb-4" key="front">
                     <div className="d-flex flex-column">
                         <div className="player-card__front-body p-3">
                             <div className="player-card-body__top d-flex align-items-end">
@@ -128,8 +128,9 @@ class PlayerCard extends React.Component {
                                             <FontAwesomeIcon icon={faHeart} className="red-text m-auto"/>
                                     }
                                 </div>
-                                <div className="player-card__flip-btn" onClick={this.flip}>
-                                    <FontAwesomeIcon transform="grow-3" icon={faHandPointRight}/>
+                                <div className="player-card__flip-btn px-2 py-1 shadow rounded" onClick={this.flip}>
+                                    Predictions&nbsp;
+                                    <FontAwesomeIcon transform="shrink-3" icon={faChevronCircleRight}/>
                                 </div>
                             </div>
                         </div>
