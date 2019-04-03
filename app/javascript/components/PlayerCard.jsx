@@ -97,6 +97,7 @@ class PlayerCard extends React.Component {
                                 <div className="pc-body-top__left-panel d-flex flex-column">
                                     <div><FontAwesomeIcon icon={faMedal} transform="grow-3"/>&nbsp;{this.props.rank}</div>
                                     <img className="card-img-top player-card__img my-auto"
+                                         alt={"FPL " + this.props.teams.find((t) => {return t.id == player.team}).name + " " + player.full_name}
                                          src={"https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p" + player.code + ".png"}/>
                                 </div>
                                 <div className="pc-body-top__matches d-flex flex-column justify-content-end mb-1 ml-2">
