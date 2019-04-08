@@ -23,7 +23,8 @@ class HomeController < ApplicationController
       {
           id: team['id'],
           short_name: team['short_name'],
-          name: team['name']
+          name: team['name'],
+          team_kit: ActionController::Base.helpers.image_path("/assets/images/team_jerseys/" + team['short_name'] + ".png")
       }
     end
 
