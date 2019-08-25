@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    players_json = JSON.parse(RestClient.get('https://fantasy.premierleague.com/api/bootstrap-static'))
+    players_json = JSON.parse(RestClient.get('https://fantasy.premierleague.com/api/bootstrap-static/'))
     @players = players_json['elements'].map do |player|
       {
         full_name: "#{player['first_name']} #{player['second_name']}",
@@ -18,7 +18,7 @@ class HomeController < ApplicationController
       }
     end.sort_by { |p| p[:form].to_f }.reverse
 
-    teams_json = JSON.parse(RestClient.get('https://fantasy.premierleague.com/drf/teams'))
+    teams_json = JSON.parse(RestClient.get('https://fantasy.premierleague.com/api/bootstrap-static/'))['teams']
     @teams = teams_json.map do |team|
       {
         id: team['id'],
@@ -28,7 +28,7 @@ class HomeController < ApplicationController
       }
     end
 
-    fixtures_json = JSON.parse(RestClient.get('https://fantasy.premierleague.com/drf/fixtures'))
+    fixtures_json = JSON.parse(RestClient.get('https://fantasy.premierleague.com/api/fixtures/'))
     @fixtures = fixtures_json.map do |match|
       {
         team_a: match['team_a'],
