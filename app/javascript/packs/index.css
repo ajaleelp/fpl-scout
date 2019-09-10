@@ -1,15 +1,15 @@
-html,body
-{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 
 @media only screen and (min-width: 768px) {
   .root-container {
-    padding: 20px;
+    /*padding: 20px;*/
+    left: -25px;
   }
 }
 
@@ -46,41 +46,41 @@ html,body
 }
 
 .player-card__card-header {
-    padding: 0;
-    min-height: 35px;
+  padding: 0;
+  min-height: 35px;
 }
 
 .player-card-header__availability {
-    height: 100%;
-    color: white;
+  height: 100%;
+  color: white;
 }
 
 .player-card-header__availability--100 {
-    background-color: green;
+  background-color: green;
 }
 
 .player-card-header__availability--75 {
-    background-color: yellow;
-    color: black;
+  background-color: yellow;
+  color: black;
 }
 
 .player-card-header__availability--50 {
-    background-color: orange;
-    color: black;
+  background-color: orange;
+  color: black;
 }
 
 .player-card-header__availability--25 {
-    background-color: darkorange;
-    color: black;
+  background-color: darkorange;
+  color: black;
 }
 
 .player-card-header__availability--0 {
-    background-color: red;
+  background-color: red;
 }
 
 .player-card__img {
-  width: 98px;
-  height: 125px;
+  width: 83px;
+  height: 110px;
 }
 
 .player-card__fixture-cell {
@@ -89,6 +89,7 @@ html,body
 
 .player-card__difficulty-cell {
   color: white;
+  font-size: xx-small;
 }
 
 .player-card__difficulty-cell--d5 {
@@ -126,186 +127,189 @@ html,body
 
 .root__picky {
   background-color: #ffffff;
-  .picky__dropdown,
-  .option {
-    font-size: 2em;
-  }
+
+.picky__dropdown,
+.option {
+  font-size: 2em;
+}
+
 }
 
 .sidepanel-card {
-    border: 0;
-    background-color: transparent;
+  border: 0;
+  background-color: transparent;
 }
 
 .filter-controls-card {
-    border: 1px solid #f0f0f0;
-    border-radius: 0;
+  border: 1px solid #f0f0f0;
+  border-radius: 0;
 }
 
 .filter-controls-card__header {
-    margin: -0.5rem;
-    margin-bottom: 0.5rem;
-    color: white;
-    background-color: #38003c;
-    border-radius: 0;
+  margin: -0.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  background-color: #38003c;
+  border-radius: 0;
 }
 
 .sort-by-picker__radio-btns {
-    width: 100%;
-    padding-left: 1.25rem;
+  width: 100%;
+  padding-left: 1.25rem;
 }
 
 .team-filter__picky:focus {
-    outline: none;
+  outline: none;
 }
 
 .team-filter__picky > .picky__input {
-    background-color: transparent;
-    border: 1px solid grey;
-    color: grey
+  background-color: transparent;
+  border: 1px solid grey;
+  color: grey
 }
 
 .team-filter__picky > .picky__dropdown {
-    padding-left: 1rem;
+  padding-left: 1rem;
 }
 
-.team-filter__dropdown-item--selected{
-    color: #38003c !important;
-    font-weight: bold;
+.team-filter__dropdown-item--selected {
+  color: #38003c !important;
+  font-weight: bold;
 }
 
 .player-carousel-card {
-    border: 0;
-    background-color: transparent;
+  border: 0;
+  background-color: transparent;
 }
 
 .nav-tab__content {
-    border: 1px solid #f0f0f0;
-    background-color: white;
+  border: 1px solid #f0f0f0;
+  background-color: white;
 }
 
 .nav-tab__content > .nav-tabs {
-    border: 0;
+  border: 0;
 }
 
 .nav-tab__content > .nav-tabs > .nav-item > .nav-link {
-    color: #38003c;
-    border: 0;
-    border-bottom: 2px solid white;
+  color: #38003c;
+  border: 0;
+  border-bottom: 2px solid white;
 }
 
 .nav-tab__content > .nav-tabs > .nav-item > .nav-link.active {
-    color: #38003c;
-    background-color: #00ff85;
-    border: 0;
-    border-radius: 0;
+  color: #38003c;
+  background-color: #00ff85;
+  border: 0;
+  border-radius: 0;
 }
 
 .nav-tab__content > .nav-tabs > .nav-item > .nav-link:hover {
-    border-bottom: 2px solid #38003c;
+  border-bottom: 2px solid #38003c;
 }
 
 .twitter-feed-card-2 {
-    border: 0;
-    background-color: transparent;
+  border: 0;
+  background-color: transparent;
 }
 
 .page-header {
-    border-bottom: 1px solid #f0f0f0;
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .page-header > .row {
-    min-height: 60px;
-    background-color: rgb(255, 255, 255);
+  min-height: 60px;
+  background-color: rgb(255, 255, 255);
 }
 
 .logo-image {
-    height: 40px;
+  height: 40px;
 }
 
 .root-container {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(252, 252, 252);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
 .price-change-card {
-    background-color: white;
-    border: 1px solid #f0f0f0;
-    border-radius: 0;
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 0;
 }
 
 /*New styles:*/
 
 .carousel-container {
-    background-color: #fbfbfb;
+  /*background-color: #fbfbfb;*/
+  background-color: transparent;
 }
 
 .player-card__container {
-    border: 0;
-    border-radius: 0 !important;
-    /*width: 287px;*/
-    height: 350px;
-    width: 230px;
-    /*height: 360px;*/
+  border: 0;
+  border-radius: 0 !important;
+  /*width: 287px;*/
+  /*height: 270px;*/
+  width: 180px;
+  /*height: 360px;*/
 }
 
 .player-card__front-body {
-    height: 306px;
-    background-image: linear-gradient(138deg, #03c1e4, #1e7ed8);
-    color: white;
+  height: 225px;
+  background-image: linear-gradient(138deg, #03c1e4, #1e7ed8);
+  color: white;
 }
 
 .player-card__front-footer {
-    min-height:44px;
-    background-color: #f8f8f8;
+  font-size: small;
+  /*min-height: 44px;*/
+  /*background-color: #f8f8f8;*/
 }
 
 .player-card-body__top {
-    height: 170px;
-    width: 100%;
+  height: 125px;
+  width: 100%;
 }
 
 .pc-body-top__left-panel {
-    width: 50%;
+  width: 55%;
 }
 
 .pc-body-top__matches {
-    width: 50%;
-    font-size: x-small;
+  width: 45%;
+  font-size: xx-small;
 }
 
 .player-card-__player-name {
-    font-size: larger;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 155px;
+  font-size: smaller;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 125px;
 }
 
 .player-card-__team-name {
-    font-size: smaller;
+  font-size: xx-small;
 }
 
 .player-card-__player-cost {
-    font-size: x-large;
+  font-size: medium;
 }
 
 .player-card__bookmark-container {
-    height: 30px;
-    width: 30px;
-    background-color: white;
-    border-radius: 50% 50%;
-    font-size: small;
-    cursor:pointer;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border-radius: 50% 50%;
+  font-size: small;
+  cursor: pointer;
 }
 
 .player-card__flip-btn {
-    font-size: small;
-    background-color: white;
-    color: #1e7ed8;
-    cursor: pointer;
+  font-size: x-small;
+  background-color: white;
+  color: #1e7ed8;
+  cursor: pointer;
 }
 
 .player-card__back-body {
@@ -313,65 +317,91 @@ html,body
 }
 
 .prediction-bar {
-    margin: 0.15rem;
-    padding: 0.1rem;
+  margin: 0.15rem;
+  padding: 0.1rem;
 }
 
 .prediction-bar__predictions-conatiner {
-    margin-top: -15px;
+  margin-top: -15px;
 }
 
 .prediction-bar__opponent-name {
-    font-size: xx-small;
+  font-size: xx-small;
 }
 
 .prediction-bar__prediction {
-    /*font-size: no;*/
+  /*font-size: no;*/
 }
 
 .prediction-bar__prediction--d1 {
-    border-bottom: 8px solid lightgreen;
+  border-bottom: 8px solid lightgreen;
 }
 
 .prediction-bar__prediction--d2 {
-    border-bottom: 8px solid #85d600;
+  border-bottom: 8px solid #85d600;
 }
 
 .prediction-bar__prediction--d3 {
-    border-bottom: 8px solid grey;
+  border-bottom: 8px solid grey;
 }
 
 .prediction-bar__prediction--d4 {
-    border-bottom: 8px solid #aa4c50;
+  border-bottom: 8px solid #aa4c50;
 }
 
 .prediction-bar__prediction--d5 {
-    border-bottom: 8px solid darkred;
+  border-bottom: 8px solid darkred;
 }
 
 .prediction-bar__title-logo {
-    width: 75px;
+  width: 75px;
 }
 
 .prediction-bar__title-text {
-    font-size: small;
-    margin-bottom: -11px;
+  font-size: small;
+  margin-bottom: -11px;
 }
 
 .footer__text {
-    color: grey;
-    font-size: small;
-    text-align: center;
+  color: grey;
+  font-size: small;
+  text-align: center;
 }
 
 .footer__subtext {
-    color: darkgray;
-    font-size: smaller;
-    text-align: center;
+  color: darkgray;
+  font-size: smaller;
+  text-align: center;
 }
 
 .empty-list-placeholder {
-    height: 382px;
-    color: gray;
-    width: 100%;
+  height: 382px;
+  color: gray;
+  width: 100%;
+}
+
+/*v2*/
+
+.carousel-panel {
+  height: 425px;
+  background-color: #F4F8FF;
+}
+
+.filter-container {
+  background-color: white;
+}
+
+.carousel-tab {
+  font-size: 14px;
+  padding-bottom: 2px;
+}
+
+.carousel-tab.active {
+  font-weight: bold;
+  padding-bottom: 0;
+  border-bottom: 2px solid #F66C63;
+}
+
+.w-40 {
+  width: 40%;
 }

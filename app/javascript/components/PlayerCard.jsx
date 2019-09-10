@@ -1,18 +1,18 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPoundSign } from "@fortawesome/free-solid-svg-icons";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { faRocket } from "@fortawesome/free-solid-svg-icons";
-import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
-import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
-import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
-import { faHandPointRight } from "@fortawesome/free-solid-svg-icons";
-import { faHandPointLeft } from "@fortawesome/free-regular-svg-icons";
-import { faMedal } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPoundSign} from "@fortawesome/free-solid-svg-icons";
+import {faChartLine} from "@fortawesome/free-solid-svg-icons";
+import {faRocket} from "@fortawesome/free-solid-svg-icons";
+import {faChevronCircleRight} from "@fortawesome/free-solid-svg-icons";
+import {faChevronCircleLeft} from "@fortawesome/free-solid-svg-icons";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faHeart} from "@fortawesome/free-regular-svg-icons";
+import {faHeart as faHeartSolid} from "@fortawesome/free-solid-svg-icons";
+import {faArrowAltCircleRight} from "@fortawesome/free-regular-svg-icons";
+import {faArrowAltCircleLeft} from "@fortawesome/free-regular-svg-icons";
+import {faHandPointRight} from "@fortawesome/free-solid-svg-icons";
+import {faHandPointLeft} from "@fortawesome/free-regular-svg-icons";
+import {faMedal} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ReactCardFlip from "react-card-flip";
 import onClickOutside from "react-onclickoutside";
@@ -20,13 +20,13 @@ import onClickOutside from "react-onclickoutside";
 class PlayerCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isFlipped: false };
+    this.state = {isFlipped: false};
     this.flip = this.flip.bind(this);
     this.next5MatchDetails = this.next5MatchDetails.bind(this);
     this.state = {
       isFlipped: false,
       backBody: (
-        <FontAwesomeIcon icon={faSpinner} className="fa-spin m-auto fa-6x" />
+        <FontAwesomeIcon icon={faSpinner} className="fa-spin m-auto fa-6x"/>
       )
     };
   }
@@ -62,10 +62,10 @@ class PlayerCard extends React.Component {
     let that = this;
     if (!this.state.isFlipped) {
       fetch("/player_details/" + this.props.player.id)
-        .then(function(response) {
+        .then(function (response) {
           return response.json();
         })
-        .then(function(scores) {
+        .then(function (scores) {
           console.log(JSON.stringify(scores));
           let scoreList = that.next5MatchDetails().map(team => {
             let score = team.isHome
@@ -106,19 +106,19 @@ class PlayerCard extends React.Component {
               </div>
               <div className="d-flex justify-content-between align-items-center mt-5 mx-3">
                 <div className="player-card__flip-btn" onClick={that.flip}>
-                  <FontAwesomeIcon transform="grow-3" icon={faHandPointLeft} />
+                  <FontAwesomeIcon transform="grow-3" icon={faHandPointLeft}/>
                 </div>
               </div>
             </div>
           );
-          that.setState({ backBody: backBody });
+          that.setState({backBody: backBody});
         });
     }
-    this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
+    this.setState(prevState => ({isFlipped: !prevState.isFlipped}));
   }
 
   handleClickOutside() {
-    this.setState({ isFlipped: false });
+    this.setState({isFlipped: false});
   }
 
   render() {
@@ -134,13 +134,9 @@ class PlayerCard extends React.Component {
           key="front"
         >
           <div className="d-flex flex-column">
-            <div className="player-card__front-body px-3 py-2 d-flex flex-column justify-content-around">
-              <div className="player-card-body__top d-flex">
-                <div className="pc-body-top__left-panel d-flex flex-column">
-                  <div>
-                    <FontAwesomeIcon icon={faMedal} transform="grow-3" />
-                    &nbsp;{this.props.rank}
-                  </div>
+            <div className="player-card__front-body px-2 py-2 d-flex flex-column justify-content-around">
+              <div className="player-card-body__top d-flex justify-content-between">
+                <div className="pc-body-top__left-panel align-self-end">
                   <img
                     className="card-img-top player-card__img my-auto"
                     alt={
@@ -154,28 +150,34 @@ class PlayerCard extends React.Component {
                     src={playerTeam.team_kit}
                   />
                 </div>
-                <div className="pc-body-top__matches d-flex flex-column justify-content-end mb-1 ml-2">
-                  {this.next5MatchDetails().map(team => {
-                    return (
-                      <div
-                        key={team.opponentName}
-                        className="d-flex justify-content-between align-items-center my-1"
-                      >
-                        <div>{team.gameWeek}</div>
-                        <div>
-                          {team.opponentName} {team.isHome ? " (H)" : " (A)"}
-                        </div>
+                <div className="d-flex flex-column justify-content-between align-items-stretch w-40">
+                  <div className="ml-auto">
+                    <FontAwesomeIcon icon={faMedal} transform="grow-3"/>
+                    &nbsp;{this.props.rank}
+                  </div>
+                  <div className="pc-body-top__matches d-flex flex-column justify-content-end w-100">
+                    {this.next5MatchDetails().map(team => {
+                      return (
                         <div
-                          className={
-                            "player-card__difficulty-cell px-2 py-1 rounded player-card__difficulty-cell--d" +
-                            team.difficulty
-                          }
+                          key={team.opponentName}
+                          className="d-flex justify-content-between align-items-center mb-1"
                         >
-                          {team.difficulty}
+                          <div>{team.gameWeek}</div>
+                          <div>
+                            {team.opponentName} {team.isHome ? " (H)" : " (A)"}
+                          </div>
+                          <div
+                            className={
+                              "player-card__difficulty-cell px-1 rounded player-card__difficulty-cell--d" +
+                              team.difficulty
+                            }
+                          >
+                            {team.difficulty}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
               <div className="d-flex justify-content-between mt-2">
@@ -224,18 +226,18 @@ class PlayerCard extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="player-card__front-footer d-flex justify-content-between align-items-center px-2">
+            <div className="player-card__front-footer d-flex justify-content-between align-items-center px-2 py-1">
               <div data-toggle="tooltip" data-placement="bottom" title="Cost">
                 <FontAwesomeIcon
                   icon={faPoundSign}
-                  className="green-text mr-1"
+                  className="grey-text mr-1"
                 />
                 <span>{player.cost}</span>
               </div>
               <div data-toggle="tooltip" data-placement="bottom" title="Form">
                 <FontAwesomeIcon
                   icon={faChartLine}
-                  className="green-text mr-1"
+                  className="grey-text mr-1"
                 />
                 <span>{player.form}</span>
               </div>
@@ -244,7 +246,7 @@ class PlayerCard extends React.Component {
                 data-placement="bottom"
                 title="Total points"
               >
-                <FontAwesomeIcon icon={faRocket} className="green-text mr-1" />
+                <FontAwesomeIcon icon={faRocket} className="grey-text mr-1"/>
                 <span>{player.total_points}</span>
               </div>
             </div>

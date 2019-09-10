@@ -28,10 +28,17 @@ export default class PlayerCarousel extends React.Component {
             infinite: false,
             speed: 500,
             lazyLoad: 'ondemand',
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: 4,
+            slidesToScroll: 1,
             initialSlide: 0,
             responsive: [
+                {
+                    breakpoint: 1441,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
                 {
                     breakpoint: 1024,
                     settings: {
@@ -42,7 +49,7 @@ export default class PlayerCarousel extends React.Component {
             ]
         };
         return(
-            <Carousel ref={slider => this.slider = slider} {...settings} className="mx-4 my-1 carousel-container">
+            <Carousel ref={slider => this.slider = slider} {...settings} className="mr-4 my-1 carousel-container">
                 {
                     (this.props.players.length > 0) ?
                         this.props.players.map((player, index) => <PlayerCard player={player}

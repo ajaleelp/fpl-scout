@@ -134,12 +134,38 @@ export default class RootApp extends React.Component {
             <div>
                 <div className="page-header">
                     <div className="row d-flex shadow-lg">
-                        <div className="m-auto">
+                        <div className="offset-md-1 py-4">
                             <img className="logo-image" src={this.props.logoURL} />
                         </div>
                     </div>
                 </div>
                 <div className="root-container">
+                    <div className="row carousel-panel py-5">
+                        <div className="offset-md-1 col-md-10 p-0 d-flex flex-row-reverse flex-wrap">
+                            <div className="filter-container col-md-3 mt-5">
+
+                            </div>
+                            <div className="col-md-9 d-flex flex-column">
+                                <div className="d-flex">
+                                    <span className="carousel-tab active mr-4">Forwards</span>
+                                    <span className="carousel-tab mr-4">Mid-Fielders</span>
+                                    <span className="carousel-tab mr-4">Defenders</span>
+                                    <span className="carousel-tab">Goal-Keepers</span>
+                                </div>
+                                <div className="mt-md-4">
+                                    <PlayerCarousel
+                                        players={this.midFielders()}
+                                        upComingMatches={this.upComingMatches()}
+                                        teams={this.props.teams}
+                                        fixtures={this.props.fixtures}
+                                        logoURL={this.props.logoURL}
+                                        toggleBookmarkCB={this.toggleBookmark}
+                                        ref={carousel => (this.midFieldersCarousel = carousel)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="d-flex flex-row-reverse flex-wrap">
                         <div className="card sidepanel-card col-lg-4">
                             <div className="card-body px-0 px-lg-2 d-flex flex-column">
