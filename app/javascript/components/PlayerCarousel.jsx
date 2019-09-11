@@ -49,7 +49,7 @@ export default class PlayerCarousel extends React.Component {
             ]
         };
         return(
-            <Carousel ref={slider => this.slider = slider} {...settings} className="mr-4 my-1 carousel-container">
+            <Carousel ref={slider => this.slider = slider} {...settings} className="m-4 my-1 carousel-container">
                 {
                     (this.props.players.length > 0) ?
                         this.props.players.map((player, index) => <PlayerCard player={player}

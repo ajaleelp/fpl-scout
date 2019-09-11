@@ -11,14 +11,18 @@ html, body {
     /*padding: 20px;*/
     left: -25px;
   }
+
+  .filter-container {
+    margin-top: 70px !important;
+  }
 }
 
 .grey-text {
   color: gray;
 }
 
-.green-text {
-  color: green;
+.lime-green-text {
+  color: #83D700;
 }
 
 .red-text {
@@ -383,25 +387,64 @@ html, body {
 /*v2*/
 
 .carousel-panel {
-  height: 425px;
+  /*height: 425px;*/
   background-color: #F4F8FF;
 }
 
 .filter-container {
   background-color: white;
+  height: 250px;
 }
 
 .carousel-tab {
+  color: black !important;
+  background-color: transparent !important;
+  border: 0 !important;
   font-size: 14px;
-  padding-bottom: 2px;
+  padding-bottom: 2px !important;
+  cursor: pointer;
 }
 
 .carousel-tab.active {
   font-weight: bold;
   padding-bottom: 0;
-  border-bottom: 2px solid #F66C63;
+  border-bottom: 2px solid #F66C63 !important;
 }
 
 .w-40 {
   width: 40%;
+}
+
+.filter-container__title {
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.price-change-title {
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.price-change-pill {
+  font-weight: lighter;
+  font-size: small;
+  border: 0px !important;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.price-change-pill.active {
+  background-color: #F66C63 !important;
+  color: white !important;
+}
+
+.player-cost-change-card {
+  background-color: #F4F5F9;
+  font-weight: lighter;
+  font-size: small;
+}
+
+.price-change-panel {
+  max-height: 800px;
+  overflow-y: scroll;
 }
