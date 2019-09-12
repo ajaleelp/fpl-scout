@@ -59,12 +59,12 @@ class PointsPredictorService
 
   def fixtures
     @fixtures ||= begin
-      JSON.parse(RestClient.get('https://fantasy.premierleague.com/drf/fixtures'))
+      JSON.parse(RestClient.get('https://fantasy.premierleague.com/api/fixtures/'))
     end
   end
 
   def bootstrap_static_response
-    @bootstrap_static_response ||= JSON.parse(RestClient.get('https://fantasy.premierleague.com/drf/bootstrap-static'))
+    @bootstrap_static_response ||= JSON.parse(RestClient.get('https://fantasy.premierleague.com/api/bootstrap-static/'))
   end
 
   def player_element
@@ -72,6 +72,6 @@ class PointsPredictorService
   end
 
   def element_summary_response
-    @element_summary_response ||= JSON.parse(RestClient.get("https://fantasy.premierleague.com/drf/element-summary/#{@player_id}"))
+    @element_summary_response ||= JSON.parse(RestClient.get("https://fantasy.premierleague.com/api/element-summary/#{@player_id}/"))
   end
 end

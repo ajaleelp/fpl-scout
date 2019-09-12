@@ -326,7 +326,7 @@ html, body {
 }
 
 .prediction-bar__predictions-conatiner {
-  margin-top: -15px;
+    margin-top: 5px;
 }
 
 .prediction-bar__opponent-name {
