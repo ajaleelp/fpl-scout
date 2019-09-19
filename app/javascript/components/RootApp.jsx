@@ -318,8 +318,8 @@ export default class RootApp extends React.Component {
               </div>
             </div>
           </div>
-          <div className="row offset-md-1 col-md-10 f-flex flex-wrap mt-5 p-0">
-            <div className="price-change-panel col-md-8 pr-5">
+          <div className="row d-flex flex-wrap mt-3 mt-md-5 p-0">
+            <div className="price-change-panel offset-1 col-10  col-md-7 p-0">
               <div className="price-change-title">Latest Price Changes</div>
               <div className="d-flex my-3 nav nav-tabs border-bottom-0" id="priceChangeTab" role="tablist">
                 <div className="price-change-pill px-2 py-1 mr-2 nav-link active" id="price-rise-tab" data-toggle="tab"
@@ -364,7 +364,7 @@ export default class RootApp extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="offset-1 offset-md-0 col-10 col-md-3 pl-0 pl-md-3 mt-3 mt-md-0">
               <TwitterTimelineEmbed
                 sourceType="list"
                 ownerScreenName="unbottler"
